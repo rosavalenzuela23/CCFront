@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import {TablaPacientesComponent} from "./tabla-pacientes/tabla-pacientes.component";
 
 @Component({
   selector: 'app-gestion-view',
   standalone: true,
-  imports: [],
+  imports: [TablaPacientesComponent],
   templateUrl: './gestion-view.component.html',
   styleUrl: './gestion-view.component.css'
 })
