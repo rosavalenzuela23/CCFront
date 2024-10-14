@@ -1,1 +1,293 @@
-<p>expediente-view works!</p>
+
+<div class="container">
+
+    <!-- nombre edad -->
+    <div class="row mb-3">
+
+        <div class="col-6">
+            <label for="nombrePaciente" class="form-label">
+                Nombre del paciente
+            </label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-6">
+            <label for="nombrePaciente" class="form-label">
+                Fecha de nacimiento
+            </label>
+            <input type="date" class="form-control">
+        </div>
+
+    </div>
+
+    <!-- escolaridad y un diagnostico -->
+    <div class="row mb-3">
+
+        <div class="col-6">
+            <div class="form-floating">
+                <select class="form-select" name="select-escolaridad" id="select-escolaridad">
+
+                    <option value="1">Aun no descrito</option>
+                    <option value="2">Muy loquito</option>
+                    <option value="3">Loquito</option>
+                    <option value="4">estudiando en el ison</option>
+                    
+                </select>
+                
+                <label for="select-escolaridad" class="form-label">
+                    Escolaridad
+                </label>
+            </div>
+        </div>
+
+        <div class="col-6">
+            
+            <div class="form-floating">
+                <select class="form-select" name="select-diagnosticos" id="select-diagnosticos">
+
+                    <option value="1">Aun no descrito</option>
+                    <option value="2">Muy loquito</option>
+                    <option value="3">Loquito</option>
+                    <option value="4">estudiando en el ison</option>
+                    
+                </select>
+    
+                <label for="select-dianosticos" class="form-label">
+                    Diagnostico
+                </label>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+        <div class="col-6">
+            <label for="telefonoPaciente" class="form-label">
+                Telefono
+            </label>
+            <input type="tel" class="form-control" pattern="+[0-9]{2}[0-9]{10}" placeholder="+52XXXXXXXXXX" maxlength="13" name="telefonoPaciente">
+        </div>
+
+        <div class="col-6">
+            <label for="telefonoEmerfencia" class="form-label">
+                Telefono de emergencia
+            </label>
+            <input type="tel" class="form-control" pattern="+[0-9]{2}[0-9]{10}" placeholder="+52XXXXXXXXXX" maxlength="13" name="telefonoEmergencia">
+        </div>
+
+    </div>
+
+    <div class="row mb-3">
+        
+        <div class="col">
+            <h5>Tipo de vivienda</h5>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="radioVivienda" id="radioViviendaLocal">
+                <label for="radioViviendaLocal" class="form-check-label">Local</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="radioVivienda" id="radioViviendaForaneo">
+                <label for="radioViviendaForaneo" class="form-check-label">Foraneo</label>
+            </div>
+        </div>
+        
+        
+        <div class="col">
+            <h5>Estado civil</h5>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="radioEstadoCivil" id="radioEstadoCivilCasado">
+                <label for="radioEstadoCivilCasado" class="form-check-label">Casado</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="radioEstadoCivil" id="radioEstadoCivilSoltero">
+                <label for="radioEstadoCivilSoltero" class="form-check-label">Soltero</label>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+        <div class="col">
+
+            <div class="mb-3">
+                <label for="textAreaMotivoConsulta" class="form-label">Motivo de la consulta</label>
+                <textarea name="textAreaMotivoConsulta" id="textAreaMotivoConsulta" class="form-control"></textarea>
+            </div>
+
+        </div>
+
+        <div class="col">
+            <h5>Familiares de confianza</h5>
+            <button class="btn btn-success"> <i class="bi bi-plus-lg"></i> Agregar </button>
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido paterno</th>
+                        <th scope="col">Apellido materno</th>
+                        <th scope="col">Parentezco</th>
+                        <th scope="col">Telefono</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- informacion de los pacientes -->
+                    <tr>
+                        <th>1</th>
+                        <td>Rosa</td>
+                        <td>Rodriguez</td>
+                        <td>Valenzuela</td>
+                        <td>Madre</td>
+                        <td>6442099375</td>
+                    </tr>
+
+                    <tr>
+                        <th>1</th>
+                        <td>Rosa</td>
+                        <td>Rodriguez</td>
+                        <td>Valenzuela</td>
+                        <td>Madre</td>
+                        <td>6442099375</td>
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+        <div class="col-6">
+            <label for="antecedentes" class="form-label">
+                Antecedentes
+            </label>
+            <input type="text" class="form-control" name="antecedentes">
+        </div>
+
+        <div class="col-6">
+            <label for="enfermedadPrevia" class="form-label">
+                Enfermedad previa a la sesión
+            </label>
+            <input type="text" class="form-control" name="enfermedadPrevia">
+        </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+        <div class="col-6">
+            <label for="deseo" class="form-label">
+                ¿Qué desea lograr con este proceso terapéutico?
+            </label>
+            <input type="text" class="form-control" name="deseo">
+        </div>
+
+        <div class="col-6">
+            <h5>Medicamentos</h5>
+            <button class="btn btn-success"> <i class="bi bi-plus-lg"></i> Agregar </button>
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Dosis</th>
+                        <th scope="col">Frecuencia</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- informacion de los pacientes -->
+                    <tr>
+                        <th>1</th>
+                        <td>Misoprostrol</td>
+                        <td>1mg</td>
+                        <td>10 cada embarazo</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-6">
+            <label for="preguntaMagica" class="form-label">
+                Pregunta mágica
+            </label>
+            <input type="text" class="form-control" name="preguntaMagica">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+
+        <div class="col">
+            
+            <h5>Integrantes del hogar</h5>
+            <button class="btn btn-success"> <i class="bi bi-plus-lg"></i> Agregar </button>
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Parentesco</th>
+                        <th scope="col">Ocupación/Escolaridad</th>
+                        <th scope="col">Estatusde la relación</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- informacion de los pacientes -->
+                    <tr>
+                        <th>1</th>
+                        <td>Rosa</td>
+                        <td>Rodriguez</td>
+                        <td>Valenzuela</td>
+                        <td>Madre</td>
+                        <td>6442099375</td>
+                    </tr>
+
+                    <tr>
+                        <th>1</th>
+                        <td>Rosa</td>
+                        <td>Rodriguez</td>
+                        <td>Valenzuela</td>
+                        <td>Madre</td>
+                        <td>6442099375</td>
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col d-flex justify-content-end">
+            <button class="btn btn-danger">Cancelar</button>
+
+            <button class="btn btn-primary">Continuar con la cita</button>
+        </div>
+
+    </div>
+
+</div>
+
