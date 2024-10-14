@@ -1,16 +1,36 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" routerLink="">Home</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="gestion">Gestión Expedientes</a>
-          </li>
-          
-        </ul>
+<div class="container">
+  <div class="row">
+  
+
+    <!-- Aqui podria ir el logo de la empresa, pero se busca tener el logo de la persona -->
+    <!-- asu como de un usuario -->
+    <nav class="col-auto navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        
+        <a class="navbar-brand" routerLink="">
+
+          <i class="bi bi-person-circle" style="font-size: 4em;"></i>
+
+        </a>
+
       </div>
+    </nav>
+
+  </div>
+
+  <div class="row">
+    <div class="col">
+
+      <!-- Aqui van todos los link para la barra de navegacion lateral -->
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="gestion">Gestión Expedientes</a>
+        </li>
+      </ul>
+
     </div>
-  </nav>
+  </div>
+
+</div>
+
+
