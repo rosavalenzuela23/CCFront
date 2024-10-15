@@ -17,13 +17,12 @@
                     <td>
                         <div class="d-flex justify-content-start flex-wrap gap-2">
                             <input type="button" class="btn btn-success" value="Nueva Consulta">
-                            <input type="button" class="btn btn-warning" value="Modificar">
+                            <input type="button" class="btn btn-warning"  value="Modificar">
                             <!--<input type="button" class="btn btn-info" value="Ver">-->
-                            <i class="bi bi-eye-fill btn btn-info">Ver</i>
+                            <i class="bi bi-eye-fill btn btn-info" [routerLink]="['/sesiones', id]">Ver</i>
                         </div>
                     </td>
                 </tr>
-                <!-- Repite más filas según sea necesario -->
             </tbody>
         </table>
     </div>
