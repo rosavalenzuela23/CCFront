@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from "@angular/router";
-
+import { RouterLink, Router } from "@angular/router";
+import {DtoPaciente} from "../../../dtos/DtoPaciente";
 @Component({
   selector: 'ventana-atender-component',
   standalone: true,
@@ -10,5 +10,17 @@ import { RouterLink } from "@angular/router";
   styleUrl: './ventana-atender.component.css'
 })
 export class VentanaAtenderComponent {
-    nombre: String = 'nuevo';
+
+  //pacienteAtender: DtoPaciente;
+
+  constructor(private router: Router){
+    
+  }
+
+  verificarExistente(): void{
+  
+  }
+
+
+
 }
