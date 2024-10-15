@@ -11,5 +11,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './gestion-view.component.css'
 })
 export class GestionViewComponent {
-  isPacienteAtender: boolean = false;
+  
 }
