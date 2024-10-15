@@ -1,1 +1,478 @@
 <p>sesion-view works!</p>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=h1, initial-scale=1.0">
+    <title>Informacion Consulta</title>
+</head>
+
+<body>
+    <form action="">
+    <section class="top">
+        <section class="problema">
+            <div>
+                <label for="problema">Problema</label>
+            </div>
+            <div class="problemaInput">
+                <input type="text" name="problema" id="problemaID" class="problemaClass">
+                <input type="button" value="  +  " class="botonProblema">
+            </div>
+            <div>
+                <label for="intensidad">Intensidad</label>
+            </div>
+            <div class="intensidad">
+                <select name="intensidad" id="intensidadID">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="duracion">
+                <div>
+                    <label for="Duracion">Duracion</label>
+                </div>
+                <div>
+                    <input type="text" name="duracion" id="duracionID" class="duracionClass">
+                </div>
+            </div>
+        </section>
+        <section class="Notas">
+            <input type="button" value="Ver notas medicas" class="notasButton">
+        </section>
+    </section>
+    <section class="mid-top">
+        <div class="situacionLabel">
+            <label for="situacion">La situacion afecta en:</label>
+        </div>
+        <div class="afectaciones">
+            <div class="SaludDiv">
+                <label for="Salud">Salud</label>
+                <select name="Salud" id="SaludID">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="ParejaDiv">
+                <label for="Pareja">Pareja</label>
+                <select name="Pareja" id="ParejaID">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+
+            <div class="FamiliaDiv">
+                <label for="Familia">Familia</label>
+                <select name="Familia" id="FamiliaID">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+
+            <div class="AmigosDiv">
+                <label for="Amigos">Amigos</label>
+                <select name="Amigos" id="AmigosID">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+
+            <div class="LaboralDiv">
+                <label for="Laboral">Laboral</label>
+                <select name="Laboral" id="LaboralID">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+
+            <div class="EspiritualDiv">
+                <label for="Espiritual">Espiritual</label>
+                <select name="Espiritual" id="EspiritualID">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+
+            <div class="EconomicoDiv">
+                <label for="Economico">Económico</label>
+                <select name="Economico" id="EconomicoID">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+        </div>
+    </section>
+    <section class="mid-bot">
+        <div class="calificacion">
+            <div>
+                <label for="Apariencia">Apariencia</label>
+            </div>
+            <div>
+                <label for="Apariencia">Estado mental</label>
+            </div>
+        </div>
+
+
+        <table>
+            <tr>
+                <td>
+                    Vestimenta
+                </td>
+                <td>
+                    <select name="Vestimenta" id="VestimentaID">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Nivel general de bienestar
+                </td>
+                <td>
+                    <select name="NivelGeneralBienestar" id="NivelGeneralBienestarID">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Arreglo personal
+                </td>
+                <td>
+                    <select name="ArregloPersonal" id="ArregloPersonalID">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Postura
+                </td>
+                <td>
+                    <select name="Postura" id="PosturaID">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Contacto visual
+                </td>
+                <td>
+                    <select name="ContactoVisual" id="ContactoVisualID">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </td>
+            </tr>
+            <!-- Línea divisoria -->
+            <tr>
+                <td colspan="2">
+                    <hr>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Habla y lenguaje
+                </td>
+                <td>
+                    <select name="HablaLenguaje" id="HablaLenguajeID">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Velocidad del habla
+                </td>
+                <td>
+                    <select name="VelocidadHabla" id="VelocidadHablaID">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Volumen de voz
+                </td>
+                <td>
+                    <select name="VolumenVoz" id="VolumenVozID">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Articulación
+                </td>
+                <td>
+                    <select name="Articulacion" id="ArticulacionID">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Coherencia
+                </td>
+                <td>
+                    <select name="Coherencia" id="CoherenciaID">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Espontaneidad
+                </td>
+                <td>
+                    <select name="Espontaneidad" id="EspontaneidadID">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </section>
+    <section class="bot">
+        <label for="comentario">Comentarios de la sesion:</label>
+        <table>
+           <tr>
+            <td>
+                Sesion
+               <input type="text" name="sesionTabla" id="sesionTablaID">
+            </td>
+            <td>
+                Fecha
+                <input type="date" name="fechaSesion" id="fechaSesionID">
+            </td>
+           </tr>
+           <tr>
+         <td colspan="2">
+            Aspecto a medir:
+            <input type="text" name="aspecto" id="aspectoID" class="aspectoID">   
+         </td>
+           </tr>
+           <tr>
+            <td>
+                Inicio
+            </td>
+            <td>
+                <select name="Inicio" id="InicioID">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </td>
+           </tr>
+           <tr>
+            <td>
+                Fin
+            </td>
+            <td>
+                <select name="Fin" id="FinID">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </td>
+           </tr>
+        </table>
+        <div class="comentario2ID">
+            <label for="comentario2">Comentario de la psicologa</label>
+            <input type="text" name="comentario2" id="comentario2ID" class="comentario2ID">
+        </div>
+       
+    </section>
+    <div class="botonTerminar">
+        <button type="submit" class="botonTerminar">Terminar sesion</button>
+    </div>
+</form>
+</body>
+
+</html>

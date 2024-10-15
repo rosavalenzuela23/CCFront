@@ -1,0 +1,70 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    width: 100%;
+  }
+
+.botonProblema{
+   margin-left: 1%;
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;
+}
+
+.situacionLabel{
+    display: flex;
+    justify-content: center;
+}
+
+.SaludDiv,
+.ParejaDiv,
+.FamiliaDiv,
+.AmigosDiv,
+.LaboralDiv,
+.EspiritualDiv,
+.EconomicoDiv {
+   display: flex;
+    justify-content: center;
+    margin-top: 1%;
+    display: flex;
+    gap: 1%;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: unset;
+    border: 1px solid rgb(0, 0, 0);
+    text-align: center;
+    border-radius:22px;
+    margin-top: 1%;
+  }
+
+.calificacion{
+    display: flex;
+    justify-content: space-around;
+    margin: 1%;
+}
+
+.aspectoID{
+    width: 99%;
+    border-radius:22px;
+}
+
+.comentario2ID{
+    margin-top: 2%;
+    width: 99%;
+    border-radius:22px;
+    height: 5%;
+}
+
+.botonTerminar{
+    margin-top: 3%;
+    text-align: right;
+}
