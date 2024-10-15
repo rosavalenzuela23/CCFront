@@ -5,3 +5,8 @@
     overflow: auto;
     
 }
+.contentStyle{
+    border-style: groove;
+    border-radius: 10px;
+    border-color: #a5d8ff;
+}
