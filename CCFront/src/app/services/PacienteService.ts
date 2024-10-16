@@ -60,4 +60,9 @@ export class PacienteService{
         return obj;
     }
 
+    getExpedienteActual(): DtoExpediente {
+        const expediente = JSON.parse(sessionStorage.getItem('expedienteActual') || "{}");
+        return expediente;
+    }
+
 }

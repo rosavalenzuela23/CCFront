@@ -1,5 +1,5 @@
 export type DtoComentarioSesion = {
-    id: number,
+    id: number | null,
     numeroSesion: string,
     fecha: string,
     aspectoAMedir: string,

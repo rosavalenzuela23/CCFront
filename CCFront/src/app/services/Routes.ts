@@ -2,7 +2,7 @@
 const endpoint = "http://localhost:8081"
 
 export enum Routes {
-    expediente = endpoint+"/expediente/",
+    expediente = "/expediente/",
     paciente = "/paciente/",
-    sesion = "/sesion/"
+    sesion = "/sesion/registrar"
 }

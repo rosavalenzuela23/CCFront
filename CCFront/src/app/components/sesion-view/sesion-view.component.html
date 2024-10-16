@@ -16,7 +16,8 @@
             <div class="row mb-3">
                 <div class="col-md-8">
                     <label for="problema" class="form-label">Problema</label>
-                    <input type="text" class="form-control" id="problemaID" placeholder="Describa el problema">
+                    <input type="text" class="form-control" id="problemaID" placeholder="Describa el problema"
+                    [formControl]="descripcionProblema">
                 </div>
                 <div class="col-md-4 d-flex align-items-end">
                     <button type="button" class="btn btn-primary">+ Agregar Problema</button>
@@ -25,23 +26,24 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="intensidad" class="form-label">Intensidad</label>
-                    <select class="form-select" id="intensidadID">
+                    <select class="form-select" id="intensidad" [formControl]="intensidadElement">
                         <option value="" disabled selected>Seleccione intensidad</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
+                        <option value="1" [ngValue]="1">1</option>
+                        <option value="2" [ngValue]="2">2</option>
+                        <option value="3" [ngValue]="3">3</option>
+                        <option value="4" [ngValue]="4">4</option>
+                        <option value="5" [ngValue]="5">5</option>
+                        <option value="6" [ngValue]="6">6</option>
+                        <option value="7" [ngValue]="7">7</option>
+                        <option value="8" [ngValue]="8">8</option>
+                        <option value="9" [ngValue]="9">9</option>
+                        <option value="10" [ngValue]="10">10</option>
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <label for="duracion" class="form-label">Duración</label>
-                    <input type="text" class="form-control" id="duracionID" placeholder="Duración en días">
+                    <label for="duracion" class="form-label">Frecuencia</label>
+                    <input type="text" class="form-control" id="duracionID" placeholder="Frecuencia"
+                        [formControl]="frecuenciaElement">
                 </div>
             </div>
         </section>
@@ -57,7 +59,7 @@
             <div class="row g-3">
                 <div class="col-md-4">
                     <label for="Salud" class="form-label">Salud</label>
-                    <select class="form-select" id="SaludID">
+                    <select class="form-select" id="SaludID" [formControl]="saludElement">
                         <option value="" disabled selected>Seleccione</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -73,7 +75,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="Pareja" class="form-label">Pareja</label>
-                    <select class="form-select" id="ParejaID">
+                    <select class="form-select" id="ParejaID" [formControl]="parejaElement">
                         <option value="" disabled selected>Seleccione</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -89,7 +91,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="Familia" class="form-label">Familia</label>
-                    <select class="form-select" id="FamiliaID">
+                    <select class="form-select" id="FamiliaID" [formControl]="familiarElement">
                         <option value="" disabled selected>Seleccione</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -105,7 +107,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="Amigos" class="form-label">Amigos</label>
-                    <select class="form-select" id="AmigosID">
+                    <select class="form-select" id="AmigosID" [formControl]="amigosElement">
                         <option value="" disabled selected>Seleccione</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -121,7 +123,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="Laboral" class="form-label">Laboral</label>
-                    <select class="form-select" id="LaboralID">
+                    <select class="form-select" id="LaboralID" [formControl]="laboralElement">
                         <option value="" disabled selected>Seleccione</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -137,7 +139,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="Espiritual" class="form-label">Espiritual</label>
-                    <select class="form-select" id="EspiritualID">
+                    <select class="form-select" id="EspiritualID" [formControl]="espiritualElement">
                         <option value="" disabled selected>Seleccione</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -152,8 +154,8 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <label for="Economico" class="form-label">Económico</label>
-                    <select class="form-select" id="EconomicoID">
+                    <label for="Economico" class="form-label" >Económico</label>
+                    <select class="form-select" id="EconomicoID" [formControl]="economicoElement">
                         <option value="" disabled selected>Seleccione</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -169,268 +171,275 @@
                 </div>
             </div>
         </section>
-    <section class="mid-bot">
-        <div class="calificacion">
-            <div>
-                <label for="Apariencia">Apariencia</label>
+
+        <section class="mid-bot">
+            <div class="calificacion">
+                <div>
+                    <label for="Apariencia">Apariencia</label>
+                </div>
+                <div>
+                    <label for="Apariencia">Estado mental</label>
+                </div>
             </div>
-            <div>
-                <label for="Apariencia">Estado mental</label>
-            </div>
-        </div>
 
 
-        <div class="container-fluid">
-            <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col">Vestimenta</th>
-                            <th scope="col">Nivel general de bienestar</th>
-                            <th scope="col">Arreglo personal</th>
-                            <th scope="col">Postura</th>
-                            <th scope="col">Contacto visual</th>
-                            <th scope="col">Habla y lenguaje</th>
-                            <th scope="col">Velocidad del habla</th>
-                            <th scope="col">Volumen de voz</th>
-                            <th scope="col">Articulación</th>
-                            <th scope="col">Coherencia</th>
-                            <th scope="col">Espontaneidad</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <select name="Vestimenta" id="VestimentaID" class="form-select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select name="NivelGeneralBienestar" id="NivelGeneralBienestarID" class="form-select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select name="ArregloPersonal" id="ArregloPersonalID" class="form-select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select name="Postura" id="PosturaID" class="form-select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select name="ContactoVisual" id="ContactoVisualID" class="form-select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select name="HablaLenguaje" id="HablaLenguajeID" class="form-select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select name="VelocidadHabla" id="VelocidadHablaID" class="form-select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select name="VolumenVoz" id="VolumenVozID" class="form-select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select name="Articulacion" id="ArticulacionID" class="form-select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select name="Coherencia" id="CoherenciaID" class="form-select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select name="Espontaneidad" id="EspontaneidadID" class="form-select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="container-fluid">
+                <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Vestimenta</th>
+                                <th scope="col">Nivel general de bienestar</th>
+                                <th scope="col">Arreglo personal</th>
+                                <th scope="col">Postura</th>
+                                <th scope="col">Contacto visual</th>
+                                <th scope="col">Habla y lenguaje</th>
+                                <th scope="col">Velocidad del habla</th>
+                                <th scope="col">Volumen de voz</th>
+                                <th scope="col">Articulación</th>
+                                <th scope="col">Coherencia</th>
+                                <th scope="col">Espontaneidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <select name="Vestimenta" id="VestimentaID" class="form-select">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="NivelGeneralBienestar" id="NivelGeneralBienestarID"
+                                        class="form-select">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="ArregloPersonal" id="ArregloPersonalID" class="form-select">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="Postura" id="PosturaID" class="form-select">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="ContactoVisual" id="ContactoVisualID" class="form-select">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="HablaLenguaje" id="HablaLenguajeID" class="form-select">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="VelocidadHabla" id="VelocidadHablaID" class="form-select">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="VolumenVoz" id="VolumenVozID" class="form-select">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="Articulacion" id="ArticulacionID" class="form-select">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="Coherencia" id="CoherenciaID" class="form-select">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="Espontaneidad" id="EspontaneidadID" class="form-select">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        
-    </section>
-    <section class="bot">
-        <label for="comentario"  style="margin-top: 2%; ">Comentarios de la sesion:</label>
-        <div class="container-fluid">
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <tbody>
-                        <tr>
-                            <td>
-                                Sesión
-                                <input type="text" name="sesionTabla" id="sesionTablaID" class="form-control">
-                            </td>
-                            <td>
-                                Fecha
-                                <input type="date" name="fechaSesion" id="fechaSesionID" class="form-control">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                Aspecto a medir:
-                                <input type="text" name="aspecto" id="aspectoID" class="form-control">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Inicio</td>
-                            <td>
-                                <select name="Inicio" id="InicioID" class="form-select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Fin</td>
-                            <td>
-                                <select name="Fin" id="FinID" class="form-select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+
+        </section>
+        <section class="bot">
+            <label for="comentario" style="margin-top: 2%; ">Comentarios de la sesion:</label>
+            <div class="container-fluid">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Sesión
+                                    <input type="text" name="sesionTabla" id="sesionTablaID" class="form-control"
+                                    [formControl]="numeroSesion">
+                                </td>
+                                <td>
+                                    Fecha
+                                    <input type="date" name="fechaSesion" id="fechaSesionID" class="form-control"
+                                    [formControl]="fechaComentario">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    Aspecto a medir:
+                                    <input type="text" name="aspecto" id="aspectoID" class="form-control"
+                                    [formControl]="aspectoAMedir">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Inicio</td>
+                                <td>
+                                    <select name="Inicio" id="InicioID" class="form-select"
+                                        [formControl]="inicioElement">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Fin</td>
+                                <td>
+                                    <select name="Fin" id="FinID" class="form-select" [formControl]="finElement">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+            <div class="mb-3">
+                <label for="comentario2" class="form-label" style="margin-top: 2%;">Comentario de la psicóloga</label>
+                <textarea id="comentario2" class="form-control" rows="4"
+                    placeholder="Escribe el comentario aquí"></textarea>
+            </div>
+
+        </section>
+        <div class="botonTerminar">
+            <button type="button" class="botonTerminar" (click)="terminarSesion()">Terminar sesion</button>
         </div>
-        <div class="mb-3">
-            <label for="comentario2" class="form-label" style="margin-top: 2%;">Comentario de la psicóloga</label>
-            <textarea id="comentario2" class="form-control" rows="4" placeholder="Escribe el comentario aquí"></textarea>
-        </div>
-        
-    </section>
-    <div class="botonTerminar">
-        <button type="submit" class="botonTerminar">Terminar sesion</button>
-    </div>
-</form>
+    </form>
 </body>
 
 </html>

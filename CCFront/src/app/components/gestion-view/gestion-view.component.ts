@@ -26,7 +26,7 @@ export class GestionViewComponent {
   }
 
   nuevaConsulta(expediente: DtoExpediente) {
-    sessionStorage.setItem("sesionActual", JSON.stringify(expediente));
+    sessionStorage.setItem("expedienteActual", JSON.stringify(expediente));
     this.router.navigate(["sesion"]);
   }
 

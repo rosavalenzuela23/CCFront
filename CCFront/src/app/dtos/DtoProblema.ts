@@ -1,5 +1,5 @@
 export type DtoProblema = {
-    id: number,
+    id: number | null,
     descripcion: string,
     frecuencia: string,
     intensidad: number,
@@ -8,4 +8,6 @@ export type DtoProblema = {
     afectacionPareja: number,
     afectacionAmigos: number,
     afectacionLaboral: number,
+    afectacionEspiritual: number,
+    afectacionEconomico: number,
 }
