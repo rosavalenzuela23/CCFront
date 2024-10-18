@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PacienteService } from '../../../services/PacienteService';
 import { DtoExpediente } from '../../../dtos/DtoExpediente';
+import { DtoPaciente } from '../../../dtos/DtoPaciente';
 
 @Component({
   selector: 'tabla-pacientes-component',
@@ -14,21 +15,19 @@ import { DtoExpediente } from '../../../dtos/DtoExpediente';
 export class TablaPacientesComponent {
 
   id: number = 0;
-  expedientes: DtoExpediente[];
+  pacientes: DtoPaciente[];
 
-  @Output() nuevaConsultaEvent = new EventEmitter<DtoExpediente>();
+  @Output() nuevaConsultaEvent = new EventEmitter<DtoPaciente>();
 
   constructor(
     private pacientesService: PacienteService
   ){
-    this.expedientes = pacientesService.getPacientes();
-
-    console.log(this.expedientes);
-
+    this.pacientes = pacientesService.getPacientes();
+    console.log(this.pacientes);
   }
 
-  nuevaConsulta(expediente: DtoExpediente) {
-    this.nuevaConsultaEvent.emit(expediente);
+  nuevaConsulta(paciente: DtoPaciente) {
+    this.nuevaConsultaEvent.emit(paciente);
   }
 
 }

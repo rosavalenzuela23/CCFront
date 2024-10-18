@@ -25,8 +25,8 @@ export class GestionViewComponent {
     servicePaciente.setPaciente(this.paciente);
   }
 
-  nuevaConsulta(expediente: DtoExpediente) {
-    sessionStorage.setItem("expedienteActual", JSON.stringify(expediente));
+  nuevaConsulta(paciente: DtoPaciente) {
+    sessionStorage.setItem("pacienteActual", JSON.stringify(paciente));
     this.router.navigate(["sesion"]);
   }
 

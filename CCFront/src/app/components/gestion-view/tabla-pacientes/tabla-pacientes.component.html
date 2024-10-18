@@ -12,14 +12,14 @@
             <tbody>
 
 
-                @for (expediente of expedientes; track expediente.id) {
+                @for (paciente of pacientes; track paciente.id) {
                 <tr>    
-                    <td>{{ expediente.paciente.nombre }}</td>
+                    <td>{{ paciente.nombre }}</td>
                     <td>M</td>
                     <td>23</td>
                     <td>
                         <div class="d-flex justify-content-start flex-wrap gap-2">
-                            <input type="button" class="btn btn-success" value="Nueva Consulta" (click)="nuevaConsulta(expediente)">
+                            <input type="button" class="btn btn-success" value="Nueva Consulta" (click)="nuevaConsulta(paciente)">
                             <input type="button" class="btn btn-warning" value="Modificar">
                             <!--<input type="button" class="btn btn-info" value="Ver">-->
                             <i class="bi bi-eye-fill btn btn-info" [routerLink]="['/sesiones', id]">Ver</i>
