@@ -5,15 +5,17 @@ import { DtoMedicamentoDelExpediente } from "./DtoMedicamentoDelExpediente";
 import { DtoPaciente } from "./DtoPaciente";
 
 
-export type DtoExpediente = {
-    id: number,
-    enfermedadPrevia: string,
-    antecedentes: string,
-    preguntaMagica: string,
-    motivoConsulta: string,
-    medicamentos: DtoMedicamentoDelExpediente[],
-    integrantesHogar: DtoIntegranteHogar[],
-    familiaresConfianza: DtoFamiliaresConfianza[],
-    instrumentos: DtoInstrumento[],
-    paciente: DtoPaciente,
+export class DtoExpediente {
+    constructor (
+    public id: number,
+    public enfermedadPrevia: string,
+    public antecedentes: string,
+    public preguntaMagica: string,
+    public motivoConsulta: string,
+    public medicamentos: DtoMedicamentoDelExpediente[],
+    public integrantesHogar: DtoIntegranteHogar[],
+    public familiaresConfianza: DtoFamiliaresConfianza[],
+    public instrumentos: DtoInstrumento[],
+    public paciente: DtoPaciente
+    ){}
 }

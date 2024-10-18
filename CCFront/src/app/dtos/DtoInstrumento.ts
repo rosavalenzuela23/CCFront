@@ -1,5 +1,6 @@
-export type DtoInstrumento = {
-    id: number,
-    textoArchivo: string,
-    rutaArchivo: string,
+export class DtoInstrumento {
+    constructor(
+    public id: number,
+    public textoArchivo: string,
+    public rutaArchivo: string) {}
 }

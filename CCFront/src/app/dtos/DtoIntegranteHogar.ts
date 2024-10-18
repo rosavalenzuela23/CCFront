@@ -1,8 +1,10 @@
-export type DtoIntegranteHogar = {
-    id: number,
-    nombre: string,
-    statusRelacion: string,
-    ocupacion: string,
-    parentesco: string,
-    fechaNacimiento: string,
+export class DtoIntegranteHogar {
+    constructor(
+        public id: number,
+        public nombre: string,
+        public statusRelacion: string,
+        public ocupacion: string,
+        public parentesco: string,
+        public fechaNacimiento: string
+    ){ }
 }

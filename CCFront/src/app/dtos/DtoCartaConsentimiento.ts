@@ -1,4 +1,8 @@
-export type DtoCartaConsentimiento = {
-    id: number,
-    rutaArchivo: string,
+export class DtoCartaConsentimiento {
+
+    constructor(
+        public id: number,
+        public rutaArchivo: string
+    ){}
+
 }

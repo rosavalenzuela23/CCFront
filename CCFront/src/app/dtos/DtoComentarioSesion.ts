@@ -1,8 +1,12 @@
-export type DtoComentarioSesion = {
-    id: number | null,
-    numeroSesion: string,
-    fecha: string,
-    aspectoAMedir: string,
-    inicio: number,
-    fin: number,
+export class DtoComentarioSesion {
+
+    constructor(
+        public id: number,
+        public numeroSesion: number,
+        public fecha: string,
+        public aspectoAMedir: string,
+        public inicio: number,
+        public fin: number
+    ){}
+
 }

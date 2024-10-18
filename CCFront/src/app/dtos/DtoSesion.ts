@@ -3,10 +3,13 @@ import { DtoExpediente } from "./DtoExpediente";
 import { DtoProblema } from "./DtoProblema";
 import { DtoPsicologo } from "./DtoPsicologo";
 
-export type DtoSesion = {
-    id: number | null,
-    problemasSesion: DtoProblema[],
-    comentariosSesion: DtoComentarioSesion[],
-    expediente: DtoExpediente | null,
-    psicologo: DtoPsicologo | null
+export class DtoSesion {
+
+    constructor(
+        public id: number | null,
+        public problemasSesion: DtoProblema[],
+        public comentariosSesion: DtoComentarioSesion[],
+        public expediente: DtoExpediente | null,
+        public psicologo: DtoPsicologo | null
+    ) { }
 }

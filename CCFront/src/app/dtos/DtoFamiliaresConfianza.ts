@@ -1,6 +1,11 @@
-export type DtoFamiliaresConfianza = {
-    id: number,
-    nombre: string,
-    parentesco: string,
-    telefono: string,
+export class DtoFamiliaresConfianza {
+
+    constructor(
+        public id: number,
+        public nombre: string,
+        public parentesco: string,
+        public telefono: string
+    ) { }
+
+
 }

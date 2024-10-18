@@ -1,5 +1,7 @@
-export type DtoMedicamento = {
-    id: number,
-    nombre: string,
-    descripcion: string,
+export class DtoMedicamento {
+    constructor(
+        public id: number,
+        public nombre: string,
+        public descripcion: string
+    ) { }
 }

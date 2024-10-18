@@ -1,5 +1,6 @@
-export type DtoPsicologo = {
-    id: number,
-    usuario: string,
-    password: string,
+export class DtoPsicologo {
+    constructor(
+        public id: number,
+        public usuario: string,
+        public password: string) { }
 }
