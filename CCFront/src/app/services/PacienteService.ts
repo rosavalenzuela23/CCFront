@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { DtoPaciente } from "../dtos/DtoPaciente";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Routes } from "./Routes";
 import { Router } from "@angular/router";
 import { SesionViewComponent } from "../components/sesion-view/sesion-view.component";
@@ -33,7 +33,7 @@ export class PacienteService{
         this.paciente = paciente;
     }
 
-    getPaciente(): DtoPaciente | null{
+    getPaciente(): DtoPaciente | null {
         return this.paciente;
     }
 
@@ -43,16 +43,16 @@ export class PacienteService{
 
         console.log(psicologo);
 
-        this.http.get( Routes.expediente + psicologo.id ).subscribe( listaPacientes => {
+        this.http.get( Routes.paciente, {params: new HttpParams({fromObject: {id: psicologo.id}})} ).subscribe( listaPacientes => {
             sessionStorage.setItem("pacientes", JSON.stringify(listaPacientes));
             this.router.navigate(["gestion"])
         })
 
     }
 
-    getPacientes(): DtoExpediente[] {
+    getPacientes(): DtoPaciente[] {
 
-        const obj: DtoExpediente[] = JSON.parse(
+        const obj: DtoPaciente[] = JSON.parse(
             sessionStorage.getItem('pacientes') || '{}'
         )
 
@@ -60,8 +60,8 @@ export class PacienteService{
         return obj;
     }
 
-    getExpedienteActual(): DtoExpediente {
-        const expediente = JSON.parse(sessionStorage.getItem('expedienteActual') || "{}");
+    getPacienteActual(): DtoPaciente {
+        const expediente = JSON.parse(sessionStorage.getItem('pacienteActual') || "{}");
         return expediente;
     }
 
