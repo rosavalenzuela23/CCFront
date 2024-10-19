@@ -4,8 +4,8 @@ export class DtoComentarioSesion {
         public id: number | null,
         public fecha: string,
         public aspectoAMedir: string,
-        public inicio: number,
-        public fin: number
+        public valoracionInicio: number,
+        public valoracionFin: number
     ){}
 
 }
