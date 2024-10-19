@@ -93,12 +93,12 @@ export class SesionViewComponent {
   }
 
   private obtenerComentariosSesion(): DtoComentarioSesion[] {
-
+    
     const comentario: DtoComentarioSesion = {
       id: null,
       fecha: this.fechaComentario.value || new Date().toString(),
       aspectoAMedir: this.aspectoAMedir.value || '',
-      numeroSesion: this.numeroSesion.value || 'X',
+      numeroSesion: this.numeroSesion.value || 'NO NUMERO SESION',
       fin: this.getNumberFormControl(this.finElement),
       inicio: this.getNumberFormControl(this.inicioElement)
     }
@@ -120,7 +120,7 @@ export class SesionViewComponent {
       id: null,
       problemasSesion: listaProblemas,
       psicologo: this.psicologoService.getPsicologoActual(),
-      expediente: this.pacienteService.getExpedienteActual()
+      expediente: null
     }
 
 
