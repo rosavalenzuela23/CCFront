@@ -204,7 +204,8 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <select name="Vestimenta" id="VestimentaID" class="form-select">
+                                    <select name="Vestimenta" id="VestimentaID" class="form-select"
+                                    [formControl]="vestimentaElement">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -219,7 +220,9 @@
                                 </td>
                                 <td>
                                     <select name="NivelGeneralBienestar" id="NivelGeneralBienestarID"
-                                        class="form-select">
+                                        class="form-select"
+                                        [formControl]="nivelGeneralBienestarElement"
+                                        >
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -233,7 +236,9 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="ArregloPersonal" id="ArregloPersonalID" class="form-select">
+                                    <select name="ArregloPersonal" id="ArregloPersonalID" class="form-select"
+                                    [formControl]="arregloPersonalElement"
+                                    >
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -247,7 +252,9 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="Postura" id="PosturaID" class="form-select">
+                                    <select name="Postura" id="PosturaID" class="form-select"
+                                    [formControl]="posturaElement"
+                                    >
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -261,7 +268,9 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="ContactoVisual" id="ContactoVisualID" class="form-select">
+                                    <select name="ContactoVisual" id="ContactoVisualID" class="form-select"
+                                    [formControl]="contactoVisualElement"
+                                    >
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -275,7 +284,9 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="HablaLenguaje" id="HablaLenguajeID" class="form-select">
+                                    <select name="HablaLenguaje" id="HablaLenguajeID" class="form-select"
+                                    [formControl]="hablaLenguajeElement"
+                                    >
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -289,7 +300,9 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="VelocidadHabla" id="VelocidadHablaID" class="form-select">
+                                    <select name="VelocidadHabla" id="VelocidadHablaID" class="form-select"
+                                    [formControl]="velocidadHablaElement"
+                                    >
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -303,7 +316,9 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="VolumenVoz" id="VolumenVozID" class="form-select">
+                                    <select name="VolumenVoz" id="VolumenVozID" class="form-select"
+                                    [formControl]="volumenVozElement"
+                                    >
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -317,7 +332,9 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="Articulacion" id="ArticulacionID" class="form-select">
+                                    <select name="Articulacion" id="ArticulacionID" class="form-select"
+                                    [formControl]="articulacionElement"
+                                    >
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -331,7 +348,9 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="Coherencia" id="CoherenciaID" class="form-select">
+                                    <select name="Coherencia" id="CoherenciaID" class="form-select"
+                                    [formControl]="coherenciaElement"
+                                    >
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -345,7 +364,9 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="Espontaneidad" id="EspontaneidadID" class="form-select">
+                                    <select name="Espontaneidad" id="EspontaneidadID" class="form-select"
+                                    [formControl]="espontaneidadElement"
+                                    >
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -432,7 +453,9 @@
             <div class="mb-3">
                 <label for="comentario2" class="form-label" style="margin-top: 2%;">Comentario de la psicóloga</label>
                 <textarea id="comentario2" class="form-control" rows="4"
-                    placeholder="Escribe el comentario aquí"></textarea>
+                    placeholder="Escribe el comentario aquí"
+                    [formControl]="comentarioPsicologaElement"
+                    ></textarea>
             </div>
 
         </section>

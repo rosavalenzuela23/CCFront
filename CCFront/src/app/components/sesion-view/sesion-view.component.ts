@@ -39,8 +39,24 @@ export class SesionViewComponent {
   aspectoAMedir = new FormControl('');
   inicioElement = new FormControl('');
   finElement = new FormControl('');
+  contactoVisualElement = new FormControl('');
+  hablaLenguajeElement = new FormControl('');
+  velocidadHablaElement = new FormControl('');
+  volumenVozElement = new FormControl('');
+  articulacionElement = new FormControl('');
+  coherenciaElement = new FormControl('');
+  espontaneidadElement = new FormControl('');
 
   // Termina comentario sesion
+
+  //Evaluacion general
+  vestimentaElement = new FormControl('');
+  nivelGeneralBienestarElement = new FormControl('');
+  arregloPersonalElement = new FormControl('');
+  posturaElement = new FormControl('');
+
+  //comentario psicologa
+  comentarioPsicologaElement = new FormControl('');
 
   constructor(
     private sesionService: SesionService,
@@ -98,10 +114,10 @@ export class SesionViewComponent {
     
     const comentario: DtoComentarioSesion = {
       id: null,
-      fecha: this.fechaComentario.value || new Date().toString(),
+      fecha: this.fechaComentario.value || new Date().toISOString(),
       aspectoAMedir: this.aspectoAMedir.value || '',
-      fin: this.getNumberFormControl(this.finElement),
-      inicio: this.getNumberFormControl(this.inicioElement)
+      valoracionFin: this.getNumberFormControl(this.finElement),
+      valoracionInicio: this.getNumberFormControl(this.inicioElement)
     }
 
     const comentarios: DtoComentarioSesion[] = [];
@@ -125,6 +141,18 @@ export class SesionViewComponent {
       psicologo: this.psicologoService.getPsicologoActual(),
       expediente: expedienteActual,
       fecha: new Date().toISOString(),
+      puntuacionVestimenta: this.getNumberFormControl(this.vestimentaElement),
+      puntuacionArregloPersonal: this.getNumberFormControl(this.arregloPersonalElement),
+      puntuacionArticulacion: this.getNumberFormControl(this.articulacionElement),
+      puntuacionBienestar: this.getNumberFormControl(this.nivelGeneralBienestarElement),
+      puntuacionCoherencia: this.getNumberFormControl(this.coherenciaElement),
+      puntuacionContactoVisual: this.getNumberFormControl(this.contactoVisualElement),
+      puntuacionEspontaneidad: this.getNumberFormControl(this.espontaneidadElement),
+      puntuacionHabla: this.getNumberFormControl(this.hablaLenguajeElement),
+      puntuacionVelocidadHabla: this.getNumberFormControl(this.velocidadHablaElement),
+      puntuacionVolumenHabla: this.getNumberFormControl(this.volumenVozElement),
+      puntuacionPostura: this.getNumberFormControl(this.posturaElement),
+      comentarioPsicologa: this.comentarioPsicologaElement.value || "SIN COMENTARIO",
     }
 
     return sesion;
@@ -132,6 +160,9 @@ export class SesionViewComponent {
 
   terminarSesion() {
     const sesion = this.obtenerInformacionSesion();
+
+    console.log(sesion);
+
     this.sesionService.guardarSesion(sesion);
   }
 
