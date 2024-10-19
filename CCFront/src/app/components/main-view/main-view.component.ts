@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DtoPsicologo } from '../../dtos/DtoPsicologo';
+import { SessionStorageNames } from '../../services/sessionStorageNames';
 
 @Component({
   selector: 'app-main-view',
@@ -16,7 +17,7 @@ export class MainViewComponent {
       password: "123",
       usuario: "hello world"
     };
-    sessionStorage.setItem("psicologo", JSON.stringify(psicologoPrueba));
+    sessionStorage.setItem(SessionStorageNames.USUARIO_ACTUAL, JSON.stringify(psicologoPrueba));
   }
 
 }

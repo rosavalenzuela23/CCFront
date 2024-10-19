@@ -8,8 +8,9 @@ export class DtoSesion {
     constructor(
         public id: number | null,
         public problemasSesion: DtoProblema[],
-        public comentariosSesion: DtoComentarioSesion[],
+        public comentarios: DtoComentarioSesion[],
         public expediente: DtoExpediente | null,
-        public psicologo: DtoPsicologo | null
+        public psicologo: DtoPsicologo | null,
+        public fecha: string
     ) { }
 }

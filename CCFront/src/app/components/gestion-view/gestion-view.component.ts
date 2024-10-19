@@ -7,6 +7,7 @@ import { DtoPaciente } from '../../dtos/DtoPaciente';
 import { DtoEmpleado } from '../../dtos/DtoEmpleado';
 import { DtoExpediente } from '../../dtos/DtoExpediente';
 import { Router } from '@angular/router';
+import { ExpedienteService } from '../../services/ExpedienteService';
 
 @Component({
   selector: 'app-gestion-view',
@@ -20,13 +21,20 @@ export class GestionViewComponent {
 
   paciente: DtoPaciente | null = null;
 
-  constructor(servicePaciente: PacienteService, private router: Router){
+  constructor(
+    private servicePaciente: PacienteService,
+    private router: Router,
+    private expedienteService: ExpedienteService
+  ){
     //this.paciente = new DtoPaciente(1, "marcos zazueta", "soltero", "066", "local", "777");
     servicePaciente.setPaciente(this.paciente);
   }
 
   nuevaConsulta(paciente: DtoPaciente) {
-    sessionStorage.setItem("pacienteActual", JSON.stringify(paciente));
+    this.servicePaciente.guardarPacienteEnSesion(paciente);
+
+    this.expedienteService.obtenerExpedientePacientePorId(paciente.id);
+
     this.router.navigate(["sesion"]);
   }
 

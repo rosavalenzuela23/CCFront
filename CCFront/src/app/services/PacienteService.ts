@@ -3,10 +3,9 @@ import { DtoPaciente } from "../dtos/DtoPaciente";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Routes } from "./Routes";
 import { Router } from "@angular/router";
-import { SesionViewComponent } from "../components/sesion-view/sesion-view.component";
 import { DtoPsicologo } from "../dtos/DtoPsicologo";
-import { DtoExpediente } from "../dtos/DtoExpediente";
-import { JsonPipe } from "@angular/common";
+import { SessionStorageNames } from "./sessionStorageNames";
+
 
 @Injectable ({
     providedIn: "root",
@@ -15,7 +14,6 @@ import { JsonPipe } from "@angular/common";
 export class PacienteService{
     
     paciente: DtoPaciente | null = null;
-
 
     constructor(
         private http: HttpClient,
@@ -39,12 +37,14 @@ export class PacienteService{
 
     obtenerPacientesPsicologo() {
 
-        const psicologo: DtoPsicologo = JSON.parse(sessionStorage.getItem("psicologo") || "{}");
-
-        console.log(psicologo);
+        const psicologo: DtoPsicologo = JSON.parse(
+            sessionStorage.getItem(SessionStorageNames.USUARIO_ACTUAL) || "{}"
+        );
 
         this.http.get( Routes.paciente, {params: new HttpParams({fromObject: {id: psicologo.id}})} ).subscribe( listaPacientes => {
-            sessionStorage.setItem("pacientes", JSON.stringify(listaPacientes));
+            sessionStorage.setItem(
+                SessionStorageNames.PACIENTES_PSICOLOGO, JSON.stringify(listaPacientes)
+            );
             this.router.navigate(["gestion"])
         })
 
@@ -53,7 +53,7 @@ export class PacienteService{
     getPacientes(): DtoPaciente[] {
 
         const obj: DtoPaciente[] = JSON.parse(
-            sessionStorage.getItem('pacientes') || '{}'
+            sessionStorage.getItem(SessionStorageNames.PACIENTES_PSICOLOGO) || '{}'
         )
 
         
@@ -61,8 +61,17 @@ export class PacienteService{
     }
 
     getPacienteActual(): DtoPaciente {
-        const expediente = JSON.parse(sessionStorage.getItem('pacienteActual') || "{}");
+        const expediente = JSON.parse(sessionStorage.getItem(
+            SessionStorageNames.PACIENTE_ACTUAL) || "{}"
+        );
         return expediente;
+    }
+
+    guardarPacienteEnSesion(paciente: DtoPaciente) {
+        sessionStorage.setItem(
+            SessionStorageNames.PACIENTE_ACTUAL,
+            JSON.stringify(paciente)
+        );
     }
 
 }

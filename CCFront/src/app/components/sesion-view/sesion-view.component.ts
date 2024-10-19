@@ -6,6 +6,7 @@ import { DtoComentarioSesion } from '../../dtos/DtoComentarioSesion';
 import { SesionService } from '../../services/sesion.service';
 import { PacienteService } from '../../services/PacienteService';
 import { PsicologoService } from '../../services/psicologo.service';
+import { ExpedienteService } from '../../services/ExpedienteService';
 
 @Component({
   selector: 'app-sesion-view',
@@ -44,7 +45,8 @@ export class SesionViewComponent {
   constructor(
     private sesionService: SesionService,
     private pacienteService: PacienteService,
-    private psicologoService: PsicologoService
+    private psicologoService: PsicologoService,
+    private expedienteService: ExpedienteService
   ){}
 
   private getNumberFormControl (formControl: FormControl): number {
@@ -98,7 +100,6 @@ export class SesionViewComponent {
       id: null,
       fecha: this.fechaComentario.value || new Date().toString(),
       aspectoAMedir: this.aspectoAMedir.value || '',
-      numeroSesion: this.numeroSesion.value || 'NO NUMERO SESION',
       fin: this.getNumberFormControl(this.finElement),
       inicio: this.getNumberFormControl(this.inicioElement)
     }
@@ -115,14 +116,16 @@ export class SesionViewComponent {
     const listaProblemas = this.obtenerProblemas();
     const comentariosSesion = this.obtenerComentariosSesion();
 
+    const expedienteActual = this.expedienteService.obtenerExpedienteActual();
+
     const sesion: DtoSesion = {
-      comentariosSesion: comentariosSesion,
+      comentarios: comentariosSesion,
       id: null,
       problemasSesion: listaProblemas,
       psicologo: this.psicologoService.getPsicologoActual(),
-      expediente: null
+      expediente: expedienteActual,
+      fecha: new Date().toISOString(),
     }
-
 
     return sesion;
   }

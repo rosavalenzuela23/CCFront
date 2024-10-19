@@ -2,7 +2,6 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PacienteService } from '../../../services/PacienteService';
-import { DtoExpediente } from '../../../dtos/DtoExpediente';
 import { DtoPaciente } from '../../../dtos/DtoPaciente';
 
 @Component({
