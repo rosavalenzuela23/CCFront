@@ -6,6 +6,7 @@
 
 html{
     width: 100%;
+    background-color: gray;
   }
 
 .botonProblema{
@@ -36,20 +37,17 @@ html{
     gap: 1%;
 }
 
-table {
-    table-layout: fixed;
-    width: 100%;
-    border-collapse: unset;
-    border: 1px solid rgb(0, 0, 0);
-    text-align: center;
-    border-radius:22px;
-    margin-top: 1%;
-  }
+
 
 .calificacion{
     display: flex;
     justify-content: space-around;
     margin: 1%;
+    border-collapse: unset;
+    border: 1px solid rgb(0, 0, 0);
+    text-align: center;
+    border-radius:22px;
+    margin-top: 1%;
 }
 
 .aspectoID{

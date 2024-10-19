@@ -4,6 +4,9 @@ import {VentanaAtenderComponent} from "./ventana-atender/ventana-atender.compone
 import { CommonModule } from '@angular/common';
 import { PacienteService } from '../../services/PacienteService';
 import { DtoPaciente } from '../../dtos/DtoPaciente';
+import { DtoEmpleado } from '../../dtos/DtoEmpleado';
+import { DtoExpediente } from '../../dtos/DtoExpediente';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gestion-view',
@@ -17,9 +20,14 @@ export class GestionViewComponent {
 
   paciente: DtoPaciente | null = null;
 
-  constructor(servicePaciente: PacienteService){
+  constructor(servicePaciente: PacienteService, private router: Router){
     //this.paciente = new DtoPaciente(1, "marcos zazueta", "soltero", "066", "local", "777");
     servicePaciente.setPaciente(this.paciente);
+  }
+
+  nuevaConsulta(paciente: DtoPaciente) {
+    sessionStorage.setItem("pacienteActual", JSON.stringify(paciente));
+    this.router.navigate(["sesion"]);
   }
 
 
