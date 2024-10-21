@@ -77,14 +77,15 @@
 
     <div class="row mb-3">
 
+        <!-- pattern="+[0-9]{2}[0-9]{10}" -->
+
         <div class="col-6">
             <label for="telefonoPaciente" class="form-label">
                 Telefono
             </label>
             <input 
             type="tel" 
-            class="form-control" 
-            pattern="+[0-9]{2}[0-9]{10}" 
+            class="form-control"
             placeholder="+52XXXXXXXXXX" 
             maxlength="13" 
             name="telefonoPaciente"
@@ -98,8 +99,7 @@
             </label>
             <input 
             type="tel" 
-            class="form-control" 
-            pattern="+[0-9]{2}[0-9]{10}" 
+            class="form-control"
             placeholder="+52XXXXXXXXXX" 
             maxlength="13" 
             name="telefonoEmergencia"
@@ -168,7 +168,7 @@
 
     <div class="row mb-3">
 
-        <div class="col">
+        <div class="col-6">
 
             <div class="mb-3">
                 <label for="textAreaMotivoConsulta" class="form-label">Motivo de la consulta</label>
@@ -182,50 +182,13 @@
 
         </div>
 
-        <div class="col">
-            <h5>Familiares de confianza</h5>
-            <button class="btn btn-success"
-            (click)="agregarFamiliarConfianza()"
-            > <i class="bi bi-plus-lg"></i> Agregar </button>
-            <table class="table">
-
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellido paterno</th>
-                        <th scope="col">Apellido materno</th>
-                        <th scope="col">Parentezco</th>
-                        <th scope="col">Telefono</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <!-- informacion de los pacientes -->
-                    <tr>
-                        <th>1</th>
-                        <td>Rosa</td>
-                        <td>Rodriguez</td>
-                        <td>Valenzuela</td>
-                        <td>Madre</td>
-                        <td>6442099375</td>
-                    </tr>
-
-                    <tr>
-                        <th>1</th>
-                        <td>Rosa</td>
-                        <td>Rodriguez</td>
-                        <td>Valenzuela</td>
-                        <td>Madre</td>
-                        <td>6442099375</td>
-                    </tr>
-
-
-                </tbody>
-
-            </table>
-
-        </div>
+        <!-- tabla de los familiares de confianza  -->
+        <app-tabla class="col-6"
+        tableName="familiaresConfianza"
+        [columnNames]="atributosFamiliarDto"
+        [informacionTabla]="listaFamiliaresConfianza"
+        tableNameSpaces="Familiares de confianza"
+        ></app-tabla>
 
     </div>
 
@@ -271,7 +234,15 @@
             >
         </div>
 
-        <div class="col-6">
+        <!-- tabla con los medicamentos -->
+        <app-tabla class="col-6"
+        tableName="medicamentos"
+        [columnNames]="atributosMedicamentos"
+        [informacionTabla]="listaMedicamentos"
+        tableNameSpaces="Medicamentos"
+        ></app-tabla>
+
+        <!-- <div class="col-6">
             <h5>Medicamentos</h5>
             <button 
             class="btn btn-success"
@@ -289,7 +260,7 @@
                 </thead>
 
                 <tbody>
-                    <!-- informacion de los pacientes -->
+                    
                     <tr>
                         <th>1</th>
                         <td>Misoprostrol</td>
@@ -301,7 +272,7 @@
 
             </table>
 
-        </div>
+        </div> -->
 
     </div>
 
@@ -321,60 +292,21 @@
 
     <div class="row mb-3">
 
-        <div class="col">
-            
-            <h5>Integrantes del hogar</h5>
-            <button 
-            class="btn btn-success"
-            (click)="agregarIntegranteHogar()"
-            > <i class="bi bi-plus-lg"></i> Agregar </button>
-            <table class="table">
-
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Edad</th>
-                        <th scope="col">Parentesco</th>
-                        <th scope="col">Ocupación/Escolaridad</th>
-                        <th scope="col">Estatusde la relación</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <!-- informacion de los pacientes -->
-                    <tr>
-                        <th>1</th>
-                        <td>Rosa</td>
-                        <td>Rodriguez</td>
-                        <td>Valenzuela</td>
-                        <td>Madre</td>
-                        <td>6442099375</td>
-                    </tr>
-
-                    <tr>
-                        <th>1</th>
-                        <td>Rosa</td>
-                        <td>Rodriguez</td>
-                        <td>Valenzuela</td>
-                        <td>Madre</td>
-                        <td>6442099375</td>
-                    </tr>
-
-
-                </tbody>
-
-            </table>
-
-        </div>
+        <!-- tabla con los integrantes del hogar  -->
+        <app-tabla class="col"
+        tableName="integrantesHogar"
+        [columnNames]="atributosIntegrantesHogar"
+        [informacionTabla]="listaIntegrantesHogar"
+        tableNameSpaces="Integrantes del hogar"
+        ></app-tabla>
 
     </div>
 
-    <div class="row">
+    <div class="row my-5">
 
         <div class="col d-flex justify-content-end">
             <a 
-            class="btn btn-danger" 
+            class="btn btn-danger mx-3" 
             routerLink="gestionar">Cancelar</a>
 
             <button 

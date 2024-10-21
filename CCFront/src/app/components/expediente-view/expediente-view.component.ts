@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { TablaComponent } from './tabla/tabla.component';
+import { DtoFamiliaresConfianza } from '../../dtos/DtoFamiliaresConfianza';
+import { DtoMedicamento } from '../../dtos/DtoMedicamento';
+import { DtoIntegranteHogar } from '../../dtos/DtoIntegranteHogar';
 
 @Component({
   selector: 'app-expediente-view',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TablaComponent],
   templateUrl: './expediente-view.component.html',
   styleUrl: './expediente-view.component.css'
 })
@@ -24,19 +28,21 @@ export class ExpedienteViewComponent {
     tipoViviendaElement = new FormControl('');
 
     //Listas
-    listaFamiliaresConfianza = [];
-    listaMedicamentos = [];
-    listaIntegrantesHogar = [];
+    listaFamiliaresConfianza: DtoFamiliaresConfianza[] = [];
+    listaMedicamentos: DtoMedicamento[] = [];
+    listaIntegrantesHogar: DtoIntegranteHogar[] = [];
+
+    readonly atributosFamiliarDto: string[] = DtoFamiliaresConfianza.getProperties();
+    readonly atributosIntegrantesHogar: string[] = DtoIntegranteHogar.getProperties();
+    readonly atributosMedicamentos: string[] = DtoMedicamento.getProperties();
 
     constructor(
         //Servicios
     ) {}
 
     continuarConLaCita() {
-
- 
         console.log(
-            this.tipoViviendaElement.value
+            this.listaFamiliaresConfianza
         );
     }
 

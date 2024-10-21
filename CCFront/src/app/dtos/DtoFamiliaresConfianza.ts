@@ -7,5 +7,9 @@ export class DtoFamiliaresConfianza {
         public telefono: string
     ) { }
 
+    static getProperties(): string[] {
+        const example = new DtoFamiliaresConfianza(-1, "NA", "NA", "NA");
+        return Object.getOwnPropertyNames(example);
+    }
 
 }
