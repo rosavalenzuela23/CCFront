@@ -1,46 +1,10 @@
 <div class="container-fluid d-flex flex-column justify-content-start gap-3 pb-2 contentStyle">
-    <a>24/10/2024</a>
-    <h6>Resumen</h6>
+    <h6>Vista Previa De La Sesión</h6>
+    <a>Fecha de la sesión: {{sesion.fecha}}</a>
+    <a>Número de la sesión: </a>
+    <h6>comentario del Psicolgo: </h6>
     <span class="textDetail">
-        El problema de esta sesión fue la de que el paciente
-        sufre ataque de panico cuando nada
-        El problema de esta sesión fue la de que el paciente
-        sufre ataque de panico cuando nada
-        El problema de esta sesión fue la de que el paciente
-        sufre ataque de panico cuando nada
-        El problema de esta sesión fue la de que el paciente
-        sufre ataque de panico cuando nada
-        El problema de esta sesión fue la de que el paciente
-        sufre ataque de panico cuando nada
-        El problema de esta sesión fue la de que el paciente
-        sufre ataque de panico cuando nada
-        El problema de esta sesión fue la de que el paciente
-        sufre ataque de panico cuando nada
-        El problema de esta sesión fue la de que el paciente
-        sufre ataque de panico cuando nada
-        El problema de esta sesión fue la de que el paciente
-        sufre ataque de panico cuando nada
-        El problema de esta sesión fue la de que el paciente
-        sufre ataque de panico cuando nada
-        El problema de esta sesión fue la de que el paciente
-        sufre ataque de panico cuando nada
-        El problema de esta sesión fue la de que el paciente
-        sufre ataque de panico cuando nada
-        El problema de esta sesión fue la de que el paciente
-        sufre ataque de panico cuando nada
-        El problema de esta sesión fue la de que el paciente
-        sufre ataque de panico cuando nada
-        El problema de esta sesión fue la de que el paciente
-        sufre ataque de panico cuando nada
-        El problema de esta sesión fue la de que el paciente
-        sufre ataque de panico cuando nada
-        El problema de esta sesión fue la de que el paciente
-        sufre ataque de panico cuando nada
-        El problema de esta sesión fue la de que el paciente
-        sufre ataque de panico cuando nada
-        El problema de esta sesión fue la de que el paciente
-        sufre ataque de panico cuando nada
-
+        {{sesion.comentarioPsicologa}}
     </span>
-    <input type="button" class="align-self-end btn btn-primary"  value="Ver Sesión Completa">
+    <input type="button" class="align-self-end btn btn-primary"  value="Ver Sesión Completa" (click)="verSesionCompleta()">
 </div>

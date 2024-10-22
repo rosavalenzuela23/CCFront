@@ -1,0 +1,27 @@
+/* Ajuste personalizado para las tarjetas */
+.card {
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Ajustes a los títulos */
+.card h5 {
+    font-weight: bold;
+}
+
+.card h6 {
+    font-weight: bold;
+    font-size: 1rem; /* Tamaño del subtítulo */
+    margin-bottom: 10px;
+}
+
+/* Estilo para los textos descriptivos */
+.card p {
+    font-size: 0.95rem;
+    color: #333;
+}
+
+/* Para las afectaciones en las columnas */
+.card .row p {
+    margin-bottom: 8px;
+}
