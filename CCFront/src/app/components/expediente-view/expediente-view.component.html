@@ -5,17 +5,21 @@
     <div class="row mb-3">
 
         <div class="col-6">
-            <label for="nombrePaciente" class="form-label">
+            <label for="nombrePaciente" class="form-label"  >
                 Nombre del paciente
             </label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control"
+            [formControl]="nombrePacienteElement"
+            >
         </div>
 
         <div class="col-6">
             <label for="nombrePaciente" class="form-label">
                 Fecha de nacimiento
             </label>
-            <input type="date" class="form-control">
+            <input type="date" class="form-control"
+            [formControl]="fechaNacimientoElement"
+            >
         </div>
 
     </div>
@@ -25,7 +29,12 @@
 
         <div class="col-6">
             <div class="form-floating">
-                <select class="form-select" name="select-escolaridad" id="select-escolaridad">
+                <select 
+                class="form-select" 
+                name="select-escolaridad" 
+                id="select-escolaridad"
+                [formControl]="escolaridadElement"
+                >
 
                     <option value="1">Aun no descrito</option>
                     <option value="2">Muy loquito</option>
@@ -43,7 +52,12 @@
         <div class="col-6">
             
             <div class="form-floating">
-                <select class="form-select" name="select-diagnosticos" id="select-diagnosticos">
+                <select 
+                class="form-select" 
+                name="select-diagnosticos" 
+                id="select-diagnosticos"
+                [formControl]="diagnosticoElement"
+                >
 
                     <option value="1">Aun no descrito</option>
                     <option value="2">Muy loquito</option>
@@ -63,18 +77,34 @@
 
     <div class="row mb-3">
 
+        <!-- pattern="+[0-9]{2}[0-9]{10}" -->
+
         <div class="col-6">
             <label for="telefonoPaciente" class="form-label">
                 Telefono
             </label>
-            <input type="tel" class="form-control" pattern="+[0-9]{2}[0-9]{10}" placeholder="+52XXXXXXXXXX" maxlength="13" name="telefonoPaciente">
+            <input 
+            type="tel" 
+            class="form-control"
+            placeholder="+52XXXXXXXXXX" 
+            maxlength="13" 
+            name="telefonoPaciente"
+            [formControl]="telefonoElement"
+            >
         </div>
 
         <div class="col-6">
-            <label for="telefonoEmerfencia" class="form-label">
+            <label for="telefonoEmergencia" class="form-label">
                 Telefono de emergencia
             </label>
-            <input type="tel" class="form-control" pattern="+[0-9]{2}[0-9]{10}" placeholder="+52XXXXXXXXXX" maxlength="13" name="telefonoEmergencia">
+            <input 
+            type="tel" 
+            class="form-control"
+            placeholder="+52XXXXXXXXXX" 
+            maxlength="13" 
+            name="telefonoEmergencia"
+            [formControl]="telefonoEmergenciaElement"
+            >
         </div>
 
     </div>
@@ -84,11 +114,25 @@
         <div class="col">
             <h5>Tipo de vivienda</h5>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="radioVivienda" id="radioViviendaLocal">
+                <input 
+                class="form-check-input" 
+                type="radio" 
+                name="radioVivienda" 
+                id="radioViviendaLocal"
+                [formControl]="tipoViviendaElement"
+                value="local"
+                >
                 <label for="radioViviendaLocal" class="form-check-label">Local</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="radioVivienda" id="radioViviendaForaneo">
+                <input 
+                class="form-check-input" 
+                type="radio" 
+                name="radioVivienda" 
+                id="radioViviendaForaneo"
+                value="foraneo"
+                [formControl]="tipoViviendaElement"
+                >
                 <label for="radioViviendaForaneo" class="form-check-label">Foraneo</label>
             </div>
         </div>
@@ -97,11 +141,25 @@
         <div class="col">
             <h5>Estado civil</h5>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="radioEstadoCivil" id="radioEstadoCivilCasado">
+                <input 
+                class="form-check-input" 
+                type="radio" 
+                name="radioEstadoCivil" 
+                id="radioEstadoCivilCasado"
+                [formControl]="estadoCivilElement"
+                value="CASADO"
+                >
                 <label for="radioEstadoCivilCasado" class="form-check-label">Casado</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="radioEstadoCivil" id="radioEstadoCivilSoltero">
+                <input 
+                class="form-check-input"
+                type="radio"
+                name="radioEstadoCivil"
+                id="radioEstadoCivilSoltero"
+                [formControl]="estadoCivilElement"
+                value="SOLTERO"
+                >
                 <label for="radioEstadoCivilSoltero" class="form-check-label">Soltero</label>
             </div>
         </div>
@@ -110,57 +168,27 @@
 
     <div class="row mb-3">
 
-        <div class="col">
+        <div class="col-6">
 
             <div class="mb-3">
                 <label for="textAreaMotivoConsulta" class="form-label">Motivo de la consulta</label>
-                <textarea name="textAreaMotivoConsulta" id="textAreaMotivoConsulta" class="form-control"></textarea>
+                <textarea 
+                name="textAreaMotivoConsulta" 
+                id="textAreaMotivoConsulta" 
+                class="form-control"
+                [formControl]="motivoDeConsultaElement"
+                ></textarea>
             </div>
 
         </div>
 
-        <div class="col">
-            <h5>Familiares de confianza</h5>
-            <button class="btn btn-success"> <i class="bi bi-plus-lg"></i> Agregar </button>
-            <table class="table">
-
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellido paterno</th>
-                        <th scope="col">Apellido materno</th>
-                        <th scope="col">Parentezco</th>
-                        <th scope="col">Telefono</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <!-- informacion de los pacientes -->
-                    <tr>
-                        <th>1</th>
-                        <td>Rosa</td>
-                        <td>Rodriguez</td>
-                        <td>Valenzuela</td>
-                        <td>Madre</td>
-                        <td>6442099375</td>
-                    </tr>
-
-                    <tr>
-                        <th>1</th>
-                        <td>Rosa</td>
-                        <td>Rodriguez</td>
-                        <td>Valenzuela</td>
-                        <td>Madre</td>
-                        <td>6442099375</td>
-                    </tr>
-
-
-                </tbody>
-
-            </table>
-
-        </div>
+        <!-- tabla de los familiares de confianza  -->
+        <app-tabla class="col-6"
+        tableName="familiaresConfianza"
+        [columnNames]="atributosFamiliarDto"
+        [informacionTabla]="listaFamiliaresConfianza"
+        tableNameSpaces="Familiares de confianza"
+        ></app-tabla>
 
     </div>
 
@@ -170,14 +198,24 @@
             <label for="antecedentes" class="form-label">
                 Antecedentes
             </label>
-            <input type="text" class="form-control" name="antecedentes">
+            <input 
+            type="text" 
+            class="form-control" 
+            name="antecedentes"
+            [formControl]="antecendentesElement"
+            >
         </div>
 
         <div class="col-6">
             <label for="enfermedadPrevia" class="form-label">
                 Enfermedad previa a la sesión
             </label>
-            <input type="text" class="form-control" name="enfermedadPrevia">
+            <input 
+            type="text" 
+            class="form-control" 
+            name="enfermedadPrevia"
+            [formControl]="enfermedadPreviaSesion"
+            >
         </div>
 
     </div>
@@ -188,37 +226,21 @@
             <label for="deseo" class="form-label">
                 ¿Qué desea lograr con este proceso terapéutico?
             </label>
-            <input type="text" class="form-control" name="deseo">
+            <input 
+            type="text" 
+            class="form-control" 
+            name="deseo"
+            [formControl]="logroDeseadoElement"
+            >
         </div>
 
-        <div class="col-6">
-            <h5>Medicamentos</h5>
-            <button class="btn btn-success"> <i class="bi bi-plus-lg"></i> Agregar </button>
-            <table class="table">
-
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Dosis</th>
-                        <th scope="col">Frecuencia</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <!-- informacion de los pacientes -->
-                    <tr>
-                        <th>1</th>
-                        <td>Misoprostrol</td>
-                        <td>1mg</td>
-                        <td>10 cada embarazo</td>
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
+        <!-- tabla con los medicamentos -->
+        <app-tabla class="col-6"
+        tableName="medicamentos"
+        [columnNames]="atributosMedicamentos"
+        [informacionTabla]="listaMedicamentos"
+        tableNameSpaces="Medicamentos"
+        ></app-tabla>
 
     </div>
 
@@ -227,64 +249,37 @@
             <label for="preguntaMagica" class="form-label">
                 Pregunta mágica
             </label>
-            <input type="text" class="form-control" name="preguntaMagica">
+            <input 
+            type="text" 
+            class="form-control" 
+            name="preguntaMagica"
+            [formControl]="preguntaMagicaElement"
+            >
         </div>
     </div>
 
     <div class="row mb-3">
 
-        <div class="col">
-            
-            <h5>Integrantes del hogar</h5>
-            <button class="btn btn-success"> <i class="bi bi-plus-lg"></i> Agregar </button>
-            <table class="table">
-
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Edad</th>
-                        <th scope="col">Parentesco</th>
-                        <th scope="col">Ocupación/Escolaridad</th>
-                        <th scope="col">Estatusde la relación</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <!-- informacion de los pacientes -->
-                    <tr>
-                        <th>1</th>
-                        <td>Rosa</td>
-                        <td>Rodriguez</td>
-                        <td>Valenzuela</td>
-                        <td>Madre</td>
-                        <td>6442099375</td>
-                    </tr>
-
-                    <tr>
-                        <th>1</th>
-                        <td>Rosa</td>
-                        <td>Rodriguez</td>
-                        <td>Valenzuela</td>
-                        <td>Madre</td>
-                        <td>6442099375</td>
-                    </tr>
-
-
-                </tbody>
-
-            </table>
-
-        </div>
+        <!-- tabla con los integrantes del hogar  -->
+        <app-tabla class="col"
+        tableName="integrantesHogar"
+        [columnNames]="atributosIntegrantesHogar"
+        [informacionTabla]="listaIntegrantesHogar"
+        tableNameSpaces="Integrantes del hogar"
+        ></app-tabla>
 
     </div>
 
-    <div class="row">
+    <div class="row my-5">
 
         <div class="col d-flex justify-content-end">
-            <button class="btn btn-danger">Cancelar</button>
+            <a 
+            class="btn btn-danger mx-3" 
+            routerLink="gestionar">Cancelar</a>
 
-            <button class="btn btn-primary">Continuar con la cita</button>
+            <button 
+            class="btn btn-primary" 
+            (click)="continuarConLaCita()">Continuar con la cita</button>
         </div>
 
     </div>

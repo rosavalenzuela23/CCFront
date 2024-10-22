@@ -1,0 +1,96 @@
+<div>
+    <h5>{{ tableNameSpaces }}</h5>
+    <button class="btn btn-success" (click)="mostrarModal()"> <i class="bi bi-plus-lg"></i> Agregar </button>
+    <table class="table">
+
+        <thead>
+            <tr>
+                @for (column of columnNames; track $index) {
+                <th scope="col">{{ column.name }}</th>
+                } @empty {
+                <div>
+                    <p>Aki no ay nada</p>
+                </div>
+                }
+            </tr>
+        </thead>
+
+        <tbody>
+            <!-- informacion de los pacientes -->
+
+            @for (informacion of informacionTabla; track informacion.generatedId) {
+                <tr>
+                @for (column of columnNames; track $index) {
+
+                    @if (column.name ==="id") {
+                        <th> {{ informacion.generatedId }} </th>
+                    } @else {
+                        <td> {{ informacion[column.name] }} </td>
+                    }
+
+                }
+                </tr>  
+            }
+
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<!-- no olvidar agregar el modal para agregar informacion -->
+
+<div 
+class="modal" 
+tabindex="-1" 
+id="{{ tableName }}" 
+aria-hidden="true" 
+[attr.aria-labelledby]="tableName">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="{{ tableName }}Label">
+                    Agregar {{ tableNameSpaces.toLowerCase() }} <!-- Se agrega el nombre de la tabla -->
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body" [formGroup]="camposTexto" >
+                
+                @for (campo of columnNames; track $index) {
+
+                    @if (campo.name != "id") {
+                        <div>
+                            <label for="{{ campo.name }}"> {{ campo.name.toUpperCase() }} </label>
+                            <input 
+                            type="{{ campo.tipo }}" 
+                            name="{{ campo.name }}" 
+                            class="form-control" 
+                            id="{{ campo.name }}{{ tableName }}"
+                            [formControlName]="campo.name+tableName"
+                            >
+                        </div>
+                    }
+
+                }
+
+            </div>
+
+            <div class="modal-footer">
+
+                <div class="container d-flex justify-content-end">
+                    <button class="btn btn-danger mx-2">
+                        Cancelar
+                    </button>
+                    <button class="btn btn-success" (click)="guardarInformacion()">
+                        Guardar
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
