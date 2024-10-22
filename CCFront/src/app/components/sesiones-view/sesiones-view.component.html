@@ -1,6 +1,6 @@
+<h3>Sesiones Del Paciente</h3>
 
-
-<div class="m-5"  *ngFor="let i of [0, 1, 2, 3, 4]; let index = index">
-    <detail-sesion-component></detail-sesion-component>
+<div class="m-5"  *ngFor="let sesion of sesiones">
+    <detail-sesion-component [sesion]="sesion"></detail-sesion-component>
 </div>
 

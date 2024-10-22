@@ -9,6 +9,7 @@ import { DtoExpediente } from '../../dtos/DtoExpediente';
 import { Router } from '@angular/router';
 import { ExpedienteService } from '../../services/ExpedienteService';
 
+
 @Component({
   selector: 'app-gestion-view',
   standalone: true,
@@ -30,12 +31,25 @@ export class GestionViewComponent {
     servicePaciente.setPaciente(this.paciente);
   }
 
-  nuevaConsulta(paciente: DtoPaciente) {
+  async nuevaConsulta(paciente: DtoPaciente) {
+    
     this.servicePaciente.guardarPacienteEnSesion(paciente);
-
-    this.expedienteService.obtenerExpedientePacientePorId(paciente.id);
-
+    await this.expedienteService.obtenerExpedientePacientePorId(paciente.id);
     this.router.navigate(["sesion"]);
+  
+  }
+
+  async modificarExpediente(paciente: DtoPaciente){
+    this.servicePaciente.guardarPacienteEnSesion(paciente);
+    await this.expedienteService.obtenerExpedientePacientePorId(paciente.id);
+    //this.router.navigate(["modificar"]);
+  }
+
+  async verSesiones(paciente: DtoPaciente){
+
+    this.servicePaciente.guardarPacienteEnSesion(paciente);
+    await this.expedienteService.obtenerExpedientePacientePorId(paciente.id);
+    this.router.navigate(["sesiones"]);
   }
 
 

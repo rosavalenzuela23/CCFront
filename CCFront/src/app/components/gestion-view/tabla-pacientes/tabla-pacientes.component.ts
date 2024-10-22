@@ -17,6 +17,8 @@ export class TablaPacientesComponent {
   pacientes: DtoPaciente[];
 
   @Output() nuevaConsultaEvent = new EventEmitter<DtoPaciente>();
+  @Output() modificarExpedienteEvent = new EventEmitter<DtoPaciente>();
+  @Output() verSesionesEvent = new EventEmitter<DtoPaciente>();
 
   constructor(
     private pacientesService: PacienteService
@@ -25,8 +27,20 @@ export class TablaPacientesComponent {
     console.log(this.pacientes);
   }
 
-  nuevaConsulta(paciente: DtoPaciente) {
+  //presiona el botón "nueva sesión"
+  nuevaSesion(paciente: DtoPaciente) {
     this.nuevaConsultaEvent.emit(paciente);
   }
+
+  //presiona el botón "modificar"
+  modificarExpediente(paciente: DtoPaciente){
+    this.modificarExpedienteEvent.emit(paciente);
+  }
+
+  //presiona el botón "ver"
+  verSesiones(paciente: DtoPaciente){
+    this.verSesionesEvent.emit(paciente);
+  }
+  
 
 }

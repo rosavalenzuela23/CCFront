@@ -10,4 +10,7 @@ export enum SessionStorageNames {
     //Usuarios
     USUARIO_ACTUAL = 'usuarioAcual',
 
+    //Sesiones
+    SESION_ACTUAL = 'sesionActual'
+
 }

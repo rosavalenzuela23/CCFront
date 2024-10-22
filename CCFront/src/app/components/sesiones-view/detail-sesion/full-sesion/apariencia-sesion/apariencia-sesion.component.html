@@ -1,0 +1,71 @@
+<div class="container mt-4">
+    <!-- Sección Apariencia -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5>Apariencia</h5>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <h6 class="text-secondary">Vestimenta</h6>
+                    <p>{{ sesion?.puntuacionVestimenta }}</p>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-secondary">Nivel general de bienestar</h6>
+                    <p>{{ sesion?.puntuacionBienestar }}</p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <h6 class="text-secondary">Arreglo personal</h6>
+                    <p>{{ sesion?.puntuacionArregloPersonal }}</p>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-secondary">Postura</h6>
+                    <p>{{ sesion?.puntuacionPostura }}</p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <h6 class="text-secondary">Contacto Visual</h6>
+                    <p>{{ sesion?.puntuacionContactoVisual }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección Habla y Lenguaje -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5>Habla y lenguaje</h5>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <h6 class="text-secondary">Velocidad del habla</h6>
+                    <p>{{ sesion?.puntuacionVelocidadHabla }}</p>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-secondary">Volumen de la voz</h6>
+                    <p>{{ sesion?.puntuacionVolumenHabla }}</p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <h6 class="text-secondary">Articulación</h6>
+                    <p>{{ sesion?.puntuacionArticulacion }}</p>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-secondary">Coherencia</h6>
+                    <p>{{ sesion?.puntuacionCoherencia }}</p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <h6 class="text-secondary">Espontaneidad</h6>
+                    <p>{{ sesion?.puntuacionEspontaneidad }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

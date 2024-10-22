@@ -3,6 +3,7 @@ import { DtoExpediente } from "../dtos/DtoExpediente";
 import { HttpClient, HttpParams, ɵHttpInterceptorHandler } from "@angular/common/http";
 import { Routes } from "./Routes";
 import { SessionStorageNames } from "./sessionStorageNames";
+import {lastValueFrom} from "rxjs";
 
 @Injectable({
     providedIn: "root",
@@ -24,10 +25,12 @@ export class ExpedienteService {
         return JSON.parse(sessionStorage.getItem(SessionStorageNames.EXPEDIENTE_ACTUAL) || "{}");
     }
 
-    obtenerExpedientePacientePorId(id: number) {
-        this.httpClient.get<DtoExpediente>(Routes.expediente + 'paciente/' + id).subscribe( res => {
-            this.guardarExpedienteEnSessionStorage(res);
-        });
+    async obtenerExpedientePacientePorId(id: number) {
+        const res = await lastValueFrom(this.httpClient.get<DtoExpediente>(Routes.expediente + 'paciente/' + id));
+        
+        this.guardarExpedienteEnSessionStorage(res || {id:0, enfermedadPrevia:"", antecedentes:"", preguntaMagica:"", motivoConsulta:"", medicamentos:[],integrantesHogar:[],familiaresConfianza:[], instrumentos:[], paciente:null});
+        
+        
     }
 
 
