@@ -5,12 +5,13 @@ import { SesionesViewComponent } from './components/sesiones-view/sesiones-view.
 import { SesionViewComponent } from './components/sesion-view/sesion-view.component';
 import { ExpedienteViewComponent } from './components/expediente-view/expediente-view.component';
 import {FullSesionComponent} from './components/sesiones-view/detail-sesion/full-sesion/full-sesion.component';
-
+import {Error404Component } from './components/error/error404.component';
 export const routes: Routes = [
     {path: "", component: MainViewComponent},
     {path: "gestion", component: GestionViewComponent},
     {path: "sesion", component:SesionViewComponent},
     {path: "expediente", component: ExpedienteViewComponent},
     {path: "sesiones", component: SesionesViewComponent},
-    {path: "sesioncompleta",component: FullSesionComponent}  
+    {path: "sesioncompleta",component: FullSesionComponent},
+    {path: "**", component: Error404Component }  
 ];
