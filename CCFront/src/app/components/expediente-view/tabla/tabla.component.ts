@@ -4,6 +4,7 @@ import { generate } from 'rxjs';
 import * as bootstrap from 'bootstrap';
 import { Form, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { CamposConTipo } from '../../../tipos/camposConTipos';
 
 type rowWithGeneratedId = {
   generatedId: number
@@ -20,7 +21,7 @@ export class TablaComponent {
 
   @Input() tableName = 'NO_TITLE';
   @Input() tableNameSpaces = "NO TITLE";
-  @Input() columnNames: string[] = [];
+  @Input() columnNames: CamposConTipo[] = [];
   @Input() informacionTabla: any[] = [];
 
   camposTexto!: FormGroup<string>;
@@ -31,8 +32,8 @@ export class TablaComponent {
 
     const camposTextoGroup: any = {};
 
-    this.columnNames.forEach(name => {
-      camposTextoGroup[name+this.tableName] = new FormControl('');
+    this.columnNames.forEach(obj => {
+      camposTextoGroup[obj.name+this.tableName] = new FormControl('');
     });
 
 
@@ -59,8 +60,8 @@ export class TablaComponent {
       const objToSave: any = {};
       objToSave.generatedId = this.informacionTabla.length + 1;
 
-      this.columnNames.forEach(columnName => {
-        objToSave[columnName] = valoresCampos[columnName+this.tableName];
+      this.columnNames.forEach(obj => {
+        objToSave[obj.name] = valoresCampos[obj.name+this.tableName];
       })
 
       this.informacionTabla.push(objToSave);

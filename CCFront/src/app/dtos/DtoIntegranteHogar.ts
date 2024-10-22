@@ -1,3 +1,5 @@
+import { CamposConTipo } from "../tipos/camposConTipos";
+
 export class DtoIntegranteHogar {
     constructor(
         public id: number,
@@ -8,9 +10,15 @@ export class DtoIntegranteHogar {
         public fechaNacimiento: string
     ){ }
 
-    static getProperties(): string[] {
-        const example = new DtoIntegranteHogar(-1, "NA", "NA", "NA", "NA", "NA");
-        return Object.getOwnPropertyNames(example);
+    static getFieldsWithType(): CamposConTipo[] {
+        return [
+            { name: 'id', tipo: 'string' },
+            { name: 'nombre', tipo: 'string' },
+            { name: 'estatusRelacion', tipo: 'string' },
+            { name: 'ocupacion', tipo: 'string' },
+            { name: 'parentesco', tipo: 'string' },
+            { name: 'fechaNacimiento', tipo: 'date' }
+        ]
     }
 
 }

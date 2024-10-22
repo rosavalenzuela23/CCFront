@@ -6,7 +6,7 @@
         <thead>
             <tr>
                 @for (column of columnNames; track $index) {
-                <th scope="col">{{ column }}</th>
+                <th scope="col">{{ column.name }}</th>
                 } @empty {
                 <div>
                     <p>Aki no ay nada</p>
@@ -22,10 +22,10 @@
                 <tr>
                 @for (column of columnNames; track $index) {
 
-                    @if (column ==="id") {
+                    @if (column.name ==="id") {
                         <th> {{ informacion.generatedId }} </th>
                     } @else {
-                        <td> {{ informacion[column] }} </td>
+                        <td> {{ informacion[column.name] }} </td>
                     }
 
                 }
@@ -61,13 +61,15 @@ aria-hidden="true"
                 
                 @for (campo of columnNames; track $index) {
 
-                    @if (campo != "id") {
+                    @if (campo.name != "id") {
                         <div>
-                            <label for="{{ campo }}"> {{ campo.toUpperCase() }} </label>
-                            <input type="text" name="{{ campo }}" 
+                            <label for="{{ campo.name }}"> {{ campo.name.toUpperCase() }} </label>
+                            <input 
+                            type="{{ campo.tipo }}" 
+                            name="{{ campo.name }}" 
                             class="form-control" 
-                            id="{{ campo }}{{ tableName }}"
-                            [formControlName]="campo+tableName"
+                            id="{{ campo.name }}{{ tableName }}"
+                            [formControlName]="campo.name+tableName"
                             >
                         </div>
                     }

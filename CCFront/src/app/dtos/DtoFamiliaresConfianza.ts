@@ -1,3 +1,5 @@
+import { CamposConTipo } from "../tipos/camposConTipos";
+
 export class DtoFamiliaresConfianza {
 
     constructor(
@@ -7,9 +9,13 @@ export class DtoFamiliaresConfianza {
         public telefono: string
     ) { }
 
-    static getProperties(): string[] {
-        const example = new DtoFamiliaresConfianza(-1, "NA", "NA", "NA");
-        return Object.getOwnPropertyNames(example);
+    static getFieldsWithType(): CamposConTipo[] {
+        return [
+            { name: 'id', tipo: 'string'},
+            { name: 'nombre', tipo: 'string' },
+            { name: 'parentesco', tipo: 'string' },
+            { name: 'telefono', tipo: 'string' }
+        ]
     }
 
 }
