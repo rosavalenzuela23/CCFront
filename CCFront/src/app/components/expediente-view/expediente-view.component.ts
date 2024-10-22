@@ -4,6 +4,7 @@ import { TablaComponent } from './tabla/tabla.component';
 import { DtoFamiliaresConfianza } from '../../dtos/DtoFamiliaresConfianza';
 import { DtoMedicamento } from '../../dtos/DtoMedicamento';
 import { DtoIntegranteHogar } from '../../dtos/DtoIntegranteHogar';
+import { CamposConTipo } from '../../tipos/camposConTipos';
 
 @Component({
   selector: 'app-expediente-view',
@@ -32,9 +33,9 @@ export class ExpedienteViewComponent {
     listaMedicamentos: DtoMedicamento[] = [];
     listaIntegrantesHogar: DtoIntegranteHogar[] = [];
 
-    readonly atributosFamiliarDto: string[] = DtoFamiliaresConfianza.getProperties();
-    readonly atributosIntegrantesHogar: string[] = DtoIntegranteHogar.getProperties();
-    readonly atributosMedicamentos: string[] = DtoMedicamento.getProperties();
+    readonly atributosFamiliarDto: CamposConTipo[] = DtoFamiliaresConfianza.getFieldsWithType();
+    readonly atributosIntegrantesHogar: CamposConTipo[] = DtoIntegranteHogar.getFieldsWithType();
+    readonly atributosMedicamentos: CamposConTipo[] = DtoMedicamento.getFieldsWithType();
 
     constructor(
         //Servicios
