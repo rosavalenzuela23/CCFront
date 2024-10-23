@@ -34,21 +34,21 @@ export class GestionViewComponent {
   async nuevaConsulta(paciente: DtoPaciente) {
     
     this.servicePaciente.guardarPacienteEnSesion(paciente);
-    await this.expedienteService.obtenerExpedientePacientePorId(paciente.id);
+    await this.expedienteService.obtenerExpedientePacientePorId(paciente.id!);
     this.router.navigate(["sesion"]);
   
   }
 
   async modificarExpediente(paciente: DtoPaciente){
     this.servicePaciente.guardarPacienteEnSesion(paciente);
-    await this.expedienteService.obtenerExpedientePacientePorId(paciente.id);
+    await this.expedienteService.obtenerExpedientePacientePorId(paciente.id!);
     //this.router.navigate(["modificar"]);
   }
 
   async verSesiones(paciente: DtoPaciente){
 
     this.servicePaciente.guardarPacienteEnSesion(paciente);
-    await this.expedienteService.obtenerExpedientePacientePorId(paciente.id);
+    await this.expedienteService.obtenerExpedientePacientePorId(paciente.id!);
     this.router.navigate(["sesiones"]);
   }
 

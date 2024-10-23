@@ -4,6 +4,9 @@ import { HttpClient, HttpParams, ɵHttpInterceptorHandler } from "@angular/commo
 import { Routes } from "./Routes";
 import { SessionStorageNames } from "./sessionStorageNames";
 import {lastValueFrom} from "rxjs";
+import { PsicologoService } from "./psicologo.service";
+import { DtoRegistroExpedientePaciente } from "../dtos/DtoRegistroExpediente";
+import { DtoPaciente } from "../dtos/DtoPaciente";
 
 @Injectable({
     providedIn: "root",
@@ -11,7 +14,8 @@ import {lastValueFrom} from "rxjs";
 export class ExpedienteService {
     
     constructor(
-        private httpClient: HttpClient
+        private httpClient: HttpClient,
+        private psicologoService: PsicologoService
     ){}
 
     private guardarExpedienteEnSessionStorage(expediente: DtoExpediente) {
@@ -28,9 +32,27 @@ export class ExpedienteService {
     async obtenerExpedientePacientePorId(id: number) {
         const res = await lastValueFrom(this.httpClient.get<DtoExpediente>(Routes.expediente + 'paciente/' + id));
         
-        this.guardarExpedienteEnSessionStorage(res || {id:0, enfermedadPrevia:"", antecedentes:"", preguntaMagica:"", motivoConsulta:"", medicamentos:[],integrantesHogar:[],familiaresConfianza:[], instrumentos:[], paciente:null});
-        
-        
+        this.guardarExpedienteEnSessionStorage(res || {id:0, enfermedadPrevia:"", antecedentes:"", preguntaMagica:"", motivoConsulta:"", medicamentos:[],integrantesHogar:[],familiaresConfianza:[], instrumentos:[], paciente:null});   
+    }
+
+    async guardarExpediente(expediente: DtoExpediente, paciente: DtoPaciente): Promise<DtoExpediente> {
+
+        const psicologo = this.psicologoService.getPsicologoActual();        
+
+        const registro: DtoRegistroExpedientePaciente = {
+            psicologo: psicologo,
+            paciente: paciente,
+            expediente: expediente
+        }
+
+        const res = await lastValueFrom(
+            this.httpClient.post<DtoExpediente>(
+                Routes.expediente+'registrar',
+                registro
+            )
+        )
+
+        return res;
     }
 
 

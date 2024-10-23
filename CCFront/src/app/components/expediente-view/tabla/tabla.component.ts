@@ -24,7 +24,7 @@ export class TablaComponent {
   @Input() columnNames: CamposConTipo[] = [];
   @Input() informacionTabla: any[] = [];
 
-  camposTexto!: FormGroup<string>;
+  camposTexto!: FormGroup<any>;
 
   modal: bootstrap.Modal | null = null;
 

@@ -5,6 +5,10 @@ import { DtoFamiliaresConfianza } from '../../dtos/DtoFamiliaresConfianza';
 import { DtoMedicamento } from '../../dtos/DtoMedicamento';
 import { DtoIntegranteHogar } from '../../dtos/DtoIntegranteHogar';
 import { CamposConTipo } from '../../tipos/camposConTipos';
+import { DtoExpediente } from '../../dtos/DtoExpediente';
+import { DtoPaciente } from '../../dtos/DtoPaciente';
+import { DtoMedicamentoDelExpediente } from '../../dtos/DtoMedicamentoDelExpediente';
+import { ExpedienteService } from '../../services/ExpedienteService';
 
 @Component({
   selector: 'app-expediente-view',
@@ -30,7 +34,7 @@ export class ExpedienteViewComponent {
 
     //Listas
     listaFamiliaresConfianza: DtoFamiliaresConfianza[] = [];
-    listaMedicamentos: DtoMedicamento[] = [];
+    listaMedicamentos: DtoMedicamentoDelExpediente[] = [];
     listaIntegrantesHogar: DtoIntegranteHogar[] = [];
 
     readonly atributosFamiliarDto: CamposConTipo[] = DtoFamiliaresConfianza.getFieldsWithType();
@@ -38,13 +42,39 @@ export class ExpedienteViewComponent {
     readonly atributosMedicamentos: CamposConTipo[] = DtoMedicamento.getFieldsWithType();
 
     constructor(
-        //Servicios
+        public servicioExpediente: ExpedienteService
     ) {}
 
+    async crearExpediente() {
+
+        const paciente: DtoPaciente = {
+            estadoCivil: this.estadoCivilElement.value || 'NA',
+            nombre: this.nombrePacienteElement.value || 'NA',
+            telefono: this.telefonoElement.value || 'NA',
+            telefonoEmergencia: this.telefonoEmergenciaElement.value || 'NA',
+            vivienda: this.tipoViviendaElement.value || 'NA'
+        }
+
+        const dtoExpediente: DtoExpediente = {
+            antecedentes: this.antecendentesElement.value || 'NA',
+            enfermedadPrevia: this.enfermedadPreviaSesion.value || 'NA',
+            familiaresConfianza: this.listaFamiliaresConfianza,
+            integrantesHogar: this.listaIntegrantesHogar,
+            medicamentos: this.listaMedicamentos,
+            preguntaMagica: this.preguntaMagicaElement.value || 'NA',
+            motivoConsulta: this.motivoDeConsultaElement.value || 'NA'
+        }
+
+        const res = await this.servicioExpediente.guardarExpediente(dtoExpediente, paciente);
+
+        console.log(res);
+
+    }
+
     continuarConLaCita() {
-        console.log(
-            this.listaFamiliaresConfianza
-        );
+        
+        this.crearExpediente();
+
     }
 
     cancelar() {
