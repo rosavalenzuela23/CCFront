@@ -46,9 +46,10 @@ export class ExpedienteViewComponent {
     ) {}
 
     async crearExpediente() {
-
+    
         const paciente: DtoPaciente = {
             estadoCivil: this.estadoCivilElement.value || 'NA',
+            fecha: this.fechaNacimientoElement.value || 'NA',
             nombre: this.nombrePacienteElement.value || 'NA',
             telefono: this.telefonoElement.value || 'NA',
             telefonoEmergencia: this.telefonoEmergenciaElement.value || 'NA',

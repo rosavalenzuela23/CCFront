@@ -74,4 +74,21 @@ export class PacienteService{
         );
     }
 
+    calcularEdadPaciente(fechaNacimiento: string): number{
+
+        let edad: number = 0;
+
+        const fechaActual = new Date();
+        const fechaNac = new Date(fechaNacimiento);
+        
+        edad = fechaActual.getFullYear() - fechaNac.getFullYear();
+
+        if (fechaActual.getMonth() < fechaNac.getMonth() || 
+            (fechaActual.getMonth() === fechaNac.getMonth() && fechaActual.getDate() < fechaNac.getDate())) {
+            edad = edad - 1;
+        }
+
+        return edad;
+    }
+
 }

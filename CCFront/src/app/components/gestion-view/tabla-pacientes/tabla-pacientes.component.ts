@@ -21,9 +21,10 @@ export class TablaPacientesComponent {
   @Output() verSesionesEvent = new EventEmitter<DtoPaciente>();
 
   constructor(
-    private pacientesService: PacienteService
+    public pacientesService: PacienteService
   ){
     this.pacientes = pacientesService.getPacientes();
+    
     console.log(this.pacientes);
   }
 

@@ -4,7 +4,6 @@
             <thead>
                 <tr>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Sexo</th>
                     <th scope="col">Edad</th>
                     <th scope="col">Acciones</th>
                 </tr>
@@ -15,8 +14,7 @@
                 @for (paciente of pacientes; track paciente.id) {
                 <tr>    
                     <td>{{ paciente.nombre }}</td>
-                    <td>M</td>
-                    <td>23</td>
+                    <td>{{this.pacientesService.calcularEdadPaciente(paciente.fecha)}}</td>
                     <td>
                         <div class="d-flex justify-content-start flex-wrap gap-2">
                             <input type="button" class="btn btn-success" value="Nueva Consulta" (click)="nuevaSesion(paciente)">
