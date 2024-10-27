@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { DtoProblema } from '../../dtos/DtoProblema';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DtoSesion } from '../../dtos/DtoSesion';
@@ -7,38 +8,24 @@ import { SesionService } from '../../services/sesion.service';
 import { PacienteService } from '../../services/PacienteService';
 import { PsicologoService } from '../../services/psicologo.service';
 import { ExpedienteService } from '../../services/ExpedienteService';
+import {ProblemaComponent} from './problema/problema.component';
+import { ComentarioComponent } from './comentario/comentario.component';
 
 @Component({
   selector: 'app-sesion-view',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, ProblemaComponent, CommonModule, ComentarioComponent],
   templateUrl: './sesion-view.component.html',
   styleUrl: './sesion-view.component.css',
 })
 export class SesionViewComponent {
 
 
+  //Refactorización de variables en base a la logica de 'marcos'
+  problemas: DtoProblema[] = [];  //lista para guardar la lista de problemas de la sesión
+  comentarios: DtoComentarioSesion[] = [] //lista para guardar la lista de comentarios de la sesión 
 
-  // comienza problemas
-  intensidadElement = new FormControl('');
-  frecuenciaElement = new FormControl('');
-  amigosElement = new FormControl('');
-  familiarElement = new FormControl('');
-  laboralElement = new FormControl('');
-  parejaElement = new FormControl('');
-  saludElement = new FormControl('');
-  espiritualElement = new FormControl('');
-  economicoElement = new FormControl('');
-  descripcionProblema = new FormControl('');
-  // termina problemas
-
-  // Comienza comentarios sesion
-
-  numeroSesion = new FormControl('');
-  fechaComentario = new FormControl('');
-  aspectoAMedir = new FormControl('');
-  inicioElement = new FormControl('');
-  finElement = new FormControl('');
+  // Comienza valoración general de la sesión
   contactoVisualElement = new FormControl('');
   hablaLenguajeElement = new FormControl('');
   velocidadHablaElement = new FormControl('');
@@ -47,7 +34,7 @@ export class SesionViewComponent {
   coherenciaElement = new FormControl('');
   espontaneidadElement = new FormControl('');
 
-  // Termina comentario sesion
+  // Termina valoración general de la sesión
 
   //Evaluacion general
   vestimentaElement = new FormControl('');
@@ -75,67 +62,60 @@ export class SesionViewComponent {
     return toReturn;
   }
 
+  //Agrega un componente problema a la vista de la sesión
+  agregarProblema(): void{
+    let problema: DtoProblema = new DtoProblema(
+      null, 
+      "", 
+      "", 
+      0, 
+      0, 
+      0, 
+      0, 
+      0, 
+      0, 
+      0, 
+      0  
+    );
+
+    this.problemas.push(problema);
+  }
+
+  //Regresa los problemas de los componentes <<Problema>>
   private obtenerProblemas(): DtoProblema[] {
-    const problemas: DtoProblema[] = [];
-    
-    let frecuencia = this.frecuenciaElement.value || "";
-
-
-    const intensidad = this.getNumberFormControl(this.intensidadElement);
-    const salud = this.getNumberFormControl(this.saludElement);
-    const pareja = this.getNumberFormControl(this.parejaElement);
-    const laboral = this.getNumberFormControl(this.laboralElement);
-    const familiar = this.getNumberFormControl(this.familiarElement);
-    const amigos = this.getNumberFormControl(this.amigosElement);
-    const espiritual = this.getNumberFormControl(this.espiritualElement);
-    const economico = this.getNumberFormControl(this.economicoElement);
-    
-
-    const problema: DtoProblema = {
-      intensidad: intensidad,
-      frecuencia: frecuencia,
-      afectacionAmigos: amigos,
-      afectacionFamiliar: familiar,
-      afectacionLaboral: laboral,
-      afectacionPareja: pareja,
-      afectacionSalud: salud,
-      afectacionEconomico: economico,
-      afectacionEspiritual: espiritual,
-      descripcion: this.descripcionProblema.value || '',
-      id: null
-    }
-
-    problemas.push(problema)
-
-    return problemas;
+    return this.problemas;
   }
 
+
+  //Agrega un componente comentario a la vista de la sesión
+  agregarComentario(): void {
+    let comentario: DtoComentarioSesion = new DtoComentarioSesion(
+        null,           
+        "",                        
+        0,              
+        0               
+    );
+
+    this.comentarios.push(comentario);
+  }
+
+
+  //Regresa los comentarios de los componentes hijos <<Sesion>>
   private obtenerComentariosSesion(): DtoComentarioSesion[] {
-    
-    const comentario: DtoComentarioSesion = {
-      id: null,
-      fecha: this.fechaComentario.value || new Date().toISOString(),
-      aspectoAMedir: this.aspectoAMedir.value || '',
-      valoracionFin: this.getNumberFormControl(this.finElement),
-      valoracionInicio: this.getNumberFormControl(this.inicioElement)
-    }
-
-    const comentarios: DtoComentarioSesion[] = [];
-
-    comentarios.push(comentario);
-
-    return comentarios;
+    return this.comentarios;
   }
 
+  //Se recopila toda la información necesaria del componente para inicializar los datos 
+  //de la Sesion
   private obtenerInformacionSesion(): DtoSesion {
 
     const listaProblemas = this.obtenerProblemas();
-    const comentariosSesion = this.obtenerComentariosSesion();
+    const listaComentariosSesion = this.obtenerComentariosSesion();
 
     const expedienteActual = this.expedienteService.obtenerExpedienteActual();
 
     const sesion: DtoSesion = {
-      comentarios: comentariosSesion,
+      comentarios: listaComentariosSesion,
       id: null,
       problemasSesion: listaProblemas,
       psicologo: this.psicologoService.getPsicologoActual(),
@@ -158,11 +138,14 @@ export class SesionViewComponent {
     return sesion;
   }
 
+  //se acciona al presionar el botón de <<terminar Sesión>> para acceder al servicio
+  //que guarda la sesión en la base de datos
   terminarSesion() {
     const sesion = this.obtenerInformacionSesion();
 
     console.log(sesion);
-
+    console.log(this.problemas);
+    console.log(this.comentarios);
     this.sesionService.guardarSesion(sesion);
   }
 

@@ -1,0 +1,154 @@
+<section class="mb-5 p-4 border rounded bg-light shadow-sm">
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <label for="problema" class="form-label fw-semibold">Problema</label>
+            <textarea type="text" class="form-control form-control-lg" id="problemaID" placeholder="Describa el problema" [(ngModel)]="problema.descripcion">
+            </textarea>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <label for="intensidad" class="form-label fw-semibold">Intensidad</label>
+            <select class="form-select form-select-lg" id="intensidad" [(ngModel)]="problema.intensidad">
+               
+                <option value="" disabled selected>Seleccione intensidad</option>
+                <option value="1" [ngValue]="1">1</option>
+                <option value="2" [ngValue]="2">2</option>
+                <option value="3" [ngValue]="3">3</option>
+                <option value="4" [ngValue]="4">4</option>
+                <option value="5" [ngValue]="5">5</option>
+                <option value="6" [ngValue]="6">6</option>
+                <option value="7" [ngValue]="7">7</option>
+                <option value="8" [ngValue]="8">8</option>
+                <option value="9" [ngValue]="9">9</option>
+                <option value="10" [ngValue]="10">10</option>
+            
+            </select>
+        </div>
+        <div class="col-md-6">
+
+            <label for="duracion" class="form-label fw-semibold">Frecuencia</label>
+            <input type="text" class="form-control form-control-lg" id="duracionID" placeholder="Frecuencia" [(ngModel)]="problema.frecuencia">
+        
+        </div>
+
+        <!--Sección de afectaciones-->
+        <label class="mb-4 fw-semibold">La situación afecta en:</label>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label for="Salud" class="form-label fw-semibold">Salud</label>
+                <select class="form-select form-select-lg" id="SaludID" [(ngModel)]="problema.afectacionSalud">
+                    <option value="" disabled selected>Seleccione</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="Pareja" class="form-label fw-semibold">Pareja</label>
+                <select class="form-select form-select-lg" id="ParejaID" [(ngModel)]="problema.afectacionPareja">
+                    <option value="" disabled selected>Seleccione</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="Familia" class="form-label fw-semibold">Familia</label>
+                <select class="form-select form-select-lg" id="FamiliaID" [(ngModel)]="problema.afectacionFamiliar">
+                    <option value="" disabled selected>Seleccione</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="Amigos" class="form-label fw-semibold">Amigos</label>
+                <select class="form-select form-select-lg" id="AmigosID" [(ngModel)]="problema.afectacionAmigos">
+                    <option value="" disabled selected>Seleccione</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="Laboral" class="form-label fw-semibold">Laboral</label>
+                <select class="form-select form-select-lg" id="LaboralID" [(ngModel)]="problema.afectacionLaboral">
+                    <option value="" disabled selected>Seleccione</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="Espiritual" class="form-label fw-semibold">Espiritual</label>
+                <select class="form-select form-select-lg" id="EspiritualID" [(ngModel)]="problema.afectacionEspiritual">
+                    <option value="" disabled selected>Seleccione</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="Economico" class="form-label fw-semibold">Económico</label>
+                <select class="form-select form-select-lg" id="EconomicoID" [(ngModel)]="problema.afectacionEconomico">
+                    <option value="" disabled selected>Seleccione</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</section>
+
