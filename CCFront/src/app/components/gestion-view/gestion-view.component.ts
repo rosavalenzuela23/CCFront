@@ -42,7 +42,7 @@ export class GestionViewComponent {
   async modificarExpediente(paciente: DtoPaciente){
     this.servicePaciente.guardarPacienteEnSesion(paciente);
     await this.expedienteService.obtenerExpedientePacientePorId(paciente.id!);
-    //this.router.navigate(["modificar"]);
+    this.router.navigate(["expediente", this.expedienteService.obtenerExpedienteActual().id]);
   }
 
   async verSesiones(paciente: DtoPaciente){

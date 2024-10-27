@@ -7,6 +7,9 @@ import {lastValueFrom} from "rxjs";
 import { PsicologoService } from "./psicologo.service";
 import { DtoRegistroExpedientePaciente } from "../dtos/DtoRegistroExpediente";
 import { DtoPaciente } from "../dtos/DtoPaciente";
+import { DatePipe } from "@angular/common";
+import { RouterEvent } from "@angular/router";
+import { PutPacienteExpediente } from "../dtos/PutPacienteExpediente";
 
 @Injectable({
     providedIn: "root",
@@ -18,6 +21,18 @@ export class ExpedienteService {
         private psicologoService: PsicologoService
     ){}
 
+    async actualizarExpediente(dtoExpediente: DtoExpediente, dtoPaciente: DtoPaciente) {
+
+        const res = await lastValueFrom(
+            this.httpClient.put<PutPacienteExpediente>(Routes.expediente+"actualizar", {
+                expediente: dtoExpediente,
+                paciente: dtoPaciente
+            })
+        );
+
+        return res;
+    }
+
     private guardarExpedienteEnSessionStorage(expediente: DtoExpediente) {
         sessionStorage.setItem(
             SessionStorageNames.EXPEDIENTE_ACTUAL,
@@ -25,14 +40,13 @@ export class ExpedienteService {
         );
     }
 
-    obtenerExpedienteActual(): DtoExpediente | null {
+    obtenerExpedienteActual(): DtoExpediente {
         return JSON.parse(sessionStorage.getItem(SessionStorageNames.EXPEDIENTE_ACTUAL) || "{}");
     }
 
     async obtenerExpedientePacientePorId(id: number) {
         const res = await lastValueFrom(this.httpClient.get<DtoExpediente>(Routes.expediente + 'paciente/' + id));
-        
-        this.guardarExpedienteEnSessionStorage(res || {id:0, enfermedadPrevia:"", antecedentes:"", preguntaMagica:"", motivoConsulta:"", medicamentos:[],integrantesHogar:[],familiaresConfianza:[], instrumentos:[], paciente:null});   
+        this.guardarExpedienteEnSessionStorage(res);   
     }
 
     async guardarExpediente(expediente: DtoExpediente, paciente: DtoPaciente): Promise<DtoExpediente> {
@@ -52,6 +66,7 @@ export class ExpedienteService {
             )
         )
 
+        this.guardarExpedienteEnSessionStorage(res);
         return res;
     }
 

@@ -18,7 +18,9 @@
                     <td>
                         <div class="d-flex justify-content-start flex-wrap gap-2">
                             <input type="button" class="btn btn-success" value="Nueva Consulta" (click)="nuevaSesion(paciente)">
-                            <input type="button" class="btn btn-warning" value="Modificar" (click)="modificarExpediente(paciente)">
+                            <input type="button" class="btn btn-warning" value="Modificar" (click)="modificarExpediente(paciente)"
+                            >
+                            <!-- [routerLink]="['/expediente', paciente.id]" -->
                             <!--<input type="button" class="btn btn-info" value="Ver">-->
                             <i class="bi bi-eye-fill btn btn-info" (click)="verSesiones(paciente)">Ver</i>
                         </div>

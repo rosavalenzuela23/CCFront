@@ -5,6 +5,7 @@ import { Routes } from "./Routes";
 import { Router } from "@angular/router";
 import { DtoPsicologo } from "../dtos/DtoPsicologo";
 import { SessionStorageNames } from "./sessionStorageNames";
+import { lastValueFrom } from "rxjs";
 
 
 @Injectable ({
@@ -35,19 +36,15 @@ export class PacienteService{
         return this.paciente;
     }
 
-    obtenerPacientesPsicologo() {
+    async obtenerPacientesPsicologo() {
 
         const psicologo: DtoPsicologo = JSON.parse(
             sessionStorage.getItem(SessionStorageNames.USUARIO_ACTUAL) || "{}"
         );
 
-        this.http.get( Routes.paciente, {params: new HttpParams({fromObject: {id: psicologo.id}})} ).subscribe( listaPacientes => {
-            sessionStorage.setItem(
-                SessionStorageNames.PACIENTES_PSICOLOGO, JSON.stringify(listaPacientes)
-            );
-            this.router.navigate(["gestion"])
-        })
-
+        const pacientes = await lastValueFrom(this.http.get( Routes.paciente, {params: new HttpParams({fromObject: {id: psicologo.id}})}));
+        sessionStorage.setItem(SessionStorageNames.PACIENTES_PSICOLOGO, JSON.stringify(pacientes));
+        this.router.navigate(["gestion"])
     }
 
     getPacientes(): DtoPaciente[] {

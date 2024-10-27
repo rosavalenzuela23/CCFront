@@ -11,8 +11,10 @@ export class DtoExpediente {
     public preguntaMagica: string,
     public motivoConsulta: string,
     public medicamentos: DtoMedicamentoDelExpediente[],
-    public integrantesHogar: DtoIntegranteHogar[],
+    public integranteHogar: DtoIntegranteHogar[],
     public familiaresConfianza: DtoFamiliaresConfianza[],
+    public diagnostico: string,
+    public deseo: string,
     public id?: number,
     public instrumentos?: DtoInstrumento[],
     ){}

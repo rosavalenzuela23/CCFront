@@ -1,5 +1,5 @@
 
-<div class="container">
+<form class="container" [formGroup]="formGroupExpediente" (ngOnSubmit)="crearExpediente()" >
 
     <!-- nombre edad -->
     <div class="row mb-3">
@@ -8,8 +8,8 @@
             <label for="nombrePaciente" class="form-label"  >
                 Nombre del paciente
             </label>
-            <input type="text" class="form-control"
-            [formControl]="nombrePacienteElement"
+            <input type="text" class="form-control" required
+            formControlName="nombrePacienteElement"
             >
         </div>
 
@@ -18,8 +18,7 @@
                 Fecha de nacimiento
             </label>
             <input type="date" class="form-control"
-            [formControl]="fechaNacimientoElement"
-            >
+            formControlName="fechaNacimientoElement">
         </div>
 
     </div>
@@ -29,20 +28,12 @@
 
         <div class="col-6">
             <div class="form-floating">
-                <select 
-                class="form-select" 
+                <input 
+                class="form-control" 
                 name="select-escolaridad" 
                 id="select-escolaridad"
-                [formControl]="escolaridadElement"
-                >
-
-                    <option value="1">Aun no descrito</option>
-                    <option value="2">Muy loquito</option>
-                    <option value="3">Loquito</option>
-                    <option value="4">estudiando en el ison</option>
-                    
-                </select>
-                
+                formControlName="escolaridadElement"
+                />
                 <label for="select-escolaridad" class="form-label">
                     Escolaridad
                 </label>
@@ -52,20 +43,14 @@
         <div class="col-6">
             
             <div class="form-floating">
-                <select 
-                class="form-select" 
+                <input
+                type="text" 
+                class="form-control" 
                 name="select-diagnosticos" 
                 id="select-diagnosticos"
-                [formControl]="diagnosticoElement"
-                >
+                formControlName="diagnosticoElement"
+                />
 
-                    <option value="1">Aun no descrito</option>
-                    <option value="2">Muy loquito</option>
-                    <option value="3">Loquito</option>
-                    <option value="4">estudiando en el ison</option>
-                    
-                </select>
-    
                 <label for="select-dianosticos" class="form-label">
                     Diagnostico
                 </label>
@@ -89,7 +74,7 @@
             placeholder="+52XXXXXXXXXX" 
             maxlength="13" 
             name="telefonoPaciente"
-            [formControl]="telefonoElement"
+            formControlName="telefonoElement"
             >
         </div>
 
@@ -103,7 +88,7 @@
             placeholder="+52XXXXXXXXXX" 
             maxlength="13" 
             name="telefonoEmergencia"
-            [formControl]="telefonoEmergenciaElement"
+            formControlName="telefonoEmergenciaElement"
             >
         </div>
 
@@ -114,24 +99,24 @@
         <div class="col">
             <h5>Tipo de vivienda</h5>
             <div class="form-check">
-                <input 
+                <input
                 class="form-check-input" 
                 type="radio" 
-                name="radioVivienda" 
+                name="tipoViviendaElement" 
                 id="radioViviendaLocal"
-                [formControl]="tipoViviendaElement"
-                value="local"
+                formControlName="tipoViviendaElement"
+                value="LOCAL"
                 >
-                <label for="radioViviendaLocal" class="form-check-label">Local</label>
+                <label for="radioVivienda" class="form-check-label">Local</label>
             </div>
             <div class="form-check">
                 <input 
                 class="form-check-input" 
                 type="radio" 
-                name="radioVivienda" 
+                name="tipoViviendaElement" 
                 id="radioViviendaForaneo"
-                value="foraneo"
-                [formControl]="tipoViviendaElement"
+                value="FORANEO"
+                formControlName="tipoViviendaElement"
                 >
                 <label for="radioViviendaForaneo" class="form-check-label">Foraneo</label>
             </div>
@@ -144,9 +129,9 @@
                 <input 
                 class="form-check-input" 
                 type="radio" 
-                name="radioEstadoCivil" 
+                name="estadoCivilElement" 
                 id="radioEstadoCivilCasado"
-                [formControl]="estadoCivilElement"
+                formControlName="estadoCivilElement"
                 value="CASADO"
                 >
                 <label for="radioEstadoCivilCasado" class="form-check-label">Casado</label>
@@ -155,9 +140,9 @@
                 <input 
                 class="form-check-input"
                 type="radio"
-                name="radioEstadoCivil"
+                name="estadoCivilElement"
                 id="radioEstadoCivilSoltero"
-                [formControl]="estadoCivilElement"
+                formControlName="estadoCivilElement"
                 value="SOLTERO"
                 >
                 <label for="radioEstadoCivilSoltero" class="form-check-label">Soltero</label>
@@ -176,7 +161,7 @@
                 name="textAreaMotivoConsulta" 
                 id="textAreaMotivoConsulta" 
                 class="form-control"
-                [formControl]="motivoDeConsultaElement"
+                formControlName="motivoDeConsultaElement"
                 ></textarea>
             </div>
 
@@ -202,7 +187,7 @@
             type="text" 
             class="form-control" 
             name="antecedentes"
-            [formControl]="antecendentesElement"
+            formControlName="antecendentesElement"
             >
         </div>
 
@@ -214,7 +199,7 @@
             type="text" 
             class="form-control" 
             name="enfermedadPrevia"
-            [formControl]="enfermedadPreviaSesion"
+            formControlName="enfermedadPreviaSesion"
             >
         </div>
 
@@ -229,8 +214,8 @@
             <input 
             type="text" 
             class="form-control" 
-            name="deseo"
-            [formControl]="logroDeseadoElement"
+            name="logroDeseadoElement"
+            formControlName="logroDeseadoElement"
             >
         </div>
 
@@ -253,7 +238,7 @@
             type="text" 
             class="form-control" 
             name="preguntaMagica"
-            [formControl]="preguntaMagicaElement"
+            formControlName="preguntaMagicaElement"
             >
         </div>
     </div>
@@ -279,10 +264,12 @@
 
             <button 
             class="btn btn-primary" 
-            (click)="continuarConLaCita()">Continuar con la cita</button>
+            type="submit"
+            (click)="decidirAccion()"
+            >{{ accionActual }}</button>
         </div>
 
     </div>
 
-</div>
+</form>
 

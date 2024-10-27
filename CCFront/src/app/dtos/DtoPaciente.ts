@@ -4,8 +4,9 @@ export class DtoPaciente {
         public estadoCivil: string,
         public fecha: string,
         public telefono: string,
-        public vivienda: string,
+        public tipoVivienda: string,
         public telefonoEmergencia: string,
+        public escolaridad: string,
         public id?: number,
     ) {}
         
