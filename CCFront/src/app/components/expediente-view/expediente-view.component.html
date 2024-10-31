@@ -1,16 +1,16 @@
 <h3 class="mt-5 mb-4">CREACION EXPEDIENTE</h3>
 
-<form class="container" [formGroup]="formGroupExpediente" (ngOnSubmit)="crearExpediente()" >
+<form class="container" [formGroup]="formGroupExpediente" (ngOnSubmit)="crearExpediente()">
 
     <!-- nombre edad -->
     <div class="row mb-3">
 
         <div class="col-6">
-            <label for="nombrePaciente" class="form-label"  >
+            <label for="nombrePaciente" class="form-label">
                 Nombre del paciente
             </label>
-            <input type="text" class="form-control" required
-            formControlName="nombrePacienteElement"
+            <input type="text" class="form-control" formControlName="nombrePacienteElement">
+
             >
         </div>
 
@@ -235,42 +235,41 @@
             <label for="preguntaMagica" class="form-label">
                 Pregunta mágica
             </label>
-            <input 
-            type="text" 
-            class="form-control" 
-            name="preguntaMagica"
-            formControlName="preguntaMagicaElement"
-            >
+            <input type="text" class="form-control" name="preguntaMagica" formControlName="preguntaMagicaElement">
         </div>
     </div>
 
     <div class="row mb-3">
 
         <!-- tabla con los integrantes del hogar  -->
-        <app-tabla class="col"
-        tableName="integrantesHogar"
-        [columnNames]="atributosIntegrantesHogar"
-        [informacionTabla]="listaIntegrantesHogar"
-        tableNameSpaces="Integrantes del hogar"
-        ></app-tabla>
+        <app-tabla class="col" tableName="integrantesHogar" [columnNames]="atributosIntegrantesHogar"
+            [informacionTabla]="listaIntegrantesHogar" tableNameSpaces="Integrantes del hogar"></app-tabla>
 
     </div>
 
     <div class="row my-5">
 
         <div class="col d-flex justify-content-end">
-            <a 
-            class="btn btn-danger mx-3" 
-            routerLink="gestionar">Cancelar</a>
+            <a class="btn btn-danger mx-3" routerLink="gestionar">Cancelar</a>
 
-            <button 
-            class="btn btn-primary" 
-            type="submit"
-            (click)="decidirAccion()"
-            >{{ accionActual }}</button>
+            <button class="btn btn-primary" type="submit" (click)="decidirAccion()">{{ accionActual }}</button>
         </div>
 
     </div>
 
 </form>
 
+<!-- toast container para todos los mensajes de error -->
+<div class="bg-body-secondary">
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+
+        @for (error of errores; track error.idComponente) {
+        <app-mensaje-error 
+        [title]="error.title" 
+        [message]="error.message" 
+        idComponente="{{error.idComponente}}"
+        />
+        }
+
+    </div>
+</div>

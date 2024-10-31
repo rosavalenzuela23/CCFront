@@ -1,5 +1,5 @@
 import { Component, Inject, ɵDEFER_BLOCK_DEPENDENCY_INTERCEPTOR } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Form, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TablaComponent } from './tabla/tabla.component';
 import { DtoFamiliaresConfianza } from '../../dtos/DtoFamiliaresConfianza';
 import { DtoMedicamento } from '../../dtos/DtoMedicamento';
@@ -14,16 +14,25 @@ import { switchMap } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { PacienteService } from '../../services/PacienteService';
 import { executeSchedule } from 'rxjs/internal/util/executeSchedule';
+import { forbiddenString } from '../../util/Validators';
+import { MensajeErrorComponent } from '../mensaje-error/mensaje-error.component';
+import { ControlName, ControlNameValidator } from '../../util/control-name-validators';
 
 enum Acciones {
     CREAR = "Continuar con la cita",
     ACTUALIZAR = "Actualizar expediente"
 }
 
+type errorType = {
+    title: string,
+    message: string,
+    idComponente: string
+}
+
 @Component({
     selector: 'app-expediente-view',
     standalone: true,
-    imports: [ReactiveFormsModule, TablaComponent],
+    imports: [ReactiveFormsModule, TablaComponent, MensajeErrorComponent],
     templateUrl: './expediente-view.component.html',
     styleUrl: './expediente-view.component.css'
 })
@@ -34,8 +43,8 @@ export class ExpedienteViewComponent {
         fechaNacimientoElement: new FormControl('', Validators.required),
         escolaridadElement: new FormControl('', Validators.required),
         diagnosticoElement: new FormControl('', Validators.required),
-        telefonoElement: new FormControl('', Validators.required),
-        telefonoEmergenciaElement: new FormControl('', Validators.required),
+        telefonoElement: new FormControl('', [Validators.required, forbiddenString(/\+[0-9]{12}/gm)]),
+        telefonoEmergenciaElement: new FormControl('', [Validators.required, forbiddenString(/\+[0-9]{12}/gm)]),
         estadoCivilElement: new FormControl('', Validators.required),
         motivoDeConsultaElement: new FormControl('', Validators.required),
         antecendentesElement: new FormControl('', Validators.required),
@@ -60,6 +69,8 @@ export class ExpedienteViewComponent {
     private expediente?: DtoExpediente;
     private paciente?: DtoPaciente;
 
+    errores: errorType[] = [];
+
     constructor(
         private route: ActivatedRoute,
         private router: Router,
@@ -78,13 +89,26 @@ export class ExpedienteViewComponent {
         })
     }
 
+    /**
+     * Recibe una fecha en formato ISO para obtener un recorte de la fecha solo con el año
+     * mes y el dia
+     * @param date fecha en formato ISO
+     * @returns fecha en formato yyyy-MM-dd
+     */
+    private getOnlyDate(date: string): string {
+        const finalDate = 10;
+        const yyyyMMdd = date.slice(0, finalDate); 
+        return yyyyMMdd;
+    }
+
     private async configurarDatos() {
 
         this.paciente = this.pacienteService.getPacienteActual();
         this.expediente = this.expedienteService.obtenerExpedienteActual();
 
+        //Paciente
         this.nombrePaciente = this.paciente!.nombre;
-        this.fechaNacimiento = this.paciente!.fecha;
+        this.fechaNacimiento = this.getOnlyDate(this.paciente!.fecha);
         this.telefono = this.paciente!.telefono;
         this.telefonoEmergencia = this.paciente!.telefonoEmergencia;
         this.escolaridad = this.paciente!.escolaridad;
@@ -103,13 +127,29 @@ export class ExpedienteViewComponent {
 
     }
 
-    private mostrarMensajeDeError(mensaje: string[]): void {
+    private async obtenerCampoInvalido() {
 
-    }
+        this.errores = [];
 
-    private obtenerCampoInvalido(): string[] {
+        const controles: string[] = Object.getOwnPropertyNames(this.formGroupExpediente.controls);
 
-        return [];
+        for (const controlName of controles) {
+
+            const formControl = this.formGroupExpediente.get(controlName);
+            const validators: string[] = Object.getOwnPropertyNames(formControl?.errors || {})
+            
+            for (const validator of validators) {
+
+                this.errores.push({
+                    idComponente: `${controlName}+${validator}+${String(Symbol(Date.now()))}`,
+                    message: `${ControlName[controlName]} no cumplio: ${ControlNameValidator[validator]}`,
+                    title: `Error en el campo ${ControlName[controlName]}`
+                })
+
+            }
+
+        }
+
     }
 
     private obtenerPaciente(): DtoPaciente {
@@ -285,7 +325,7 @@ export class ExpedienteViewComponent {
     }
 
     set fechaNacimiento(fecha: string) {
-        this.formGroupExpediente.get('fechaNacimientoElement')?.setValue('2024-05-23T04:59:53-07:00');
+        this.formGroupExpediente.get('fechaNacimientoElement')?.setValue(fecha);
     }
 
     set escolaridad(escolaridad: string) {
