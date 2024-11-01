@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DtoProblema } from '../../dtos/DtoProblema';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DtoSesion } from '../../dtos/DtoSesion';
 import { DtoComentarioSesion } from '../../dtos/DtoComentarioSesion';
 import { SesionService } from '../../services/sesion.service';
@@ -10,6 +10,7 @@ import { PsicologoService } from '../../services/psicologo.service';
 import { ExpedienteService } from '../../services/ExpedienteService';
 import {ProblemaComponent} from './problema/problema.component';
 import { ComentarioComponent } from './comentario/comentario.component';
+import { ProblemaSesionComponent } from '../sesiones-view/detail-sesion/full-sesion/problem-sesion/problem-sesion.component';
 
 @Component({
   selector: 'app-sesion-view',
@@ -22,8 +23,15 @@ export class SesionViewComponent {
 
 
   //Refactorización de variables en base a la logica de 'marcos'
-  problemas: DtoProblema[] = [];  //lista para guardar la lista de problemas de la sesión
-  comentarios: DtoComentarioSesion[] = [] //lista para guardar la lista de comentarios de la sesión 
+  formularioPrincipal: FormGroup;
+
+  get problemas(): FormArray<FormGroup> {
+    return this.formularioPrincipal.get('problemas') as FormArray<FormGroup>;
+  }
+  
+  get comentarios(): FormArray<FormGroup>{
+    return this.formularioPrincipal.get('comentarios') as FormArray<FormGroup>;
+  }
 
   // Comienza valoración general de la sesión
   contactoVisualElement = new FormControl('');
@@ -50,7 +58,12 @@ export class SesionViewComponent {
     private pacienteService: PacienteService,
     private psicologoService: PsicologoService,
     private expedienteService: ExpedienteService
-  ){}
+  ){
+    this.formularioPrincipal = new FormGroup({
+      problemas: new FormArray<FormGroup>([]),
+      comentarios: new FormArray<FormGroup>([])
+    });
+  }
 
   private getNumberFormControl (formControl: FormControl): number {
     let toReturn = formControl.value || 0;
@@ -64,45 +77,80 @@ export class SesionViewComponent {
 
   //Agrega un componente problema a la vista de la sesión
   agregarProblema(): void{
-    let problema: DtoProblema = new DtoProblema(
-      null, 
-      "", 
-      "", 
-      0, 
-      0, 
-      0, 
-      0, 
-      0, 
-      0, 
-      0, 
-      0  
-    );
-
-    this.problemas.push(problema);
+    
+    let nuevoProblemaForm = new FormGroup({
+        descripcionElement: new FormControl('', Validators.required),
+        frecuenciaElement: new FormControl('', Validators.required),
+        intensidadElement: new FormControl('', Validators.required),
+        afectacionFamiliarElement: new FormControl('', Validators.required),
+        afectacionSaludElement: new FormControl('', Validators.required),
+        afectacionParejaElement: new FormControl('', Validators.required),
+        afectacionAmigosElement: new FormControl('', Validators.required),
+        afectacionLaboralElement: new FormControl('', Validators.required),
+        afectacionEspiritualElement: new FormControl('', Validators.required),
+        afectacionEconomicoElement: new FormControl('', Validators.required)  
+    });
+    console.log(nuevoProblemaForm);
+    
+    this.problemas.push(nuevoProblemaForm);
+    console.log(this.problemas);
   }
 
   //Regresa los problemas de los componentes <<Problema>>
   private obtenerProblemas(): DtoProblema[] {
-    return this.problemas;
+    return this.problemas.controls.map(control => {
+      const problemaFormGroup = control as FormGroup;
+      console.log("Problema form group");
+      console.log(problemaFormGroup);
+     
+      return new DtoProblema(
+        null,  // o el valor correspondiente
+        problemaFormGroup.get('descripcionElement')?.value || '',
+        problemaFormGroup.get('frecuenciaElement')?.value || '',
+        parseInt(problemaFormGroup.get('intensidadElement')?.value) || 0,
+        parseInt(problemaFormGroup.get('afectacionFamiliarElement')?.value) || 0,
+        parseInt(problemaFormGroup.get('afectacionSaludElement')?.value) || 0,
+        parseInt(problemaFormGroup.get('afectacionParejaElement')?.value) || 0,
+        parseInt(problemaFormGroup.get('afectacionAmigosElement')?.value) || 0,
+        parseInt(problemaFormGroup.get('afectacionLaboralElement')?.value) || 0,
+        parseInt(problemaFormGroup.get('afectacionEspiritualElement')?.value) || 0,
+        parseInt(problemaFormGroup.get('afectacionEconomicoElement')?.value) || 0
+      );
+    });
   }
 
 
   //Agrega un componente comentario a la vista de la sesión
   agregarComentario(): void {
-    let comentario: DtoComentarioSesion = new DtoComentarioSesion(
-        null,           
-        "",                        
-        0,              
-        0               
-    );
 
-    this.comentarios.push(comentario);
+    let nuevoComentarioForm = new FormGroup({
+      aspectoAMedirElement: new FormControl('', Validators.required),
+      valoracionInicioElement: new FormControl('', Validators.required),
+      valoracionFinElement: new FormControl('', Validators.required) 
+    });
+
+    console.log(nuevoComentarioForm);
+    this.comentarios.push(nuevoComentarioForm);
+    console.log(this.comentarios);
+
   }
 
 
   //Regresa los comentarios de los componentes hijos <<Sesion>>
   private obtenerComentariosSesion(): DtoComentarioSesion[] {
-    return this.comentarios;
+
+    return this.comentarios.controls.map(control => {
+      const comentarioFormGroup = control as FormGroup;
+      console.log("Comentario form group");
+      console.log(comentarioFormGroup);
+     
+      return new DtoComentarioSesion(
+        null,  // 
+        comentarioFormGroup.get('aspectoAMedirElement')?.value,
+        parseInt(comentarioFormGroup.get('valoracionInicioElement')?.value),
+        parseInt(comentarioFormGroup.get('valoracionFinElement')?.value)
+      );
+    });
   }
 
   //Se recopila toda la información necesaria del componente para inicializar los datos 
@@ -110,6 +158,9 @@ export class SesionViewComponent {
   private obtenerInformacionSesion(): DtoSesion {
 
     const listaProblemas = this.obtenerProblemas();
+    console.log(listaProblemas);
+
+    
     const listaComentariosSesion = this.obtenerComentariosSesion();
 
     const expedienteActual = this.expedienteService.obtenerExpedienteActual();
@@ -141,12 +192,18 @@ export class SesionViewComponent {
   //se acciona al presionar el botón de <<terminar Sesión>> para acceder al servicio
   //que guarda la sesión en la base de datos
   terminarSesion() {
-    const sesion = this.obtenerInformacionSesion();
+    if (!this.formularioPrincipal.valid) {
+      console.log("Formulario inválido");
+      return;
+    }else{
+      const sesion = this.obtenerInformacionSesion();
 
-    console.log(sesion);
-    console.log(this.problemas);
-    console.log(this.comentarios);
-    this.sesionService.guardarSesion(sesion);
+      console.log(sesion);
+      console.log(this.problemas);
+      console.log(this.comentarios);
+      this.sesionService.guardarSesion(sesion);
+    }
+    
   }
 
 }

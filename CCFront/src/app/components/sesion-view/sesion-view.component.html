@@ -11,7 +11,7 @@
    
     <h2 class="mt-5 mb-4 pl-5">NUEVA SESION</h2>
 
-    <form action="">
+    <form action="" [formGroup]="formularioPrincipal">
 
         <!--Sección para agregar problemas-->
         <div class="col-md-4 d-flex align-items-end mt-5">
@@ -19,13 +19,13 @@
             <button type="button" class="btn btn-primary" (click)="agregarProblema()">+ Agregar Problema</button>
         </div>
 
-        <!--Sección de problemas-->
-        <div class="m-5"  *ngFor="let problema of problemas">
-
+        <!-- Sección de problemas -->
+        <div class="m-5" *ngFor="let problema of problemas.controls">
             <problema-component [problema]="problema"></problema-component>
-            
         </div>
-
+            
+        
+  
         <!-- Sección de notas -->
         <section class="mb-4 mt-5">
             <button type="button" class="btn btn-secondary">Ver notas médicas</button>
@@ -254,7 +254,7 @@
         </div>
 
         <!--Sección de comentarios-->
-        <div class="m-5"  *ngFor="let comentario of comentarios">
+        <div class="m-5"  *ngFor="let comentario of comentarios.controls">
 
             <comentario-component [comentario]="comentario"></comentario-component>
             
