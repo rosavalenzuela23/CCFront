@@ -13,7 +13,7 @@ export class DtoExpediente {
     public medicamentos: DtoMedicamentoDelExpediente[],
     public integranteHogar: DtoIntegranteHogar[],
     public familiaresConfianza: DtoFamiliaresConfianza[],
-    public diagnostico: string,
+    public diagnostico: string | null | undefined,
     public deseo: string,
     public id?: number,
     public instrumentos?: DtoInstrumento[],

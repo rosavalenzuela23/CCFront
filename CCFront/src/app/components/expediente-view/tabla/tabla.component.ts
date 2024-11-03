@@ -55,7 +55,8 @@ export class TablaComponent {
   }
 
   guardarInformacion() {
-    
+    //valide
+
       const valoresCampos: any = this.camposTexto.value;
       const objToSave: any = {};
       objToSave.generatedId = this.informacionTabla.length + 1;
