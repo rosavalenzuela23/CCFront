@@ -11,24 +11,37 @@ import { ExpedienteService } from '../../services/ExpedienteService';
 import {ProblemaComponent} from './problema/problema.component';
 import { ComentarioComponent } from './comentario/comentario.component';
 import { ProblemaSesionComponent } from '../sesiones-view/detail-sesion/full-sesion/problem-sesion/problem-sesion.component';
+import { ControlName, ControlNameValidator } from '../../util/control-name-validators';
+import { MensajeErrorComponent } from '../mensaje-error/mensaje-error.component';
+import { noSpaces } from '../../util/Validators';
+
+
+type errorType = {
+  title: string,
+  message: string,
+  idComponente: string
+}
 
 @Component({
   selector: 'app-sesion-view',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, ProblemaComponent, CommonModule, ComentarioComponent],
+  imports: [FormsModule, ReactiveFormsModule, ProblemaComponent, CommonModule, ComentarioComponent, MensajeErrorComponent],
   templateUrl: './sesion-view.component.html',
   styleUrl: './sesion-view.component.css',
 })
 export class SesionViewComponent {
 
 
-  //Refactorización de variables en base a la logica de 'marcos'
+  //El formulario principal que contiene todos los componentes hijos y campos a validar dentro de esta vista
   formularioPrincipal: FormGroup;
 
+   //Lista de errores a mostrar en la vista
+   errores: errorType[] = [];
+
+  //Lista de problemas y comentarios que se van a agregar a la vista en forma de FormGroups
   get problemas(): FormArray<FormGroup> {
     return this.formularioPrincipal.get('problemas') as FormArray<FormGroup>;
   }
-  
   get comentarios(): FormArray<FormGroup>{
     return this.formularioPrincipal.get('comentarios') as FormArray<FormGroup>;
   }
@@ -51,7 +64,8 @@ export class SesionViewComponent {
   posturaElement = new FormControl('');
 
   //comentario psicologa
-  comentarioPsicologaElement = new FormControl('');
+  comentarioPsicologaElement = new FormControl('', [Validators.required, noSpaces()]);
+
 
   constructor(
     private sesionService: SesionService,
@@ -61,9 +75,11 @@ export class SesionViewComponent {
   ){
     this.formularioPrincipal = new FormGroup({
       problemas: new FormArray<FormGroup>([]),
-      comentarios: new FormArray<FormGroup>([])
+      comentarios: new FormArray<FormGroup>([]),
+      comentarioPsicologo: this.comentarioPsicologaElement
     });
   }
+
 
   private getNumberFormControl (formControl: FormControl): number {
     let toReturn = formControl.value || 0;
@@ -75,12 +91,13 @@ export class SesionViewComponent {
     return toReturn;
   }
 
+
   //Agrega un componente problema a la vista de la sesión
   agregarProblema(): void{
     
     let nuevoProblemaForm = new FormGroup({
-        descripcionElement: new FormControl('', Validators.required),
-        frecuenciaElement: new FormControl('', Validators.required),
+        descripcionElement: new FormControl('', [Validators.required, noSpaces()]),
+        frecuenciaElement: new FormControl('', [Validators.required, noSpaces()]),
         intensidadElement: new FormControl('', Validators.required),
         afectacionFamiliarElement: new FormControl('', Validators.required),
         afectacionSaludElement: new FormControl('', Validators.required),
@@ -94,17 +111,20 @@ export class SesionViewComponent {
     
     this.problemas.push(nuevoProblemaForm);
     console.log(this.problemas);
+
   }
+
 
   //Regresa los problemas de los componentes <<Problema>>
   private obtenerProblemas(): DtoProblema[] {
+
     return this.problemas.controls.map(control => {
       const problemaFormGroup = control as FormGroup;
       console.log("Problema form group");
       console.log(problemaFormGroup);
      
       return new DtoProblema(
-        null,  // o el valor correspondiente
+        null, 
         problemaFormGroup.get('descripcionElement')?.value || '',
         problemaFormGroup.get('frecuenciaElement')?.value || '',
         parseInt(problemaFormGroup.get('intensidadElement')?.value) || 0,
@@ -117,6 +137,7 @@ export class SesionViewComponent {
         parseInt(problemaFormGroup.get('afectacionEconomicoElement')?.value) || 0
       );
     });
+
   }
 
 
@@ -124,7 +145,7 @@ export class SesionViewComponent {
   agregarComentario(): void {
 
     let nuevoComentarioForm = new FormGroup({
-      aspectoAMedirElement: new FormControl('', Validators.required),
+      aspectoAMedirElement: new FormControl('', [Validators.required, noSpaces()]),
       valoracionInicioElement: new FormControl('', Validators.required),
       valoracionFinElement: new FormControl('', Validators.required) 
     });
@@ -151,8 +172,74 @@ export class SesionViewComponent {
         parseInt(comentarioFormGroup.get('valoracionFinElement')?.value)
       );
     });
+
   }
 
+  //Agrega un error a la lista de errores para mostrar en la vista
+  private agregarError(controlName: string, validator: string){
+
+    this.errores.push({
+      idComponente:`${controlName}+${validator}+${Date.now()}_${Math.random()}`,
+      message: `${ControlName[controlName]} no cumple: ${ControlNameValidator[validator]}`,
+      title: `Error en el campo ${ControlName[controlName]}`
+    })
+    console.log(this.errores);
+  }
+
+
+  // Valida los controles dentro de un FormGroup y agrega errores según corresponda
+  private obtenerValidadores(controladoresFormGroup: string[], formGroup: FormGroup) {
+
+    for (const controlName of controladoresFormGroup) {
+
+      const formControl = formGroup.get(controlName);
+      const validators: string[] = Object.getOwnPropertyNames(formControl?.errors || {})
+      
+      for (const validator of validators) {
+
+        this.agregarError(controlName, validator);
+        
+      }
+
+    }
+  }
+
+
+  // Valida todos los controles en el formulario principal, incluyendo FormArrays, FormGroups y FormControls
+  private async validarCamposDeSesion() {
+    
+    this.errores = [];
+    const controles: string[] = Object.getOwnPropertyNames(this.formularioPrincipal.controls);
+    for (const controlName of controles) {
+
+      const formControl = this.formularioPrincipal.get(controlName);
+
+      if(formControl instanceof FormArray){
+
+        for (const control of formControl.controls) {
+          
+          const formGroup = control as FormGroup;
+          const controlesFormGroup: string[] = Object.getOwnPropertyNames(formGroup.controls);
+          this.obtenerValidadores(controlesFormGroup, formGroup);
+        
+        }
+      
+      }else if(formControl instanceof FormGroup){
+        
+        const controlesFormGroup: string[] = Object.getOwnPropertyNames(formControl.controls);
+        this.obtenerValidadores(controlesFormGroup, formControl);
+    
+      }else if(formControl instanceof FormControl){  
+        
+        this.obtenerValidadores([controlName], this.formularioPrincipal);
+        
+      }
+
+    }
+
+  }
+
+  
   //Se recopila toda la información necesaria del componente para inicializar los datos 
   //de la Sesion
   private obtenerInformacionSesion(): DtoSesion {
@@ -187,23 +274,26 @@ export class SesionViewComponent {
     }
 
     return sesion;
+
   }
+
 
   //se acciona al presionar el botón de <<terminar Sesión>> para acceder al servicio
   //que guarda la sesión en la base de datos
   terminarSesion() {
-    if (!this.formularioPrincipal.valid) {
-      console.log("Formulario inválido");
+    
+    if (this.formularioPrincipal.invalid) {
+      this.validarCamposDeSesion();
       return;
-    }else{
-      const sesion = this.obtenerInformacionSesion();
-
-      console.log(sesion);
-      console.log(this.problemas);
-      console.log(this.comentarios);
-      this.sesionService.guardarSesion(sesion);
     }
+
+    const sesion = this.obtenerInformacionSesion();
+    console.log(sesion);
+    console.log(this.problemas);
+    console.log(this.comentarios);
+    this.sesionService.guardarSesion(sesion);
     
   }
+
 
 }

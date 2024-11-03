@@ -16,7 +16,7 @@
         <!--Sección para agregar problemas-->
         <div class="col-md-4 d-flex align-items-end mt-5">
             <h5>Problemas De La Sesión:</h5>
-            <button type="button" class="btn btn-primary" (click)="agregarProblema()">+ Agregar Problema</button>
+            <button type="button" class="btn btn-success" (click)="agregarProblema()">+ Agregar Problema</button>
         </div>
 
         <!-- Sección de problemas -->
@@ -250,7 +250,7 @@
         <!--Sección para agregar comentarios-->
         <div class="col-md-4 d-flex align-items-end mt-5">
             <h5>Comentarios De La Sesión:</h5>
-            <button type="button" class="btn btn-primary" (click)="agregarComentario()">+ Agregar Comentario</button>
+            <button type="button" class="btn btn-success" (click)="agregarComentario()">+ Agregar Comentario</button>
         </div>
 
         <!--Sección de comentarios-->
@@ -273,6 +273,21 @@
             <button type="button" class="botonTerminar btn btn-primary" (click)="terminarSesion()">Terminar sesion</button>
         </div>
     </form>
+ 
+    <!-- toast container para todos los mensajes de error -->
+    <div class="bg-body-secondary">
+        <div class="toast-container position-fixed top-0 end-0 p-3">
+
+            @for (error of errores; track error.idComponente) {
+            <app-mensaje-error 
+            [title]="error.title" 
+            [message]="error.message" 
+            idComponente="{{error.idComponente}}"
+            />
+            }
+        </div>
+    </div>
+
 </body>
 
 </html>
