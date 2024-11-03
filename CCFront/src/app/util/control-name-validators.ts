@@ -2,6 +2,7 @@ export class ControlNameValidator {
     static [required: string]: string;
     static [forbiddenString: string]: string
     static [noSpaces: string]: string;
+    static [noValidDate: string]: string;
 
     static get forbiddenString(): string {
         return 'el campo no cumple con el formato solicitado';
@@ -13,6 +14,10 @@ export class ControlNameValidator {
 
     static get noSpaces(): string {
         return 'el campo no puede contener solo espacios';
+    }
+
+    static get noValidDate(): string {
+        return 'la fecha no puede ser mayor o igual a la fecha actual';
     }
 
 }

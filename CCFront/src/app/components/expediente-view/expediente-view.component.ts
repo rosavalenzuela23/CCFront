@@ -14,7 +14,7 @@ import { switchMap } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { PacienteService } from '../../services/PacienteService';
 import { executeSchedule } from 'rxjs/internal/util/executeSchedule';
-import { forbiddenString } from '../../util/Validators';
+import { forbiddenString, noValidDate } from '../../util/Validators';
 import { MensajeErrorComponent } from '../mensaje-error/mensaje-error.component';
 import { ControlName, ControlNameValidator } from '../../util/control-name-validators';
 
@@ -40,7 +40,7 @@ export class ExpedienteViewComponent {
 
     formGroupExpediente = new FormGroup({
         nombrePacienteElement: new FormControl('', Validators.required),
-        fechaNacimientoElement: new FormControl('', Validators.required),
+        fechaNacimientoElement: new FormControl('', [Validators.required, noValidDate()]),
         escolaridadElement: new FormControl('', Validators.required),
         diagnosticoElement: new FormControl('', Validators.required),
         telefonoElement: new FormControl('', [Validators.required, forbiddenString(/\+[0-9]{12}/gm)]),

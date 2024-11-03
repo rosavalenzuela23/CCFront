@@ -16,3 +16,12 @@ export function noSpaces(): ValidatorFn {
     };
 }
 
+export function noValidDate(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+        const dateSelected = new Date(control.value);
+        const currentDate = new Date();
+        currentDate.setDate(currentDate.getDate() - 1); 
+        const isValid = dateSelected <= currentDate;
+        return isValid ? null : { noValidDate: { value: control.value } };
+    };
+}
