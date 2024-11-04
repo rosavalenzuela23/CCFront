@@ -9,7 +9,7 @@ import { DtoExpediente } from '../../dtos/DtoExpediente';
 import { DtoPaciente } from '../../dtos/DtoPaciente';
 import { DtoMedicamentoDelExpediente } from '../../dtos/DtoMedicamentoDelExpediente';
 import { ExpedienteService } from '../../services/ExpedienteService';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router, RouterLink } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { PacienteService } from '../../services/PacienteService';
@@ -33,7 +33,7 @@ type errorType = {
 @Component({
     selector: 'app-expediente-view',
     standalone: true,
-    imports: [ReactiveFormsModule, TablaComponent, MensajeErrorComponent],
+    imports: [ReactiveFormsModule, TablaComponent, MensajeErrorComponent, RouterLink],
     templateUrl: './expediente-view.component.html',
     styleUrl: './expediente-view.component.css'
 })
@@ -109,7 +109,7 @@ export class ExpedienteViewComponent {
         // expediente
         this.listaIntegrantesHogar = this.expediente!.integranteHogar;
         this.listaFamiliaresConfianza = this.expediente!.familiaresConfianza;
-        this.diagnostico = this.expediente!.diagnostico || '';
+        this.diagnostico = this.expediente!.diagnostico || "";
         this.motivoConsulta = this.expediente!.motivoConsulta;
         this.preguntaMagica = this.expediente!.preguntaMagica;
         this.logroDeseado = this.expediente!.deseo;
@@ -259,13 +259,13 @@ export class ExpedienteViewComponent {
         return this.formGroupExpediente.get('escolaridadElement')?.value || "";
     }
 
-    get diagnostico(): string | null | undefined {
+    get diagnostico(): string | undefined {
 
         if (this.formGroupExpediente.get('diagnosticoElement')?.value?.trim().length == 0) {
-            return null;
+            return undefined;
         }
 
-        return this.formGroupExpediente.get('diagnosticoElement')?.value;
+        return this.formGroupExpediente.get('diagnosticoElement')?.value || "";
     }
 
     get telefono() {
@@ -288,8 +288,8 @@ export class ExpedienteViewComponent {
         return this.formGroupExpediente.get('antecendentesElement')?.value || "";
     }
 
-    get enfermedadPrevia() {
-        return this.formGroupExpediente.get('enfermedadPreviaSesion')?.value || "";
+    get enfermedadPrevia(): string | undefined {
+        return this.formGroupExpediente.get('enfermedadPreviaSesion')?.value || undefined;
     }
 
     get logroDeseado() {
@@ -340,8 +340,8 @@ export class ExpedienteViewComponent {
         this.formGroupExpediente.get('antecendentesElement')?.setValue(antecendes);
     }
 
-    set enfermedadPrevia(enfermedadPrevia: string) {
-        this.formGroupExpediente.get('enfermedadPreviaSesion')?.setValue(enfermedadPrevia);
+    set enfermedadPrevia(enfermedadPrevia: string | undefined) {
+        this.formGroupExpediente.get('enfermedadPreviaSesion')?.setValue(enfermedadPrevia || "");
     }
 
     set logroDeseado(logroDeseado: string) {
