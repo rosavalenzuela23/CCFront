@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl,FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DtoComentarioSesion } from '../../../dtos/DtoComentarioSesion';
 
 
@@ -12,6 +12,6 @@ import { DtoComentarioSesion } from '../../../dtos/DtoComentarioSesion';
 })
 export class ComentarioComponent {
 
-    @Input() comentario!: DtoComentarioSesion;
+    @Input() comentario!: FormGroup;
    
 }

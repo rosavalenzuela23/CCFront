@@ -1,16 +1,18 @@
-<section class="mb-5 p-4 border rounded bg-light shadow-sm">
+<section class="mb-5 p-4 border rounded bg-light shadow-sm" [formGroup]="problema">
     <div class="row mb-3">
         <div class="col-md-8">
             <label for="problema" class="form-label fw-semibold">Problema</label>
-            <textarea type="text" class="form-control form-control-lg" id="problemaID" placeholder="Describa el problema" [(ngModel)]="problema.descripcion">
-            </textarea>
+            <textarea type="text" class="form-control form-control-lg" id="problemaID" placeholder="Describa el problema"
+            formControlName="descripcionElement">
+            </textarea>       
         </div>
     </div>
 
     <div class="row mb-4">
         <div class="col-md-6">
             <label for="intensidad" class="form-label fw-semibold">Intensidad</label>
-            <select class="form-select form-select-lg" id="intensidad" [(ngModel)]="problema.intensidad">
+            <select class="form-select form-select-lg" id="intensidad" 
+            formControlName="intensidadElement">
                
                 <option value="" disabled selected>Seleccione intensidad</option>
                 <option value="1" [ngValue]="1">1</option>
@@ -29,7 +31,8 @@
         <div class="col-md-6">
 
             <label for="duracion" class="form-label fw-semibold">Frecuencia</label>
-            <input type="text" class="form-control form-control-lg" id="duracionID" placeholder="Frecuencia" [(ngModel)]="problema.frecuencia">
+            <input type="text" class="form-control form-control-lg" id="duracionID" placeholder="Frecuencia"
+            formControlName="frecuenciaElement">
         
         </div>
 
@@ -38,7 +41,8 @@
         <div class="row g-3">
             <div class="col-md-4">
                 <label for="Salud" class="form-label fw-semibold">Salud</label>
-                <select class="form-select form-select-lg" id="SaludID" [(ngModel)]="problema.afectacionSalud">
+                <select class="form-select form-select-lg" id="SaludID"
+                 formControlName="afectacionSaludElement">
                     <option value="" disabled selected>Seleccione</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -54,7 +58,8 @@
             </div>
             <div class="col-md-4">
                 <label for="Pareja" class="form-label fw-semibold">Pareja</label>
-                <select class="form-select form-select-lg" id="ParejaID" [(ngModel)]="problema.afectacionPareja">
+                <select class="form-select form-select-lg" id="ParejaID"
+                formControlName="afectacionParejaElement">
                     <option value="" disabled selected>Seleccione</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -70,7 +75,8 @@
             </div>
             <div class="col-md-4">
                 <label for="Familia" class="form-label fw-semibold">Familia</label>
-                <select class="form-select form-select-lg" id="FamiliaID" [(ngModel)]="problema.afectacionFamiliar">
+                <select class="form-select form-select-lg" id="FamiliaID" 
+                formControlName="afectacionFamiliarElement">
                     <option value="" disabled selected>Seleccione</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -86,7 +92,8 @@
             </div>
             <div class="col-md-4">
                 <label for="Amigos" class="form-label fw-semibold">Amigos</label>
-                <select class="form-select form-select-lg" id="AmigosID" [(ngModel)]="problema.afectacionAmigos">
+                <select class="form-select form-select-lg" id="AmigosID" 
+                formControlName="afectacionAmigosElement">
                     <option value="" disabled selected>Seleccione</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -102,7 +109,8 @@
             </div>
             <div class="col-md-4">
                 <label for="Laboral" class="form-label fw-semibold">Laboral</label>
-                <select class="form-select form-select-lg" id="LaboralID" [(ngModel)]="problema.afectacionLaboral">
+                <select class="form-select form-select-lg" id="LaboralID"
+                formControlName="afectacionLaboralElement">
                     <option value="" disabled selected>Seleccione</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -118,7 +126,8 @@
             </div>
             <div class="col-md-4">
                 <label for="Espiritual" class="form-label fw-semibold">Espiritual</label>
-                <select class="form-select form-select-lg" id="EspiritualID" [(ngModel)]="problema.afectacionEspiritual">
+                <select class="form-select form-select-lg" id="EspiritualID" 
+                formControlName="afectacionEspiritualElement">
                     <option value="" disabled selected>Seleccione</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -134,7 +143,8 @@
             </div>
             <div class="col-md-4">
                 <label for="Economico" class="form-label fw-semibold">Económico</label>
-                <select class="form-select form-select-lg" id="EconomicoID" [(ngModel)]="problema.afectacionEconomico">
+                <select class="form-select form-select-lg" id="EconomicoID" 
+                formControlName="afectacionEconomicoElement">
                     <option value="" disabled selected>Seleccione</option>
                     <option value="1">1</option>
                     <option value="2">2</option>

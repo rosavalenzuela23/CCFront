@@ -9,14 +9,15 @@ import { DtoExpediente } from '../../dtos/DtoExpediente';
 import { DtoPaciente } from '../../dtos/DtoPaciente';
 import { DtoMedicamentoDelExpediente } from '../../dtos/DtoMedicamentoDelExpediente';
 import { ExpedienteService } from '../../services/ExpedienteService';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router, RouterLink } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { PacienteService } from '../../services/PacienteService';
 import { executeSchedule } from 'rxjs/internal/util/executeSchedule';
-import { forbiddenString } from '../../util/Validators';
+import { forbiddenString, noValidDate } from '../../util/Validators';
 import { MensajeErrorComponent } from '../mensaje-error/mensaje-error.component';
 import { ControlName, ControlNameValidator } from '../../util/control-name-validators';
+import { getOnlyDate } from '../../util/util-functions';
 
 enum Acciones {
     CREAR = "Continuar con la cita",
@@ -32,7 +33,7 @@ type errorType = {
 @Component({
     selector: 'app-expediente-view',
     standalone: true,
-    imports: [ReactiveFormsModule, TablaComponent, MensajeErrorComponent],
+    imports: [ReactiveFormsModule, TablaComponent, MensajeErrorComponent, RouterLink],
     templateUrl: './expediente-view.component.html',
     styleUrl: './expediente-view.component.css'
 })
@@ -40,15 +41,15 @@ export class ExpedienteViewComponent {
 
     formGroupExpediente = new FormGroup({
         nombrePacienteElement: new FormControl('', Validators.required),
-        fechaNacimientoElement: new FormControl('', Validators.required),
+        fechaNacimientoElement: new FormControl('', [Validators.required, noValidDate()]),
         escolaridadElement: new FormControl('', Validators.required),
-        diagnosticoElement: new FormControl('', Validators.required),
+        diagnosticoElement: new FormControl(''),
         telefonoElement: new FormControl('', [Validators.required, forbiddenString(/\+[0-9]{12}/gm)]),
         telefonoEmergenciaElement: new FormControl('', [Validators.required, forbiddenString(/\+[0-9]{12}/gm)]),
         estadoCivilElement: new FormControl('', Validators.required),
         motivoDeConsultaElement: new FormControl('', Validators.required),
         antecendentesElement: new FormControl('', Validators.required),
-        enfermedadPreviaSesion: new FormControl('', Validators.required),
+        enfermedadPreviaSesion: new FormControl(''),
         logroDeseadoElement: new FormControl('', Validators.required),
         preguntaMagicaElement: new FormControl('', Validators.required),
         tipoViviendaElement: new FormControl('', Validators.required)
@@ -89,17 +90,7 @@ export class ExpedienteViewComponent {
         })
     }
 
-    /**
-     * Recibe una fecha en formato ISO para obtener un recorte de la fecha solo con el año
-     * mes y el dia
-     * @param date fecha en formato ISO
-     * @returns fecha en formato yyyy-MM-dd
-     */
-    private getOnlyDate(date: string): string {
-        const finalDate = 10;
-        const yyyyMMdd = date.slice(0, finalDate); 
-        return yyyyMMdd;
-    }
+
 
     private async configurarDatos() {
 
@@ -108,7 +99,7 @@ export class ExpedienteViewComponent {
 
         //Paciente
         this.nombrePaciente = this.paciente!.nombre;
-        this.fechaNacimiento = this.getOnlyDate(this.paciente!.fecha);
+        this.fechaNacimiento = getOnlyDate(this.paciente!.fecha);
         this.telefono = this.paciente!.telefono;
         this.telefonoEmergencia = this.paciente!.telefonoEmergencia;
         this.escolaridad = this.paciente!.escolaridad;
@@ -118,7 +109,7 @@ export class ExpedienteViewComponent {
         // expediente
         this.listaIntegrantesHogar = this.expediente!.integranteHogar;
         this.listaFamiliaresConfianza = this.expediente!.familiaresConfianza;
-        this.diagnostico = this.expediente!.diagnostico;
+        this.diagnostico = this.expediente!.diagnostico || "";
         this.motivoConsulta = this.expediente!.motivoConsulta;
         this.preguntaMagica = this.expediente!.preguntaMagica;
         this.logroDeseado = this.expediente!.deseo;
@@ -226,19 +217,7 @@ export class ExpedienteViewComponent {
             fecha: new Date(this.fechaNacimiento).toISOString(),
         }
 
-        const dtoExpediente: DtoExpediente = {
-            antecedentes: this.antecendentes,
-            enfermedadPrevia: this.enfermedadPrevia,
-            familiaresConfianza: this.listaFamiliaresConfianza,
-            integranteHogar: this.listaIntegrantesHogar,
-            medicamentos: this.listaMedicamentos,
-            preguntaMagica: this.preguntaMagica,
-            motivoConsulta: this.motivoConsulta,
-            diagnostico: this.diagnostico,
-            deseo: this.logroDeseado
-        }
-
-
+        const dtoExpediente: DtoExpediente = this.obtenerExpediente();
 
         const res = await this.expedienteService.guardarExpediente(dtoExpediente, paciente);
 
@@ -280,7 +259,12 @@ export class ExpedienteViewComponent {
         return this.formGroupExpediente.get('escolaridadElement')?.value || "";
     }
 
-    get diagnostico() {
+    get diagnostico(): string | undefined {
+
+        if (this.formGroupExpediente.get('diagnosticoElement')?.value?.trim().length == 0) {
+            return undefined;
+        }
+
         return this.formGroupExpediente.get('diagnosticoElement')?.value || "";
     }
 
@@ -304,8 +288,8 @@ export class ExpedienteViewComponent {
         return this.formGroupExpediente.get('antecendentesElement')?.value || "";
     }
 
-    get enfermedadPrevia() {
-        return this.formGroupExpediente.get('enfermedadPreviaSesion')?.value || "";
+    get enfermedadPrevia(): string | undefined {
+        return this.formGroupExpediente.get('enfermedadPreviaSesion')?.value || undefined;
     }
 
     get logroDeseado() {
@@ -356,8 +340,8 @@ export class ExpedienteViewComponent {
         this.formGroupExpediente.get('antecendentesElement')?.setValue(antecendes);
     }
 
-    set enfermedadPrevia(enfermedadPrevia: string) {
-        this.formGroupExpediente.get('enfermedadPreviaSesion')?.setValue(enfermedadPrevia);
+    set enfermedadPrevia(enfermedadPrevia: string | undefined) {
+        this.formGroupExpediente.get('enfermedadPreviaSesion')?.setValue(enfermedadPrevia || "");
     }
 
     set logroDeseado(logroDeseado: string) {

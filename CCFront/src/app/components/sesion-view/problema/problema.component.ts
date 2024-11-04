@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DtoProblema } from '../../../dtos/DtoProblema';
 
 
@@ -12,6 +12,13 @@ import { DtoProblema } from '../../../dtos/DtoProblema';
 })
 export class ProblemaComponent {
 
-    @Input() problema!: DtoProblema;
-   
+
+    @Input() problema!: FormGroup;
+
+
+
+    ngOnInit() {
+    
+      
+    }
 }

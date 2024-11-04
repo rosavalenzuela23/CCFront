@@ -11,21 +11,21 @@
    
     <h2 class="mt-5 mb-4 pl-5">NUEVA SESION</h2>
 
-    <form action="">
+    <form action="" [formGroup]="formularioPrincipal">
 
         <!--Sección para agregar problemas-->
         <div class="col-md-4 d-flex align-items-end mt-5">
             <h5>Problemas De La Sesión:</h5>
-            <button type="button" class="btn btn-primary" (click)="agregarProblema()">+ Agregar Problema</button>
+            <button type="button" class="btn btn-success" (click)="agregarProblema()">+ Agregar Problema</button>
         </div>
 
-        <!--Sección de problemas-->
-        <div class="m-5"  *ngFor="let problema of problemas">
-
+        <!-- Sección de problemas -->
+        <div class="m-5" *ngFor="let problema of problemas.controls">
             <problema-component [problema]="problema"></problema-component>
-            
         </div>
-
+            
+        
+  
         <!-- Sección de notas -->
         <section class="mb-4 mt-5">
             <button type="button" class="btn btn-secondary">Ver notas médicas</button>
@@ -250,11 +250,11 @@
         <!--Sección para agregar comentarios-->
         <div class="col-md-4 d-flex align-items-end mt-5">
             <h5>Comentarios De La Sesión:</h5>
-            <button type="button" class="btn btn-primary" (click)="agregarComentario()">+ Agregar Comentario</button>
+            <button type="button" class="btn btn-success" (click)="agregarComentario()">+ Agregar Comentario</button>
         </div>
 
         <!--Sección de comentarios-->
-        <div class="m-5"  *ngFor="let comentario of comentarios">
+        <div class="m-5"  *ngFor="let comentario of comentarios.controls">
 
             <comentario-component [comentario]="comentario"></comentario-component>
             
@@ -273,6 +273,21 @@
             <button type="button" class="botonTerminar btn btn-primary" (click)="terminarSesion()">Terminar sesion</button>
         </div>
     </form>
+ 
+    <!-- toast container para todos los mensajes de error -->
+    <div class="bg-body-secondary">
+        <div class="toast-container position-fixed top-0 end-0 p-3">
+
+            @for (error of errores; track error.idComponente) {
+            <app-mensaje-error 
+            [title]="error.title" 
+            [message]="error.message" 
+            idComponente="{{error.idComponente}}"
+            />
+            }
+        </div>
+    </div>
+
 </body>
 
 </html>

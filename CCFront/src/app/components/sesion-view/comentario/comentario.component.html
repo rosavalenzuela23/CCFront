@@ -1,4 +1,4 @@
-<section class="mb-5 p-4 border rounded bg-light shadow-sm">
+<section class="mb-5 p-4 border rounded bg-light shadow-sm" [formGroup]="comentario">
     <h5 class="fw-semibold">Comentario:</h5>
     
     <div class="table-responsive mt-4">
@@ -8,14 +8,14 @@
                     <td colspan="2" class="fw-semibold">
                         Aspecto a medir:
                         <input type="text" name="aspecto" id="aspectoID" class="form-control"
-                               [(ngModel)]="comentario.aspectoAMedir">
+                        formControlName="aspectoAMedirElement">
                     </td>
                 </tr>
                 <tr>
-                    <td class="fw-semibold">Inicio</td>
+                    <td class="fw-semibold">Inicio de la sesion</td>
                     <td>
                         <select name="Inicio" id="InicioID" class="form-select"
-                                [(ngModel)]="comentario.valoracionInicio">
+                            formControlName="valoracionInicioElement">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -30,9 +30,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="fw-semibold">Fin</td>
+                    <td class="fw-semibold">Fin de la sesion</td>
                     <td>
-                        <select name="Fin" id="FinID" class="form-select" [(ngModel)]="comentario.valoracionFin">
+                        <select name="Fin" id="FinID" class="form-select"
+                        formControlName="valoracionFinElement">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -50,3 +51,4 @@
         </table>
     </div>
 </section>
+
