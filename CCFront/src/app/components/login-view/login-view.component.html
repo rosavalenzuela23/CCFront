@@ -1,46 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
+
 <body>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-          <div class="col-md-4">
-            <div class="card shadow-sm">
-              <div class="card-body">
-                <h3 class="card-title text-center mb-4">Iniciar Sesión</h3>
-                <form>
-                  <div class="mb-3">
-                    <label for="username" class="form-label">Usuario</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="username"
-                      placeholder="Ingresa tu usuario"
-                      required
-                    />
-                    <div class="invalid-feedback">Por favor ingresa tu usuario.</div>
-                  </div>                    
-                  <div class="mb-3">
-                    <label for="password" class="form-label">Contraseña</label>
-                    <input
-                      type="password"
-                      class="form-control"
-                      id="password"
-                      placeholder="Ingresa tu contraseña"
-                      required
-                    />
-                    <div class="invalid-feedback">Por favor ingresa tu contraseña.</div>
-                  </div>
-                  <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
-                </form>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h3 class="card-title text-center mb-4">Iniciar Sesión</h3>
+
+            <form>
+              <div class="mb-3">
+                <label for="username" class="form-label">Usuario</label>
+
+                <input type="text" [formControl]="username" class="form-control" id="username" placeholder="Ingresa tu usuario" required />
+
+                <div class="alert alert-danger mt-2" [hidden]="username.valid || username.pristine">
+                  El usuario es obligatorio
+                </div>
+
               </div>
-            </div>
+
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+
+                <input type="password" [formControl]="password" class="form-control" id="password" placeholder="Ingresa tu contraseña"required />
+                
+                <div class="alert alert-danger mt-2" [hidden]="password.pristine || password.valid">
+                  <span ngIf="!isPasswordLongEnough()">
+                    La contraseña debe tener minimo 8 caracteres
+                    <br>
+                  </span>
+                  <span ngIf="!hasLowerCase()">
+                    La contraseña debe tener mínimo una letra minúscula
+                    <br>
+                  </span>
+                  <span ngIf="!hasUpperCase()">
+                    La contraseña debe tener mínimo una letra mayúscula
+                    <br>
+                  </span>
+                  <span ngIf="!hasNumber()">
+                    La contraseña debe tener mínimo un número
+                    <br>
+                  </span>
+                  <span ngIf="!hasSpecialCharacter()">
+                    La contraseña debe tener mínimo un carácter especial
+                  </span>
+                </div>
+                
+                
+
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+            </form>
           </div>
         </div>
+        <div>
+          {{username.value}}
+          {{password.value}}
+        </div>
       </div>
+    </div>
+  </div>
 </body>
+
 </html>
+
