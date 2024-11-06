@@ -6,6 +6,7 @@ import { SesionViewComponent } from './components/sesion-view/sesion-view.compon
 import { ExpedienteViewComponent } from './components/expediente-view/expediente-view.component';
 import {FullSesionComponent} from './components/sesiones-view/detail-sesion/full-sesion/full-sesion.component';
 import {Error404Component } from './components/error/error404.component';
+import { LoginViewComponent } from './components/login-view/login-view.component';
 
 export const routes: Routes = [
     {path: "", component: MainViewComponent},
@@ -15,5 +16,6 @@ export const routes: Routes = [
     {path: "expediente/:id", component: ExpedienteViewComponent},
     {path: "sesiones", component: SesionesViewComponent},
     {path: "sesioncompleta",component: FullSesionComponent},
-    {path: "**", component: Error404Component }  
+    {path: "login", component:LoginViewComponent},  
+    {path: "**", component: Error404Component }
 ];
