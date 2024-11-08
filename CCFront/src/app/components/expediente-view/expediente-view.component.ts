@@ -48,6 +48,7 @@ export class ExpedienteViewComponent {
         telefonoEmergenciaElement: new FormControl('', [Validators.required, forbiddenString(/\+[0-9]{12}/gm)]),
         estadoCivilElement: new FormControl('', Validators.required),
         motivoDeConsultaElement: new FormControl('', Validators.required),
+        medicamentosElement: new FormControl(''),
         antecendentesElement: new FormControl('', Validators.required),
         enfermedadPreviaSesion: new FormControl(''),
         logroDeseadoElement: new FormControl('', Validators.required),
@@ -57,12 +58,11 @@ export class ExpedienteViewComponent {
 
     //Listas
     listaFamiliaresConfianza: DtoFamiliaresConfianza[] = [];
-    listaMedicamentos: DtoMedicamentoDelExpediente[] = [];
     listaIntegrantesHogar: DtoIntegranteHogar[] = [];
 
     readonly atributosFamiliarDto: CamposConTipo[] = DtoFamiliaresConfianza.getFieldsWithType();
     readonly atributosIntegrantesHogar: CamposConTipo[] = DtoIntegranteHogar.getFieldsWithType();
-    readonly atributosMedicamentos: CamposConTipo[] = DtoMedicamento.getFieldsWithType();
+    
 
 
     accionActual: Acciones = Acciones.CREAR;
@@ -115,6 +115,7 @@ export class ExpedienteViewComponent {
         this.logroDeseado = this.expediente!.deseo;
         this.antecendentes = this.expediente!.antecedentes;
         this.enfermedadPrevia = this.expediente!.enfermedadPrevia;
+        this.medicamentos = this.expediente!.medicamentos;
 
     }
 
@@ -165,9 +166,9 @@ export class ExpedienteViewComponent {
             enfermedadPrevia: this.enfermedadPrevia,
             familiaresConfianza: this.listaFamiliaresConfianza,
             integranteHogar: this.listaIntegrantesHogar,
-            medicamentos: this.listaMedicamentos,
             preguntaMagica: this.preguntaMagica,
             motivoConsulta: this.motivoConsulta,
+            medicamentos: this.medicamentos,
             diagnostico: this.diagnostico,
             deseo: this.logroDeseado
         }
@@ -243,10 +244,6 @@ export class ExpedienteViewComponent {
 
     }
 
-    agregarMedicamento() {
-
-    }
-
     get nombrePaciente() {
         return this.formGroupExpediente.get<string>('nombrePacienteElement')?.value || "";
     }
@@ -304,6 +301,10 @@ export class ExpedienteViewComponent {
         return this.formGroupExpediente.get('tipoViviendaElement')?.value || "";
     }
 
+    get medicamentos() {
+       return this.formGroupExpediente.get('medicamentosElement')?.value || "";
+    }
+
     set nombrePaciente(nombre: string) {
         this.formGroupExpediente.get<string>('nombrePacienteElement')?.setValue(nombre);
     }
@@ -356,6 +357,9 @@ export class ExpedienteViewComponent {
         this.formGroupExpediente.get('tipoViviendaElement')?.setValue(tipoVivienda);
     }
 
+    set medicamentos(medicamentos: string) {
+        this.formGroupExpediente.get('medicamentosElement')?.setValue(medicamentos);
+    }
 }
 
 

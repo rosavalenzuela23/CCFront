@@ -219,13 +219,19 @@
             >
         </div>
 
-        <!-- tabla con los medicamentos -->
-        <app-tabla class="col-6"
-        tableName="medicamentos"
-        [columnNames]="atributosMedicamentos"
-        [informacionTabla]="listaMedicamentos"
-        tableNameSpaces="Medicamentos"
-        ></app-tabla>
+        <!--Texto de medicamentos-->
+        <div class="col-6">
+            <label for="medicamento" class="form-label">
+                Medicamentos
+            </label>
+            <input 
+            type="text" 
+            class="form-control" 
+            placeholder="Ingresar medicamentos en caso de haberlos"
+            name="medicamentosElement"
+            formControlName="medicamentosElement"
+            >
+        </div>
 
     </div>
 
