@@ -19,17 +19,17 @@
             <!-- informacion de los pacientes -->
 
             @for (informacion of informacionTabla; track informacion.generatedId) {
-                <tr>
+            <tr>
                 @for (column of columnNames; track $index) {
 
-                    @if (column.name ==="id") {
-                        <th> {{ informacion.generatedId }} </th>
-                    } @else {
-                        <td> {{ informacion[column.name] }} </td>
-                    }
+                @if (column.name ==="id") {
+                <th> {{ informacion.generatedId }} </th>
+                } @else {
+                <td> {{ informacion[column.name] }} </td>
+                }
 
                 }
-                </tr>  
+            </tr>
             }
 
 
@@ -41,12 +41,7 @@
 
 <!-- no olvidar agregar el modal para agregar informacion -->
 
-<div 
-class="modal" 
-tabindex="-1" 
-id="{{ tableName }}" 
-aria-hidden="true" 
-[attr.aria-labelledby]="tableName">
+<div class="modal" tabindex="-1" id="{{ tableName }}" aria-hidden="true" [attr.aria-labelledby]="tableName">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
@@ -57,26 +52,29 @@ aria-hidden="true"
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <div class="modal-body" [formGroup]="camposTexto" >
-                
+            <div class="modal-body" [formGroup]="camposTexto">
                 @for (campo of columnNames; track $index) {
 
                     @if (campo.name != "id") {
                         <div>
                             <label for="{{ campo.name }}"> {{ campo.name.toUpperCase() }} </label>
-                            <input 
-                            type="{{ campo.tipo }}" 
-                            name="{{ campo.name }}" 
-                            class="form-control" 
-                            id="{{ campo.name }}{{ tableName }}"
-                            [formControlName]="campo.name+tableName"
-                            >
+                            <input type="{{ campo.tipo }}" name="{{ campo.name }}" class="form-control"
+                                id="{{ campo.name }}{{ tableName }}" [formControlName]="campo.name+tableName">
                         </div>
                     }
 
                 }
-
             </div>
+
+            <!-- create here a div where to put all errors that the modal has -->
+
+            @if (listaErrores.length != 0) {
+                <div class="alert alert-danger mx-3" role="alert">
+                    @for (error of listaErrores; track $index) {
+                        {{error.name}}: {{error.type}}
+                    }
+                </div>
+            }
 
             <div class="modal-footer">
 
