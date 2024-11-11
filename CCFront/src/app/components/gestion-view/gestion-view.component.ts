@@ -27,8 +27,7 @@ export class GestionViewComponent {
     private router: Router,
     private expedienteService: ExpedienteService
   ){
-    //this.paciente = new DtoPaciente(1, "marcos zazueta", "soltero", "066", "local", "777");
-    servicePaciente.setPaciente(this.paciente);
+    servicePaciente.quitarPacienteActual();
   }
 
   async nuevaConsulta(paciente: DtoPaciente) {
