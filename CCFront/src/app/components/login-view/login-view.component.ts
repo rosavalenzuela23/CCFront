@@ -9,34 +9,33 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
   styleUrls: ['./login-view.component.css']
 })
 export class LoginViewComponent {
-  username= new FormControl('',Validators.required);
 
-  // Validación para la contraseña: al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial
-  password = new FormControl('', [
-    Validators.required,
-    Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
-  ]);
+  formUser = new FormGroup({
+
+    'username': new FormControl('', Validators.required),
+    'password': new FormControl('', [Validators.required,
+      Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
+    ])
+  });
+
 
   isPasswordLongEnough(): boolean {
-    return (this.password.value ?? '').length >= 8;
-  }  
+    return (this.formUser.get('password')?.value ?? '').length >= 8;
+  }
 
   hasLowerCase(): boolean {
-    return /[a-z]/.test(this.password.value || '');
+    return /[a-z]/.test(this.formUser.get('password')?.value || '');
   }
 
   hasUpperCase(): boolean {
-    return /[A-Z]/.test(this.password.value || '');
+    return /[A-Z]/.test(this.formUser.get('password')?.value || '');
   }
 
   hasNumber(): boolean {
-    return /\d/.test(this.password.value || '');
+    return /\d/.test(this.formUser.get('password')?.value || '');
   }
 
   hasSpecialCharacter(): boolean {
-    return /[!@#$%^&*()_+\[\]{};':"\\|,.<>\/?-]/.test(this.password.value || '');
+    return /[!@#$%^&*()_+\[\]{};':"\\|,.<>\/?-]/.test(this.formUser.get('password')?.value || '');
   }
-
- 
-
 }
