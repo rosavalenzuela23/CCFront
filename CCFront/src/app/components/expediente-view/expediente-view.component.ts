@@ -96,7 +96,7 @@ export class ExpedienteViewComponent {
 
         // lo regresa a la pagina de gestion si es que no hay ningun paciente actual
         if (pacienteDto == null) {
-            this.router.navigate(['gestion']);
+            this.router.navigate(['**']);
             return;
         }
 
