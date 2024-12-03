@@ -11,6 +11,9 @@ export enum SessionStorageNames {
     USUARIO_ACTUAL = 'usuarioAcual',
 
     //Sesiones
-    SESION_ACTUAL = 'sesionActual'
+    SESION_ACTUAL = 'sesionActual',
+
+    //Token sesion
+    TOKEN = 'token'
 
 }

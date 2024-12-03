@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-login-view',
@@ -9,34 +11,30 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
   styleUrls: ['./login-view.component.css']
 })
 export class LoginViewComponent {
-  username= new FormControl('',Validators.required);
+  
+  mensajeError!: string;
+  // Formulario reactivo
+  loginForm = new FormGroup({
+    username: new FormControl(''), // Campo para el usuario
+    password: new FormControl('')  // Campo para la contraseña
+  });
 
-  // Validación para la contraseña: al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial
-  password = new FormControl('', [
-    Validators.required,
-    Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
-  ]);
+  constructor(private authService: AuthService) {}
 
-  isPasswordLongEnough(): boolean {
-    return (this.password.value ?? '').length >= 8;
-  }  
+  iniciarSesion() {
+    if (this.loginForm.valid) {
+      const usuario: string = this.loginForm.get('username')?.value || "";
+      const password: string = this.loginForm.get('password')?.value || "";
+      this.authService.logIn(usuario, password).catch((error: string)=>{
+        console.log("si captura el errroooorr");
+        this.mensajeError = error;
 
-  hasLowerCase(): boolean {
-    return /[a-z]/.test(this.password.value || '');
+      })
+
+
+    
+    } else {
+      console.log('El formulario no es válido.');
+    }
   }
-
-  hasUpperCase(): boolean {
-    return /[A-Z]/.test(this.password.value || '');
-  }
-
-  hasNumber(): boolean {
-    return /\d/.test(this.password.value || '');
-  }
-
-  hasSpecialCharacter(): boolean {
-    return /[!@#$%^&*()_+\[\]{};':"\\|,.<>\/?-]/.test(this.password.value || '');
-  }
-
- 
-
 }

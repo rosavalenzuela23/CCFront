@@ -1,0 +1,22 @@
+.custom-icon {
+  width: 4em; /* Ajusta el ancho de la imagen */
+  height: 4em; /* Ajusta la altura */
+  border-radius: 50%; /* Hace que la imagen sea circular */
+  object-fit: cover; /* Asegura que la imagen no se deforme */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Sombra suave para el efecto de profundidad */
+  border: 2px solid #fff; /* Borde blanco para destacar la imagen */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para efectos hover */
+}
+
+.custom-icon:hover {
+  transform: translateY(-5px); /* Levanta la imagen al pasar el ratón */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.15); /* Sombra más intensa en hover */
+}
+
+.optionItem a{
+  transition: background-color 0.3s ease;
+}
+.optionItem a:hover{
+  background-color: #5e35b1;
+  color: white;
+}
