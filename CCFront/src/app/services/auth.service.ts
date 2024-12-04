@@ -25,7 +25,7 @@ export class AuthService{
           throw(error.error.message);
       }))
     );
-    console.log(response);
+    
     
     const empleado = new DtoEmpleado(response.id, response.usuario,response.password);
     sessionStorage.setItem(SessionStorageNames.TOKEN, response.token);
