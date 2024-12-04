@@ -153,6 +153,14 @@ export class ExpedienteViewComponent {
 
     private obtenerPaciente(): DtoPaciente {
 
+        //por un errorsito que no sabemos como solucionar tenemos
+        //que sumarle uno a la fecha......
+        
+        const dateOffset = 1; //un dia
+
+        const date = new Date(this.fechaNacimiento)
+        date.setDate(date.getDate() + dateOffset);
+
         const paciente: DtoPaciente = {
             estadoCivil: this.estadoCivil,
             nombre: this.nombrePaciente,
@@ -160,7 +168,7 @@ export class ExpedienteViewComponent {
             telefonoEmergencia: this.telefonoEmergencia,
             tipoVivienda: this.tipoVivienda,
             escolaridad: this.escolaridad,
-            fecha: new Date(this.fechaNacimiento).toISOString(),
+            fecha: date.toISOString()
         }
 
         return paciente;
@@ -221,15 +229,7 @@ export class ExpedienteViewComponent {
             return;
         }
 
-        const paciente: DtoPaciente = {
-            estadoCivil: this.estadoCivil,
-            nombre: this.nombrePaciente,
-            telefono: this.telefono,
-            telefonoEmergencia: this.telefonoEmergencia,
-            tipoVivienda: this.tipoVivienda,
-            escolaridad: this.escolaridad,
-            fecha: new Date(this.fechaNacimiento).toISOString(),
-        }
+        const paciente: DtoPaciente = this.obtenerPaciente();
 
         const dtoExpediente: DtoExpediente = this.obtenerExpediente();
 
