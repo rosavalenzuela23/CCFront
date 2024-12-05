@@ -10,6 +10,10 @@
         </div>
     </form>
 
-  <app-carta-paciente></app-carta-paciente>
+  @if(listaPacientes$ | async; as lista) {
+    @for(paciente of lista; track paciente.id) {
+        <app-carta-paciente [pacientedto]="paciente" ></app-carta-paciente>
+    }
+  }
   
 </div>
