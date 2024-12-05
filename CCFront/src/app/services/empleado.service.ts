@@ -35,6 +35,13 @@ export class EmpleadoService{
     
     }
 
+    async darDeBajaEmpleado(empleado: DtoEmpleado){
+
+        const response = await lastValueFrom(
+            this.http.put(Routes.empleado+"eliminar", {  id:empleado.id}));
+        
+    }
+
   
 
 }
