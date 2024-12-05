@@ -1,0 +1,48 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h3 class="card-title text-center mb-4">Actualizar Credenciales Empleado</h3>
+<!-- Formulario reactivo -->
+    <form [formGroup]="actualizarEmpleadoForm" (ngSubmit)="actualizarEmpleado()">
+        <div class="mb-3">
+            <label for="username" class="form-label">Nuevo Nombre De Usuario</label>
+            <input type="text" formControlName="userElement" class="form-control" id="username" placeholder="Ingresar nuevo nombre de usuario" />
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Nueva Contraseña</label>
+            <input type="password" formControlName="passwordElement" class="form-control" id="password" placeholder="Ingresar la nueva contraseña" />
+        </div>
+        
+
+        <button type="submit" class="btn btn-warning w-100">Actualizar Usuario</button>
+        
+    </form>
+
+    
+</div>
+</div>
+</div>
+</div>
+</div>
+@if(isCreado){
+    <div class="alert alert-success" role="alert">
+        Usuario actualizado Con Exito!!
+     </div>
+}
+
+<!-- toast container para todos los mensajes de error -->
+<div class="bg-body-secondary">
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+
+        @for (error of errores; track error.idComponente) {
+        <app-mensaje-error 
+        [title]="error.title" 
+        [message]="error.message" 
+        idComponente="{{error.idComponente}}"
+        />
+        }
+    </div>
+</div>

@@ -5,21 +5,23 @@
                 <tr>
                     <th scope="col">Usuario</th>
                     <th scope="col">Puesto</th>
+                    <th scope="col">Estado</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>    
-                    <td></td>
-                    <td></td>
+                <tr *ngFor="let empleado of empleados">
+                    <td>{{ empleado.usuario }}</td>
+                    <td>{{ empleado.token }}</td>
+                    <td>{{ empleado.estado ? 'Activo' : 'Baja'}}</td>
                     <td>
                         <div class="d-flex justify-content-start flex-wrap gap-2">
-                            <input type="button" class="btn btn-warning" value="Actualizar Credenciales">
-                            <input type="button" class="btn btn-danger" value="Despedir">
+                            <input type="button" class="btn btn-warning" value="Actualizar Credenciales" 
+                            (click)="actualizarCredenciales(empleado)" [disabled]="!empleado.estado">
+                            <input type="button" class="btn btn-danger" value="Dar De Baja" [disabled]="!empleado.estado">
                         </div>
                     </td>
                 </tr>
-
             </tbody>
         </table>
     </div>

@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import {EmpleadoService } from './../../../services/empleado.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ControlName, ControlNameValidator } from '../../../util/control-name-validators';
 import { MensajeErrorComponent } from '../../mensaje-error/mensaje-error.component';
+import { DtoEmpleado } from '../../../dtos/DtoEmpleado';
 
 type errorType = {
     title: string,
@@ -14,13 +15,13 @@ type errorType = {
 
 
 @Component({
-  selector: 'crear-usuario',
+  selector: 'actualizar-usuario',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MensajeErrorComponent],
-  templateUrl: './crear-usuario.component.html',
-  styleUrl: './crear-usuario.component.css'
+  templateUrl: './actualizar-usuario.component.html',
+  styleUrl: './actualizar-usuario.component.css'
 })
-export class CrearUsuarioComponent {
+export class ActualizarUsuarioComponent {
 
     //Boolean para decidir si mostrar mensaje de usuario creado correctamente
     isCreado: boolean = false;
@@ -28,8 +29,12 @@ export class CrearUsuarioComponent {
     //Lista de errores a mostrar en la vista
    errores: errorType[] = [];
 
-    //Formgroup para crear un empleado
-    crearEmpleadoForm: FormGroup = new FormGroup({
+
+   //Recibe los datos del empleado para actualizar
+   empleado?: DtoEmpleado;
+
+    //Formgroup para actualizar un empleado
+    actualizarEmpleadoForm: FormGroup = new FormGroup({
 
         userElement: new FormControl('', [Validators.required]),
         passwordElement: new FormControl('', [Validators.required]),
@@ -39,27 +44,42 @@ export class CrearUsuarioComponent {
 
     constructor(private router: Router, private empleadoService: EmpleadoService ) { }
 
-    //Utiliza el servicio de empleadoService para persistir un empleado en la base de datos
-    //Regresa un mensaje de exito y te reedirige a la página de gestión de usuarios
-    crearEmpleado(){
-  
-        
-        if (this.crearEmpleadoForm.invalid) {
-            this.validarCamposRegistrarUsuario();
+    ngOnInit() {
+
+        this.empleado = history.state.empleado;
+        console.log("si recibio el empleado");
+        console.log(this.empleado);
+
+        this.actualizarEmpleadoForm.patchValue({
+            userElement: this.empleado?.usuario,
+            puestoElement: this.empleado?.token 
+        });
+    }
+    
+    //Método que llama al servicio para actualizar un empleado y obtiene una promesa para mostrar mensaje de exito
+    actualizarEmpleado(){
+        console.log("actualizando empleado");
+        if(this.actualizarEmpleadoForm.invalid){
+            this.validarCamposActualizarUsuario();
             return;
         }
 
-        const usuario = this.crearEmpleadoForm.get('userElement')?.value;
-        const password = this.crearEmpleadoForm.get('passwordElement')?.value;
-        const rol = this.crearEmpleadoForm.get('puestoElement')?.value;
-        this.empleadoService.registrarEmpleado(usuario, password, rol).then(() => {
-            this.isCreado = true;
-            console.log("Empleado creado correctamente");
-            setTimeout(()=>{
-                this.router.navigate(["/usuarios"]);
-            }, 1000)
+         
+        if (this.empleado) {
+            this.empleado.usuario = this.actualizarEmpleadoForm.get('userElement')?.value;
+            this.empleado.password = this.actualizarEmpleadoForm.get('passwordElement')?.value;
+            this.empleado.token = this.actualizarEmpleadoForm.get('puestoElement')?.value;
+            this.empleadoService.actualizarEmpleado(this.empleado).then(() => {
+                this.isCreado = true;
+
+                setTimeout(()=>{
+                    this.router.navigate(['/usuarios']);
+                }, 1000);
+            });
             
-        })
+        } 
+    
+    
     }
 
     //Agrega un error a la lista de errores para mostrar en la vista
@@ -91,15 +111,15 @@ export class CrearUsuarioComponent {
     }
 
     // Valida todos los controles en el formulario principal
-    private async validarCamposRegistrarUsuario() {
+    private async validarCamposActualizarUsuario() {
     
         this.errores = [];
-        const controles: string[] = Object.getOwnPropertyNames(this.crearEmpleadoForm.controls);
+        const controles: string[] = Object.getOwnPropertyNames(this.actualizarEmpleadoForm.controls);
         for (const controlName of controles) {
-            this.obtenerValidadores([controlName], this.crearEmpleadoForm);
+            this.obtenerValidadores([controlName], this.actualizarEmpleadoForm);
         }
 
-  }
+    }
 
 
 }

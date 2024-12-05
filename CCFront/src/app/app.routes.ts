@@ -10,6 +10,7 @@ import { LoginViewComponent } from './components/login-view/login-view.component
 import { ConsentimientoViewComponent } from './components/consentimiento-view/consentimiento-view.component';
 import { GestionUsuariosViewComponent } from './components/gestionusuarios-view/gestionusuarios-view.component';
 import { CrearUsuarioComponent } from './components/gestionusuarios-view/crear-usuario/crear-usuario.component';
+import { ActualizarUsuarioComponent } from './components/gestionusuarios-view/actualizar-usuario/actualizar-usuario.component';
 import { authGuard } from './guards/auth.guard'; 
 import { roleGuard } from './guards/role.guard';
 import {mainAccessGuard} from './guards/mainaccess.guard';
@@ -27,5 +28,6 @@ export const routes: Routes = [
     {path: "consentimiento",component:ConsentimientoViewComponent, canActivate: [ roleGuard ], data: {rol: "Recepcionsita"}},
     {path:"usuarios", component: GestionUsuariosViewComponent, canActivate: [ roleGuard ], data: {rol: "Administrador"}},
     {path: "crearusuario", component: CrearUsuarioComponent, canActivate: [ roleGuard ], data: {rol: "Administrador"}},
+    {path: "actualizarusuario", component: ActualizarUsuarioComponent, canActivate: [ roleGuard ], data: {rol: "Administrador"}},
     {path: "**", component: Error404Component }
 ];
