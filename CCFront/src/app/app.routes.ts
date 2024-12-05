@@ -25,7 +25,7 @@ export const routes: Routes = [
     {path: "sesiones", component: SesionesViewComponent, canActivate: [ roleGuard ], data: {rol: "Psicologo"}},
     {path: "sesioncompleta",component: FullSesionComponent, canActivate: [ roleGuard ], data: {rol: "Psicologo"}},
     {path: "login", component:LoginViewComponent , canActivate: [ authGuard ]},
-    {path: "consentimiento",component:ConsentimientoViewComponent, canActivate: [ roleGuard ], data: {rol: "Recepcionsita"}},
+    {path: "consentimiento",component:ConsentimientoViewComponent, canActivate: [ roleGuard ], data: {rol: "Recepcionista"}},
     {path:"usuarios", component: GestionUsuariosViewComponent, canActivate: [ roleGuard ], data: {rol: "Administrador"}},
     {path: "crearusuario", component: CrearUsuarioComponent, canActivate: [ roleGuard ], data: {rol: "Administrador"}},
     {path: "actualizarusuario", component: ActualizarUsuarioComponent, canActivate: [ roleGuard ], data: {rol: "Administrador"}},
