@@ -1,12 +1,13 @@
 <div class="container content d-flex justify-content-between align-items-center gap-3" style="max-width: 600px;">
-    <p class="mb-0">Paciente Siguiente: </p>
+    <p class="mb-0">Paciente Siguiente: {{ obtenerNombrePaciente() }} </p>
     <!--
     <input type="button" class="btn btn-primary" (click)="verificarExistente()" value="Atender">
     -->
 
 
-    <i class="btn btn-primary"  (click)="verificarExistente()" [routerLink]="['/sesion']">Atender</i>
+    <!-- <i class="btn btn-primary"  (click)="verificarExistente()" [routerLink]="['/sesion']">Atender</i> -->
 
+    <i class="btn btn-primary"  (click)="verificarExistente()">Atender</i>
 
 
 </div>
