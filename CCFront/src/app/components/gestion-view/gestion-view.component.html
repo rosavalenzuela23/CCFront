@@ -9,6 +9,6 @@
 
     <ventana-atender-component (nuevaCita)="nuevaConsulta($event)" />
     
-    <tabla-pacientes-component (nuevaConsultaEvent)="nuevaConsulta($event)" (modificarExpedienteEvent)="modificarExpediente($event)" (verSesionesEvent)="verSesiones($event)" ></tabla-pacientes-component>
+    <tabla-pacientes-component [lista-pacientes]="pacientes" (nuevaConsultaEvent)="nuevaConsulta($event)" (modificarExpedienteEvent)="modificarExpediente($event)" (verSesionesEvent)="verSesiones($event)" ></tabla-pacientes-component>
 
 </div>

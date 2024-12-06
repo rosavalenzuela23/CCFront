@@ -21,6 +21,7 @@ export class GestionViewComponent {
   
 
   paciente: DtoPaciente | null = null;
+  pacientes!: DtoPaciente[];
 
   constructor(
     private servicePaciente: PacienteService,
@@ -28,6 +29,11 @@ export class GestionViewComponent {
     private expedienteService: ExpedienteService
   ){
     servicePaciente.quitarPacienteActual();
+    servicePaciente.setPaciente(null);
+  }
+
+  async ngOnInit() {
+    this.pacientes = await this.servicePaciente.obtenerPacientesPsicologo();
   }
 
   async nuevaConsulta(paciente: DtoPaciente) {

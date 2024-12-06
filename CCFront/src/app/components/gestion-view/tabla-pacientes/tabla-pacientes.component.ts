@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PacienteService } from '../../../services/PacienteService';
@@ -14,7 +14,9 @@ import { DtoPaciente } from '../../../dtos/DtoPaciente';
 export class TablaPacientesComponent {
 
   id: number = 0;
-  pacientes: DtoPaciente[];
+  @Input({
+    alias: 'lista-pacientes'
+  }) pacientes!: DtoPaciente[];
 
   @Output() nuevaConsultaEvent = new EventEmitter<DtoPaciente>();
   @Output() modificarExpedienteEvent = new EventEmitter<DtoPaciente>();
@@ -23,9 +25,9 @@ export class TablaPacientesComponent {
   constructor(
     public pacientesService: PacienteService
   ){
-    this.pacientes = pacientesService.getPacientes();
+    // this.pacientes = pacientesService.getPacientes();
     
-    console.log(this.pacientes);
+    // console.log(this.pacientes);
   }
 
   //presiona el botón "nueva sesión"

@@ -37,15 +37,15 @@ export class PacienteService{
         return this.paciente;
     }
 
-    async obtenerPacientesPsicologo() {
+    async obtenerPacientesPsicologo(): Promise<DtoPaciente[]> {
 
         const psicologo: DtoPsicologo = JSON.parse(
             sessionStorage.getItem(SessionStorageNames.USUARIO_ACTUAL) || "{}"
         );
 
-        const pacientes = await lastValueFrom(this.http.get( Routes.paciente, {params: new HttpParams({fromObject: {id: psicologo.id}})}));
+        const pacientes: any = await lastValueFrom(this.http.get( Routes.paciente, {params: new HttpParams({fromObject: {id: psicologo.id}})}));
         sessionStorage.setItem(SessionStorageNames.PACIENTES_PSICOLOGO, JSON.stringify(pacientes));
-        this.router.navigate(["gestion"])
+        return pacientes;
     }
 
     getPacientes(): DtoPaciente[] {
