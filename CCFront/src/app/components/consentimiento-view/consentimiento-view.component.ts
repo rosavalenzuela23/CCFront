@@ -24,4 +24,9 @@ export class ConsentimientoViewComponent {
     this.listaPacientes$ = this.pacienteService.obtenerPacientesSinCarta();
   }
 
+  actualizar() {
+    this.ngOnInit();
+  }
+
+
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DtoPaciente } from '../../../dtos/DtoPaciente';
 import { PacienteService } from '../../../services/PacienteService';
 
@@ -12,6 +12,7 @@ import { PacienteService } from '../../../services/PacienteService';
 export class CartaPacienteComponent {
 
   @Input('pacientedto') paciente!: DtoPaciente;
+  @Output() cartaSubida = new EventEmitter();
   private file: File | undefined;
 
   constructor(
@@ -44,6 +45,7 @@ export class CartaPacienteComponent {
     this.pacienteService.subirCartaConcentimiento(formData).subscribe({
       next: () => {
         alert("Subida exitosa");
+        this.cartaSubida.emit();
       },
       error: (error: any) => {
         console.log(error);

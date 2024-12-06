@@ -12,7 +12,7 @@
 
   @if(listaPacientes$ | async; as lista) {
     @for(paciente of lista; track paciente.id) {
-        <app-carta-paciente [pacientedto]="paciente" ></app-carta-paciente>
+        <app-carta-paciente [pacientedto]="paciente" (cartaSubida)="actualizar()"></app-carta-paciente>
     }
   }
   
