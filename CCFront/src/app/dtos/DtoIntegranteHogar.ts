@@ -12,11 +12,11 @@ export class DtoIntegranteHogar {
 
     static getFieldsWithType(): CamposConTipo[] {
         return [
-            { name: 'nombre', tipo: 'string' },
-            { name: 'statusRelacion', tipo: 'string' },
-            { name: 'ocupacion', tipo: 'string' },
-            { name: 'parentesco', tipo: 'string' },
-            { name: 'fechaNacimiento', tipo: 'date' }
+            { name: 'nombre', tipo: 'string', vista: 'Nombre' },
+            { name: 'statusRelacion', tipo: 'string', vista: 'Estatus relación' },
+            { name: 'ocupacion', tipo: 'string', vista: 'Ocupación' },
+            { name: 'parentesco', tipo: 'string', vista: 'Parentezco' },
+            { name: 'fechaNacimiento', tipo: 'date', vista: 'Fecha nacimiento' }
         ]
     }
 

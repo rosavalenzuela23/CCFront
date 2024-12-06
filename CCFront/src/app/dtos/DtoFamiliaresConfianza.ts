@@ -11,9 +11,9 @@ export class DtoFamiliaresConfianza {
 
     static getFieldsWithType(): CamposConTipo[] {
         return [
-            { name: 'nombre', tipo: 'string' },
-            { name: 'parentesco', tipo: 'string' },
-            { name: 'telefono', tipo: 'tel' }
+            { name: 'nombre', tipo: 'string', vista: 'Nombre' },
+            { name: 'parentesco', tipo: 'string', vista: 'Parentezco' },
+            { name: 'telefono', tipo: 'tel', vista: 'Teléfono' }
         ]
     }
 

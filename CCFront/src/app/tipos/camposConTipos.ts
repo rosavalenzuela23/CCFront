@@ -1,4 +1,5 @@
 export type CamposConTipo = {
     name: string,
-    tipo: string
+    tipo: string,
+    vista: string
 }

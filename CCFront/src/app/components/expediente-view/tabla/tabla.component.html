@@ -6,7 +6,7 @@
         <thead>
             <tr>
                 @for (column of columnNames; track $index) {
-                <th scope="col">{{ column.name }}</th>
+                <th scope="col">{{ column.vista }}</th>
                 } @empty {
                 <div>
                     <p>Aki no ay nada</p>
@@ -57,7 +57,7 @@
 
                     @if (campo.name != "id") {
                         <div>
-                            <label for="{{ campo.name }}"> {{ campo.name.toUpperCase() }} </label>
+                            <label for="{{ campo.name }}"> {{ campo.vista.toUpperCase() }} </label>
                             <input type="{{ campo.tipo }}" name="{{ campo.name }}" class="form-control"
                                 id="{{ campo.name }}{{ tableName }}" [formControlName]="campo.name+tableName">
                         </div>

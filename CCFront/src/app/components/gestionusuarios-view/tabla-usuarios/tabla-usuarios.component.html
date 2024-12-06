@@ -12,7 +12,11 @@
             <tbody>
                 <tr *ngFor="let empleado of empleados">
                     <td>{{ empleado.usuario }}</td>
-                    <td>{{ empleado.token }}</td>
+                    @if (empleado.token == 'Psicologo') {
+                      <td> Psicólogo </td>
+                    } @else {
+                      <td>{{ empleado.token }}</td>
+                    }
                     <td>{{ empleado.estado ? 'Activo' : 'Baja'}}</td>
                     <td>
                         <div class="d-flex justify-content-start flex-wrap gap-2">

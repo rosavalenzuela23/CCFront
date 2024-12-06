@@ -9,9 +9,9 @@ export class DtoMedicamento {
 
     static getFieldsWithType(): CamposConTipo[] {
         return [
-            { name: 'id', tipo: 'string' },
-            { name: 'nombre', tipo: 'string' },
-            { name: 'descripcion', tipo: 'string' },
+            { name: 'id', tipo: 'string', vista: "ID" },
+            { name: 'nombre', tipo: 'string', vista: "Nombre" },
+            { name: 'descripcion', tipo: 'string', vista: "Descripción" },
         ];
     }
 

@@ -15,7 +15,7 @@
             @if (pacientes$ | async; as listaPacientes) {
                 @for (paciente of listaPacientes; track paciente.id) {
                     <tr>
-                        <td> {{ paciente.nombre }} </td>
+                        <td> {{ paciente.nombre.toUpperCase() }} </td>
                         <td>
                             <select name="psicologoSelector" id="seleccionarPsicologo" [id]="paciente.nombre+paciente.id?.toString()">
                                 <option value="Null" selected>Ninguno</option>
