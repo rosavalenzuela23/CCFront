@@ -21,14 +21,14 @@
       <!-- Aqui van todos los link para la barra de navegacion lateral -->
       <ul class="nav flex-column">
         
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="tienePermisos('Administrador')">
             <div class="optionItem">
               <a class="nav-link active btn" routerLink="/usuarios">Gestionar Empleados</a>
             </div>
           </li>
         
         
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="tienePermisos('Psicologo')">
           <div class="optionItem">
             <a class="nav-link active btn" aria-current="page" (click)="buscarExpedientes()">Gestión Expedientes</a>
           </div>
@@ -36,6 +36,8 @@
         </li>
 
         <li class="anv-item">
+
+        <li class="anv-item" *ngIf="tienePermisos('Recepcionista')">
           <div class="optionItem">
             <a class="nav-link active btn" routerLink="/consentimiento"> Cartas </a>
           </div>
