@@ -1,0 +1,58 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h3 class="card-title text-center mb-4">Registrar Empleado</h3>
+<!-- Formulario reactivo -->
+    <form [formGroup]="crearEmpleadoForm" (ngSubmit)="crearEmpleado()">
+        <div class="mb-3">
+            <label for="username" class="form-label">Nombre Del Usuario</label>
+            <input type="text" formControlName="userElement" class="form-control" id="username" placeholder="Ingresar usuario del nuevo empleado" />
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña Del Usuario</label>
+            <input type="password" formControlName="passwordElement" class="form-control" id="password" placeholder="Ingresar contraseña del nuevo empleado" />
+        </div>
+
+        <div class="mb-3">
+           <label for="rol" class="form-label">Puesto Del Empleado</label>
+           <select name="PuestoEmpleado" id="PuestoEmpleadoID" class="form-select"
+           formControlName="puestoElement">
+            <option value="Psicologo">Psicologo</option>
+            <option value="Recepcionista">Recepcionista</option>
+            <option value="Administrador">Administrador</option>
+        </select>
+        </div>
+        
+
+        <button type="submit" class="btn btn-primary w-100">Crear Usuario</button>
+        
+    </form>
+
+    
+</div>
+</div>
+</div>
+</div>
+</div>
+@if(isCreado){
+    <div class="alert alert-success" role="alert">
+        Usuario Creado Con Exito!!
+     </div>
+}
+
+<!-- toast container para todos los mensajes de error -->
+<div class="bg-body-secondary">
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+
+        @for (error of errores; track error.idComponente) {
+        <app-mensaje-error 
+        [title]="error.title" 
+        [message]="error.message" 
+        idComponente="{{error.idComponente}}"
+        />
+        }
+    </div>
+</div>

@@ -1,15 +1,12 @@
 <div class="container">
   <div class="row">
   
-
-    <!-- Aqui podria ir el logo de la empresa, pero se busca tener el logo de la persona -->
-    <!-- asu como de un usuario -->
     <nav class="col-auto navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         
-        <a class="navbar-brand" routerLink="">
-
-          <i class="bi bi-person-circle" style="font-size: 4em;"></i>
+        <a class="navbar-brand" routerLink="/home">
+ 
+          <img src="logocc.png" alt="Logo Conecta Contigo" class="custom-icon">
 
         </a>
 
@@ -23,9 +20,33 @@
 
       <!-- Aqui van todos los link para la barra de navegacion lateral -->
       <ul class="nav flex-column">
+        
+          <li class="nav-item">
+            <div class="optionItem">
+              <a class="nav-link active btn" routerLink="/usuarios">Gestionar Empleados</a>
+            </div>
+          </li>
+        
+        
         <li class="nav-item">
-          <a class="nav-link active btn" aria-current="page" (click)="buscarExpedientes()">Gestión Expedientes</a>
+          <div class="optionItem">
+            <a class="nav-link active btn" aria-current="page" (click)="buscarExpedientes()">Gestión Expedientes</a>
+          </div>
+         
         </li>
+
+        <li class="anv-item">
+          <div class="optionItem">
+            <a class="nav-link active btn" routerLink="/consentimiento"> Cartas </a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <div class="optionItem">
+            <a class="nav-link active btn" (click)="logOut()">Cerrar Sesión</a>
+          </div>
+        </li>
+      
       </ul>
 
     </div>

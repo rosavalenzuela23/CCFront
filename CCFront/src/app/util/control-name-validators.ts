@@ -62,6 +62,13 @@ export class ControlName {
     //comentario extra del psicologo
     static [comentarioPsicologo: string]: string;
 
+
+    //Gestión de usuarios 
+    static [userElement: string]: string;
+    static [passwordElement: string]: string;
+    static [puestoElement: string]: string;
+    
+
     //getters
     static get nombrePacienteElement(): string {
         return "Nombre del paciente";
@@ -149,6 +156,17 @@ export class ControlName {
     //getter comentario extra del psicologo
     static get comentarioPsicologo(): string {
         return 'Comentario extra del psicologo';
+    }
+
+    //getters de gestión de usuarios
+    static get userElement(): string {
+        return 'Usuario';
+    }
+    static get passwordElement(): string {
+        return 'Contraseña';
+    }
+    static get puestoElement(): string {
+        return 'Puesto';
     }
 
 }

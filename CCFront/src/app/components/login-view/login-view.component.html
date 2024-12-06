@@ -49,10 +49,30 @@
 
 
             </div>
+
             <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+            @if(mensajeError){
+              <div class="alert alert-danger mt-3" role="alert">
+                {{mensajeError}}
+              </div>
+            }
           </form>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- toast container para todos los mensajes de error -->
+<div class="bg-body-secondary">
+  <div class="toast-container position-fixed top-0 end-0 p-3">
+
+      @for (error of errores; track error.idComponente) {
+      <app-mensaje-error 
+      [title]="error.title" 
+      [message]="error.message" 
+      idComponente="{{error.idComponente}}"
+      />
+      }
   </div>
 </div>

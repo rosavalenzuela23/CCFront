@@ -1,0 +1,26 @@
+/* Colores personalizados */
+.text-purple {
+    color: #7e57c2; /* Color morado similar al del logo */
+  }
+  
+  .text-primary {
+    color: #5e35b1; /* Color morado un poco más oscuro */
+  }
+  
+  /* Ajustes adicionales */
+  body {
+    background-color: #ffffff; /* Fondo blanco */
+  }
+  
+  h1 {
+    font-size: 3rem; /* Ajusta el tamaño del título principal */
+  }
+  
+  h4 {
+    font-size: 1.5rem; /* Tamaño para el subtítulo */
+  }
+  
+  p {
+    font-size: 1.25rem; /* Tamaño del párrafo */
+  }
+  

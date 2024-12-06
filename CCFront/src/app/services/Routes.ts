@@ -5,5 +5,6 @@ export enum Routes {
     expediente = endpoint+"/expediente/",
     paciente = endpoint+"/paciente/",
     sesion = endpoint+"/sesion/registrar",
-    sesionGeneral = endpoint+"/sesion/"
+    sesionGeneral = endpoint+"/sesion/",
+    empleado = endpoint+"/empleado/",
 }

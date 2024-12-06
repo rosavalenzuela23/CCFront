@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DtoPsicologo } from '../../dtos/DtoPsicologo';
 import { SessionStorageNames } from '../../services/sessionStorageNames';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-main-view',
@@ -11,13 +12,16 @@ import { SessionStorageNames } from '../../services/sessionStorageNames';
 })
 export class MainViewComponent {
 
-  constructor() {
-    const psicologoPrueba: DtoPsicologo = {
-      id: 1,
-      password: "123",
-      usuario: "hello world"
-    };
-    sessionStorage.setItem(SessionStorageNames.USUARIO_ACTUAL, JSON.stringify(psicologoPrueba));
+  empleado: string = "";
+
+  constructor(private route: ActivatedRoute) {
+    
+  }
+
+  ngOnInit(): void {
+
+    this.empleado = sessionStorage.getItem(SessionStorageNames.TOKEN) || "";
+    
   }
 
 }

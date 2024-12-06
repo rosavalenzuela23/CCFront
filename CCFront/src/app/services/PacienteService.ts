@@ -5,7 +5,7 @@ import { Routes } from "./Routes";
 import { Router } from "@angular/router";
 import { DtoPsicologo } from "../dtos/DtoPsicologo";
 import { SessionStorageNames } from "./sessionStorageNames";
-import { lastValueFrom } from "rxjs";
+import { lastValueFrom, Observable } from "rxjs";
 
 
 @Injectable ({
@@ -95,6 +95,18 @@ export class PacienteService{
 
     quitarPacienteActual() {
         sessionStorage.removeItem(SessionStorageNames.PACIENTE_ACTUAL);
+    }
+
+    obtenerPacientesSinCarta(): Observable<DtoPaciente[]> {
+        return this.http.get<DtoPaciente[]>(Routes.paciente+"carta", {
+            params: new HttpParams({
+                fromString:"carta=false"
+            })
+        });
+    }
+
+    subirCartaConcentimiento(formData: FormData): Observable<any> {
+        return this.http.post(Routes.paciente+"carta", formData);
     }
 
 }

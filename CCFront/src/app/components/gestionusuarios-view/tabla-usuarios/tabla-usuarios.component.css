@@ -1,0 +1,24 @@
+.table {
+    border: 2px solid black; /* Borde negro alrededor de la tabla */
+}
+
+.table th, .table td {
+    border: 1px solid black; /* Borde negro entre celdas */
+}
+
+.table th {
+    background-color: #f8f9fa; /* Color de fondo para el encabezado */
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1; /* Color de fondo al pasar el mouse */
+}
+
+/* Si deseas más margen entre los botones */
+.btn {
+    flex: 1; /* Esto asegura que los botones se expandan uniformemente */
+}
+
+.ver{
+    font-size: x-large;
+}

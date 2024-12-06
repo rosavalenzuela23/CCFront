@@ -1,10 +1,21 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { ControlName, ControlNameValidator } from '../../util/control-name-validators';
+import { MensajeErrorComponent } from '../mensaje-error/mensaje-error.component';
+import { catchError } from 'rxjs';
+
+
+type errorType = {
+    title: string,
+    message: string,
+    idComponente: string
+}
 
 @Component({
   selector: 'app-login-view',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MensajeErrorComponent],
   templateUrl: './login-view.component.html',
   styleUrls: ['./login-view.component.css']
 })
