@@ -5,10 +5,12 @@ import * as bootstrap from 'bootstrap';
 import { Form, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CamposConTipo } from '../../../tipos/camposConTipos';
-import { noValidDate } from '../../../util/Validators';
+import { forbiddenString, noValidDate } from '../../../util/Validators';
+import { ControlNameValidator } from '../../../util/control-name-validators';
 
-type rowWithGeneratedId = {
-    generatedId: number
+type Error = { 
+    name: string,
+    type: string
 }
 
 @Component({
@@ -25,6 +27,8 @@ export class TablaComponent {
     @Input() columnNames: CamposConTipo[] = [];
     @Input() informacionTabla: any[] = [];
 
+    listaErrores: Error[] = [];
+
     camposTexto!: FormGroup<any>;
 
     modal: bootstrap.Modal | null = null;
@@ -38,6 +42,11 @@ export class TablaComponent {
             if(obj.tipo == 'date') {
                 listaValidadores.push(noValidDate());
             }
+
+            if(obj.tipo == 'tel') {
+                listaValidadores.push(forbiddenString(/\+[0-9]{12}/gm))
+            }
+
             listaValidadores.push(Validators.required);
             camposTextoGroup[obj.name + this.tableName] = new FormControl('', listaValidadores);
         });
@@ -56,7 +65,26 @@ export class TablaComponent {
 
     ocultarModal() {
         this.modal!.hide();
+        this.listaErrores = [];
         this.camposTexto.reset();
+    }
+
+    getAllErrors() {
+        this.listaErrores = [];
+        const controls = Object.getOwnPropertyNames(this.camposTexto.controls);
+
+        for(const controlName of controls) { 
+            const formControl = this.camposTexto.get(controlName);
+            const validators: string[] = Object.getOwnPropertyNames(formControl?.errors || {})
+            
+            for (const validator of validators) {
+                this.listaErrores.push({
+                    name: `${controlName}`,
+                    type: `${ControlNameValidator[validator]}`
+                })
+            }
+        }
+
     }
 
     guardarInformacion() {
@@ -64,6 +92,7 @@ export class TablaComponent {
         //validar
 
         if (this.camposTexto.invalid) {
+            this.getAllErrors();
             return;
         }
 
@@ -79,6 +108,11 @@ export class TablaComponent {
         this.informacionTabla.push(objToSave);
 
         this.ocultarModal();
+    }
+
+    hasError(formControlName: string, error: string): boolean { 
+        const control = this.camposTexto.get(formControlName)!
+        return control.hasError(error) && control.touched
     }
 
 }

@@ -90,11 +90,18 @@ export class ExpedienteViewComponent {
         })
     }
 
-
-
     private async configurarDatos() {
 
-        this.paciente = this.pacienteService.getPacienteActual();
+        const pacienteDto = this.pacienteService.getPacienteActual();
+
+        // lo regresa a la pagina de gestion si es que no hay ningun paciente actual
+        if (pacienteDto == null) {
+            this.router.navigate(['**']);
+            return;
+        }
+
+        this.paciente = pacienteDto;
+
         this.expediente = this.expedienteService.obtenerExpedienteActual();
 
         //Paciente
@@ -178,9 +185,15 @@ export class ExpedienteViewComponent {
     }
 
     private async actualizarExpediente() {
+        const pacienteDto = this.pacienteService.getPacienteActual();
+
+        if (pacienteDto == null) {
+            return;
+        }
+        
+        const pacienteActual = pacienteDto;
 
         const expedienteActual = this.expedienteService.obtenerExpedienteActual();
-        const pacienteActual = this.pacienteService.getPacienteActual();
 
         const obtenerPaciente = this.obtenerPaciente();
         obtenerPaciente.id = pacienteActual.id;

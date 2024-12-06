@@ -57,10 +57,15 @@ export class PacienteService{
         return obj;
     }
 
-    getPacienteActual(): DtoPaciente {
-        const expediente = JSON.parse(sessionStorage.getItem(
-            SessionStorageNames.PACIENTE_ACTUAL) || "{}"
-        );
+    getPacienteActual(): DtoPaciente | null {
+
+        const jsonString = sessionStorage.getItem(SessionStorageNames.PACIENTE_ACTUAL)
+        
+        if(jsonString === null) {
+            return null;
+        }
+
+        const expediente = JSON.parse(jsonString);
         return expediente;
     }
 
@@ -86,6 +91,10 @@ export class PacienteService{
         }
 
         return edad;
+    }
+
+    quitarPacienteActual() {
+        sessionStorage.removeItem(SessionStorageNames.PACIENTE_ACTUAL);
     }
 
 }

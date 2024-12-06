@@ -13,7 +13,7 @@ export class DtoFamiliaresConfianza {
         return [
             { name: 'nombre', tipo: 'string' },
             { name: 'parentesco', tipo: 'string' },
-            { name: 'telefono', tipo: 'string' }
+            { name: 'telefono', tipo: 'tel' }
         ]
     }
 
