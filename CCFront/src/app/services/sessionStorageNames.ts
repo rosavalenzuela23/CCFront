@@ -14,6 +14,9 @@ export enum SessionStorageNames {
     SESION_ACTUAL = 'sesionActual',
 
     //Token sesion
-    TOKEN = 'token'
+    TOKEN = 'token',
+
+    //PACIENTE SIGUIENTE A CONSULTAR
+    PACIENTE_SIGUIENTE = 'paciente_siguiente',
 
 }
