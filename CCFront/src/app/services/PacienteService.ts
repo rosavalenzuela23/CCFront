@@ -5,7 +5,7 @@ import { Routes } from "./Routes";
 import { Router } from "@angular/router";
 import { DtoPsicologo } from "../dtos/DtoPsicologo";
 import { SessionStorageNames } from "./sessionStorageNames";
-import { lastValueFrom, Observable } from "rxjs";
+import { lastValueFrom, Observable, pairwise } from "rxjs";
 
 
 @Injectable ({
@@ -29,6 +29,7 @@ export class PacienteService{
     }
 
     setPaciente(paciente: DtoPaciente | null):void{
+        if(paciente == null) return;
         this.paciente = paciente;
     }
 
@@ -107,6 +108,14 @@ export class PacienteService{
 
     subirCartaConcentimiento(formData: FormData): Observable<any> {
         return this.http.post(Routes.paciente+"carta", formData);
+    }
+
+    guardarPacienteSiguiente(paciente: DtoPaciente) {
+        sessionStorage.setItem(SessionStorageNames.PACIENTE_SIGUIENTE, JSON.stringify(paciente));
+    }
+
+    obtenerTodosLosPacientes(): Observable<DtoPaciente[]> {
+        return this.http.get<DtoPaciente[]>(Routes.paciente+'todos');
     }
 
 }

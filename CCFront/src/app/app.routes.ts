@@ -14,6 +14,7 @@ import { ActualizarUsuarioComponent } from './components/gestionusuarios-view/ac
 import { authGuard } from './guards/auth.guard'; 
 import { roleGuard } from './guards/role.guard';
 import {mainAccessGuard} from './guards/mainaccess.guard';
+import { NotificarViewComponent } from './components/notificar-view/notificar-view.component';
 
 export const routes: Routes = [
     {path: "", redirectTo: "login", pathMatch: "full"},
@@ -29,5 +30,6 @@ export const routes: Routes = [
     {path:"usuarios", component: GestionUsuariosViewComponent, canActivate: [ roleGuard ], data: {rol: "Administrador"}},
     {path: "crearusuario", component: CrearUsuarioComponent, canActivate: [ roleGuard ], data: {rol: "Administrador"}},
     {path: "actualizarusuario", component: ActualizarUsuarioComponent, canActivate: [ roleGuard ], data: {rol: "Administrador"}},
+    {path: "avisos", component: NotificarViewComponent, canActivate: [ roleGuard ], data: {rol: "Recepcionista"}},
     {path: "**", component: Error404Component }
 ];

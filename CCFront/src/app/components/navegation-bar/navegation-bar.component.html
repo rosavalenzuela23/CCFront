@@ -32,10 +32,13 @@
           <div class="optionItem">
             <a class="nav-link active btn" aria-current="page" (click)="buscarExpedientes()">Gestión Expedientes</a>
           </div>
-         
         </li>
 
-        <li class="anv-item">
+        <li class="nav-item" *ngIf="tienePermisos('Recepcionista')" >
+          <div class="optionItem">
+            <a class="nav-link active btn" routerLink="/avisos">Avisar psicologo</a>
+          </div>
+        </li>
 
         <li class="anv-item" *ngIf="tienePermisos('Recepcionista')">
           <div class="optionItem">

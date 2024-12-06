@@ -1,0 +1,40 @@
+
+
+<div>
+
+    <!-- lista de todos los pacientes de la clinica -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th  class="col">
+                    Nombre del paciente
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (pacientes$ | async; as listaPacientes) {
+                @for (paciente of listaPacientes; track paciente.id) {
+                    <tr>
+                        <td> {{ paciente.nombre }} </td>
+                        <td>
+                            <select name="psicologoSelector" id="seleccionarPsicologo" [id]="paciente.nombre+paciente.id?.toString()">
+                                <option value="Null" selected>Ninguno</option>
+                                @for (psicologo of listaDePsicologos; track psicologo.id) {
+                                    <option value="{{psicologo.usuario}}">{{ psicologo.usuario }}</option>
+                                }
+                            </select>
+                        </td>
+                        <td> 
+                            <button class="btn btn-secondary" (click)="avisarPsicologo(paciente.nombre+paciente.id?.toString(), paciente)">Avisar</button> 
+                        </td>
+                    </tr>
+                }
+            } 
+        </tbody>
+    </table>
+    <!-- lista de todos los psicologos de la clinica -->
+
+    
+
+</div>
+
